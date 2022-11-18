@@ -10,4 +10,5 @@
 - `mosquitto_passwd -c /shared/mosquitto/mqttpasswd.txt [USERNAME]`
 
 ### Node-RED
+- https://shantanoo-desai.github.io/posts/technology/htpasswd-node-red-docker/
 - `./nodered/config/nodered_pw_gen.sh [PASSWORD]`
