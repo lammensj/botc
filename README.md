@@ -8,3 +8,6 @@
 ### MQTT
 - `docker-compose exec mosquitto /bin/sh`
 - `mosquitto_passwd -c /shared/mosquitto/mqttpasswd.txt [USERNAME]`
+
+### Node-RED
+- `./nodered/config/nodered_pw_gen.sh [PASSWORD]`
