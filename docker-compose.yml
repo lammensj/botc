@@ -16,6 +16,7 @@ services:
   nodered:
     image: nodered/node-red:latest-18-minimal
     container_name: nodered
+    restart: unless-stopped
     env_file:
       - ${PROJECT_DIR}/nodered/config/node-red.env
     environment:
