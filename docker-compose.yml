@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  influxdb:
+    image: influxdb:2.5.1
+    container_name: influxdb
+    restart: unless-stopped
+    env_file:
+      - ${PROJECT_DIR}/influxdb/config/.env
+    ports:
+      - '8086:8086'
+    volumes:
+      - ${PROJECT_DIR}/influxdb/data:/var/lib/influxdb2
+    security_opt:
+      - no-new-privileges=true
+
   mosquitto:
     image: eclipse-mosquitto:2.0.15
     container_name: mosquitto
@@ -8,6 +21,8 @@ services:
     ports:
       - '1883:1883'
       - '9001:9001'
+    security_opt:
+      - no-new-privileges=true
     volumes:
       - ${PROJECT_DIR}/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ${PROJECT_DIR}/mosquitto/data:/mosquitto/data
@@ -23,5 +38,7 @@ services:
       - TZ=${TZ}
     ports:
       - '1880:1880'
+    security_opt:
+      - no-new-privileges=true
     volumes:
       - ${PROJECT_DIR}/nodered/data:/data
