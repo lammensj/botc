@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  grafana:
+    image: grafana/grafana-oss:9.2.5
+    container_name: grafana
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+    env_file:
+      - ${PROJECT_DIR}/grafana/config/.env
+    ports:
+      - '3000:3000'
+    volumes:
+      - ${PROJECT_DIR}/grafana/data:/var/lib/grafana
+
   influxdb:
     image: influxdb:2.5.1
     container_name: influxdb
@@ -9,10 +22,10 @@ services:
       - ${PROJECT_DIR}/influxdb/config/.env
     ports:
       - '8086:8086'
-    volumes:
-      - ${PROJECT_DIR}/influxdb/data:/var/lib/influxdb2
     security_opt:
       - no-new-privileges=true
+    volumes:
+      - ${PROJECT_DIR}/influxdb/data:/var/lib/influxdb2
 
   mosquitto:
     image: eclipse-mosquitto:2.0.15
