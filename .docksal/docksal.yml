@@ -26,3 +26,17 @@ services:
       - no-new-privileges=true
     volumes:
       - ${PROJECT_DIR}/.docksal/etc/influxdb/data:/var/lib/influxdb2
+
+  nodered:
+    image: nodered/node-red:latest-18-minimal
+    restart: unless-stopped
+    env_file:
+      - ${PROJECT_DIR}/.docksal/etc/nodered/config/node-red.env
+    environment:
+      - TZ=${TZ}
+    ports:
+      - '1880:1880'
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - ${PROJECT_DIR}/.docksal/etc/nodered/data:/data
