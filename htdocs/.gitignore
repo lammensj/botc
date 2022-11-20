@@ -10,6 +10,7 @@
 
 # Ignore local settings
 /app/sites/*/settings.local.php
+/app/sites/*/services.local.yml
 
 # Ignore Drupal's file directory
 /app/sites/*/files/
