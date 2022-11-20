@@ -7,33 +7,33 @@ services:
     depends_on:
       - influxdb
     env_file:
-      - ${PROJECT_DIR}/.docksal/etc/grafana/config/.env
+      - ${PROJECT_ROOT}/.docksal/etc/grafana/config/.env
     labels:
       - io.docksal.virtual-host=grafana.${VIRTUAL_HOST}
       - io.docksal.virtual-port=3000
     security_opt:
       - no-new-privileges=true
     volumes:
-      - ${PROJECT_DIR}/.docksal/etc/grafana/data:/var/lib/grafana
+      - ${PROJECT_ROOT}/.docksal/etc/grafana/data:/var/lib/grafana
 
   influxdb:
     image: influxdb:2.5.1
     restart: unless-stopped
     env_file:
-      - ${PROJECT_DIR}/.docksal/etc/influxdb/config/.env
+      - ${PROJECT_ROOT}/.docksal/etc/influxdb/config/.env
     labels:
       - io.docksal.virtual-host=influxdb.${VIRTUAL_HOST}
       - io.docksal.virtual-port=8086
     security_opt:
       - no-new-privileges=true
     volumes:
-      - ${PROJECT_DIR}/.docksal/etc/influxdb/data:/var/lib/influxdb2
+      - ${PROJECT_ROOT}/.docksal/etc/influxdb/data:/var/lib/influxdb2
 
   nodered:
     image: nodered/node-red:latest-18-minimal
     restart: unless-stopped
     env_file:
-      - ${PROJECT_DIR}/.docksal/etc/nodered/config/node-red.env
+      - ${PROJECT_ROOT}/.docksal/etc/nodered/config/node-red.env
     environment:
       - TZ=${TZ}
     labels:
@@ -42,4 +42,4 @@ services:
     security_opt:
       - no-new-privileges=true
     volumes:
-      - ${PROJECT_DIR}/.docksal/etc/nodered/data:/data
+      - ${PROJECT_ROOT}/.docksal/etc/nodered/data:/data
