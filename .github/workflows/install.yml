@@ -17,5 +17,11 @@ jobs:
         run: fin sysinfo
       - name: Checkout
         uses: actions/checkout@v3
+      - name: prepare .env-files
+        run: |
+          cp ./.docksal/etc/grafana/config/.tpl.env ./.docksal/etc/grafana/config/.env;
+          cp ./.docksal/etc/influxdb/config/.tpl.env ./.docksal/etc/influxdb/config/.env;
+          ./.docksal/etc/nodered/config/nodered_pw_gen.sh test;
+          cp ./.docksal/etc/shared/mosquitto/mqttpasswd.tpl.txt ./.docksal/etc/shared/mosquitto/mqttpasswd.txt;
       - name: fin config
         run: fin config

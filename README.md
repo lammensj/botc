@@ -1,7 +1,7 @@
 # Faraday
 
 ## Setup
-- `cp ./.docksal/etc/shared/mosquitto/mqttpasswd.txt.example ./.docksal/etc/shared/mosquitto/mqttpasswd.txt`
+- `cp ./.docksal/etc/shared/mosquitto/mqttpasswd.tpl.txt ./.docksal/etc/shared/mosquitto/mqttpasswd.txt`
 - `fin p up`
 
 ### MQTT
