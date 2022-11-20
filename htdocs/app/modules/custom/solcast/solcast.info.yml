@@ -1,0 +1,6 @@
+name: Solcast
+type: module
+description: Solar resource assessment and forecasting data for irradiance and PV power.
+package: Faraday
+core: 8.x
+core_version_requirement: ^8 || ^9
