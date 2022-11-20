@@ -43,3 +43,13 @@ services:
       - no-new-privileges=true
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/nodered/data:/data
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0.15
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - ${PROJECT_ROOT}/.docksal/etc/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ${PROJECT_ROOT}/.docksal/etc/mosquitto/data:/mosquitto/data
+      - ${PROJECT_ROOT}/.docksal/etc/shared:/shared
