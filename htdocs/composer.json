@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "drupal-composer/drupal-paranoia": "^1.1",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
@@ -32,16 +33,29 @@
         "allow-plugins": {
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true
+            "drupal/core-project-message": true,
+            "drupal-composer/drupal-paranoia": true
         }
     },
     "extra": {
+        "drupal-paranoia": {
+            "app-dir": "app",
+            "web-dir": "web",
+            "excludes": [
+                "sites/simpletest"
+            ],
+            "asset-files": [
+                "browserconfig.xml",
+                "site.webmanifest"
+            ]
+        },
         "drupal-scaffold": {
             "allowed-packages": [
                 "drupal/core"
             ],
             "locations": {
-                "web-root": "./web"
+                "project-root": "./",
+                "web-root": "./app"
             },
             "file-mapping": {
                 "[web-root]/INSTALL.txt": false,
@@ -54,28 +68,28 @@
             "gitignore": true
         },
         "installer-paths": {
-            "web/core": [
+            "app/core": [
                 "type:drupal-core"
             ],
-            "web/libraries/{$name}": [
+            "app/libraries/{$name}": [
                 "type:drupal-library"
             ],
-            "web/modules/contrib/{$name}": [
+            "app/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
-            "web/profiles/contrib/{$name}": [
+            "app/profiles/contrib/{$name}": [
                 "type:drupal-profile"
             ],
-            "web/themes/contrib/{$name}": [
+            "app/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
             "drush/Commands/contrib/{$name}": [
                 "type:drupal-drush"
             ],
-            "web/modules/custom/{$name}": [
+            "app/modules/custom/{$name}": [
                 "type:drupal-custom-module"
             ],
-            "web/themes/custom/{$name}": [
+            "app/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
             ]
         },

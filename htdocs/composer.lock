@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c91d1e2d401a7b9b5535d8f5dcb7584b",
+    "content-hash": "b0b1468d1f6773bdb6f0e7bf0e03d120",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1229,6 +1229,47 @@
             },
             "abandoned": "roave/better-reflection",
             "time": "2022-05-31T18:46:25+00:00"
+        },
+        {
+            "name": "drupal-composer/drupal-paranoia",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal-composer/drupal-paranoia.git",
+                "reference": "39b6c0bcd48c10d22db6e83655113bd35e893a42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-paranoia/zipball/39b6c0bcd48c10d22db6e83655113bd35e893a42",
+                "reference": "39b6c0bcd48c10d22db6e83655113bd35e893a42",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1 || ^2",
+                "php": ">=5.4.5"
+            },
+            "require-dev": {
+                "composer/composer": "dev-master"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "DrupalComposer\\DrupalParanoia\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "DrupalComposer\\DrupalParanoia\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Composer Plugin for improving the security of composer-based Drupal projects by moving all PHP files out of docroot.",
+            "support": {
+                "issues": "https://github.com/drupal-composer/drupal-paranoia/issues",
+                "source": "https://github.com/drupal-composer/drupal-paranoia/tree/1.1.1"
+            },
+            "time": "2021-12-29T12:27:43+00:00"
         },
         {
             "name": "drupal/core",
