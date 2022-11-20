@@ -1,1 +1,14 @@
-version: "3"
+version: '3'
+
+services:
+  influxdb:
+    image: influxdb:2.5.1
+    restart: unless-stopped
+    env_file:
+      - ${PROJECT_DIR}/.docksal/etc/influxdb/config/.env
+    ports:
+      - '8086:8086'
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - ${PROJECT_DIR}/.docksal/etc/influxdb/data:/var/lib/influxdb2

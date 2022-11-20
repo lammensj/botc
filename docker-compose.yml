@@ -16,19 +16,6 @@ services:
     volumes:
       - ${PROJECT_DIR}/grafana/data:/var/lib/grafana
 
-  influxdb:
-    image: influxdb:2.5.1
-    container_name: influxdb
-    restart: unless-stopped
-    env_file:
-      - ${PROJECT_DIR}/influxdb/config/.env
-    ports:
-      - '8086:8086'
-    security_opt:
-      - no-new-privileges=true
-    volumes:
-      - ${PROJECT_DIR}/influxdb/data:/var/lib/influxdb2
-
   mosquitto:
     image: eclipse-mosquitto:2.0.15
     container_name: mosquitto
