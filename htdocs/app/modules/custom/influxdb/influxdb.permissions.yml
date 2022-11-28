@@ -1,0 +1,4 @@
+administer influxdb configuration:
+  title: 'Administer InfluxDB'
+  description: 'Allow administration of InfluxDB configuration.'
+  restrict access: true

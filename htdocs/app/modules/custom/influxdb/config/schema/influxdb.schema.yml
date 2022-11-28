@@ -1,0 +1,16 @@
+influxdb.settings:
+  type: config_object
+  label: 'influxdb.titles.settings'
+  mapping:
+    server_url:
+      type: string
+      label: 'influxdb.labels.server_url'
+    token:
+      type: string
+      label: 'influxdb.labels.token'
+    allow_redirects:
+      type: boolean
+      label: 'influxdb.labels.allow_redirects'
+    debug:
+      type:  boolean
+      label: 'influxdb.labels.debug'
