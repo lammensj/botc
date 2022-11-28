@@ -1,0 +1,12 @@
+name: InfluxDB
+type: module
+description: Provides integration with InfluxDB, an open-source time series database.
+package: Faraday
+core: 8.x
+core_version_requirement: ^8 || ^9
+configure: influxdb.settings_form
+dependencies:
+  - key:key
+
+'interface translation project': influxdb
+'interface translation server pattern': modules/custom/%project/translations/%project.%language.po

@@ -1,0 +1,11 @@
+{
+    "name": "drupal/influxdb",
+    "description": "Provides integration with InfluxDB, an open-source time series database.",
+    "type": "drupal-module",
+    "require": {
+        "drupal/key": "^1.16",
+        "influxdata/influxdb-client-php": "^3.1",
+        "guzzlehttp/guzzle": "^6.5",
+        "php-http/guzzle6-adapter": "^2.0"
+    }
+}
