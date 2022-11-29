@@ -1,0 +1,11 @@
+services:
+  influxdb.services.client_factory:
+    class: Drupal\influxdb\Services\ClientFactory\ClientFactory
+    arguments:
+      - '@config.factory'
+
+  influxdb.services.client:
+    class: InfluxDB2\Client
+    factory: 'influxdb.services.client_factory:createClient'
+    arguments:
+      - 'influxdb.settings'
