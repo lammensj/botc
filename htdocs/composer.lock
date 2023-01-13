@@ -3057,16 +3057,16 @@
         },
         {
             "name": "influxdata/influxdb-client-php",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/influxdata/influxdb-client-php.git",
-                "reference": "fa7ae008f8ea27796189ed673ced49612e080756"
+                "reference": "e6e16dff641cda5a8c0123024f1124c6e6a1fd6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/influxdata/influxdb-client-php/zipball/fa7ae008f8ea27796189ed673ced49612e080756",
-                "reference": "fa7ae008f8ea27796189ed673ced49612e080756",
+                "url": "https://api.github.com/repos/influxdata/influxdb-client-php/zipball/e6e16dff641cda5a8c0123024f1124c6e6a1fd6a",
+                "reference": "e6e16dff641cda5a8c0123024f1124c6e6a1fd6a",
                 "shasum": ""
             },
             "require": {
@@ -3101,9 +3101,9 @@
             ],
             "support": {
                 "issues": "https://github.com/influxdata/influxdb-client-php/issues",
-                "source": "https://github.com/influxdata/influxdb-client-php/tree/3.1.0"
+                "source": "https://github.com/influxdata/influxdb-client-php/tree/3.2.0"
             },
-            "time": "2022-10-27T05:23:23+00:00"
+            "time": "2022-12-01T15:15:35+00:00"
         },
         {
             "name": "kezor/guzzle-description-loader",
