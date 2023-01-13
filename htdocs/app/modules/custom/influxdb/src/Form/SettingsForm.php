@@ -69,20 +69,13 @@ class SettingsForm extends ConfigFormBase {
     $http = new HttpClient();
     $client = new Client([
       'url' => $form_state->getValue('server_url'),
-      'token' => $form_state->getValue('token'),
       'httpClient' => $http,
     ]);
 
     try {
       $client->ping();
     } catch (\Exception $e) {
-      if ($e->getPrevious() instanceof NetworkException) {
-        $form_state->setErrorByName('server_url', $e->getMessage());
-
-        return;
-      }
-
-      $form_state->setErrorByName('token', $e->getMessage());
+      $form_state->setErrorByName('server_url', $e->getMessage());
     }
 
     parent::validateForm($form, $form_state);
