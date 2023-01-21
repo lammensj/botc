@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal-composer/drupal-paranoia": "^1.1",
         "drupal/admin_toolbar": "^3.2",
         "drupal/core-composer-scaffold": "^9",
@@ -44,7 +45,8 @@
             "drupal/core-project-message": true,
             "drupal-composer/drupal-paranoia": true,
             "wikimedia/composer-merge-plugin": true,
-            "grasmash/drupal-security-warning": true
+            "grasmash/drupal-security-warning": true,
+            "cweagans/composer-patches": true
         }
     },
     "scripts": {
