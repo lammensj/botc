@@ -21,7 +21,7 @@
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
-        "drupal/gin": "^3.0@beta",
+        "drupal/gin": "^3.0@RC",
         "drupal/gin_login": "^2.0",
         "drupal/http_client_manager": "^9.3",
         "drupal/jwt": "^1.0",

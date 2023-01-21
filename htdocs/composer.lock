@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6358be50e89410d1984999b8dd46f45e",
+    "content-hash": "87604a1cb91d251dedb3729240178717",
     "packages": [
         {
             "name": "arthurkirkosa/guzzle-description-loader",
@@ -1829,7 +1829,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-3.0-rc1",
-                    "datestamp": "1669666925",
+                    "datestamp": "1669708679",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -8452,7 +8452,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/gin": 10,
+        "drupal/gin": 5,
         "grasmash/drupal-security-warning": 20
     },
     "prefer-stable": true,
