@@ -7,6 +7,8 @@
 /app/profiles/contrib/
 /app/libraries/
 /web
+.editorconfig
+.gitattributes
 
 # Ignore local settings
 /app/sites/*/settings.local.php
