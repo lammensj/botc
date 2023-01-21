@@ -33,7 +33,6 @@
         "drupal/gin_login": "^2.0",
         "drupal/http_client_manager": "^9.3",
         "drupal/jwt": "dev-3288163-automated-drupal-10",
-        "drupal/upgrade_status": "^3.18",
         "drush/drush": "^10.2",
         "grasmash/drupal-security-warning": "1.x-dev",
         "wikimedia/composer-merge-plugin": "^2.0"
