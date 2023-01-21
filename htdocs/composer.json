@@ -11,7 +11,14 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "url": "https://packages.drupal.org/8",
+            "exclude": [
+                "drupal/jwt"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/jwt-3288163.git"
         }
     ],
     "require": {
@@ -25,7 +32,7 @@
         "drupal/gin": "^3.0@RC",
         "drupal/gin_login": "^2.0",
         "drupal/http_client_manager": "^9.3",
-        "drupal/jwt": "^1.0",
+        "drupal/jwt": "dev-3288163-automated-drupal-10",
         "drupal/upgrade_status": "^3.18",
         "drush/drush": "^10.2",
         "grasmash/drupal-security-warning": "1.x-dev",
@@ -116,6 +123,7 @@
                 "app/themes/custom/*/composer.json"
             ]
         },
+        "patches-file": "./composer.patches.json",
         "drupal-core-project-message": {
             "include-keys": [
                 "homepage",

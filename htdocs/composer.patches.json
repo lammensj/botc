@@ -1,0 +1,7 @@
+{
+    "patches": {
+        "drupal/jwt": {
+            "Deprecated function: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated": "https://www.drupal.org/files/issues/2022-07-22/3298726-3.patch"
+        }
+    }
+}
