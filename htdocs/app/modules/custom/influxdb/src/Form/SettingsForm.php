@@ -4,10 +4,8 @@ namespace Drupal\influxdb\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Http\Adapter\Guzzle6\Client as HttpClient;
-use Http\Client\Exception\NetworkException;
+use Http\Adapter\Guzzle7\Client as HttpClient;
 use InfluxDB2\Client;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Configure InfluxDB settings for this site.
@@ -70,10 +68,12 @@ class SettingsForm extends ConfigFormBase {
     $client = new Client([
       'url' => $form_state->getValue('server_url'),
       'httpClient' => $http,
+      'token' => '',
     ]);
 
     try {
-      $client->ping();
+      $response = $client->ping();
+      $this->messenger()->addStatus(sprintf('X-Influxdb-Version: %s', $response['X-Influxdb-Version'][0]));
     } catch (\Exception $e) {
       $form_state->setErrorByName('server_url', $e->getMessage());
     }

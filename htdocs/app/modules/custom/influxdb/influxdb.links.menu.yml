@@ -1,6 +1,6 @@
 influxdb.settings_form:
   title: InfluxDB
   description: influxdb.other.description
-  parent: system.admin_config_services
+  parent: system.admin_config_search
   route_name: influxdb.settings_form
   weight: 10
