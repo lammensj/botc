@@ -1,0 +1,14 @@
+uuid: bbf8e834-f6d1-481a-94ef-4003cba51489
+langcode: en
+status: true
+dependencies:
+  config:
+    - http_client_manager.http_config_request.koren45
+    - key.key.solcast_koren45_sourceid
+id: solcast_koren45_sourceid
+label: 'Solcast Koren45 SourceID'
+config_type: http_config_request
+config_prefix: http_client_manager.http_config_request
+config_name: koren45
+config_item: parameters.resourceId
+key_id: solcast_koren45_sourceid

@@ -1,0 +1,11 @@
+uuid: 49b4e359-36ec-46cd-91d6-716e9bad8cd1
+langcode: en
+status: true
+dependencies: {  }
+id: koren45
+label: Koren45
+service_api: solcast_services
+command_name: GetForecast
+parameters:
+  resourceId: null
+  hours: 168
