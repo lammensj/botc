@@ -208,6 +208,15 @@ $databases = [];
  *   ];
  * @endcode
  */
+$databases['default']['default'] = [
+  'driver' => $_ENV['DB_DRIVER'],
+  'host' => $_ENV['DB_HOST'],
+  'username' => $_ENV['DB_USER'],
+  'password' => $_ENV['DB_PASSWORD'],
+  'database' => $_ENV['DB_NAME'],
+  'prefix' => $_ENV['DB_PREFIX'],
+];
+
 
 /**
  * Location of the site configuration files.
