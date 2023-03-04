@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2968a7d88a72f4e4a53a0e431d5b246",
+    "content-hash": "ddd8d9b2c8e34617eadfec5963357084",
     "packages": [
         {
             "name": "arthurkirkosa/guzzle-description-loader",
@@ -2001,14 +2001,20 @@
         },
         {
             "name": "drupal/jwt",
-            "version": "dev-3288163-automated-drupal-10",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/issue/jwt-3288163.git",
-                "reference": "82913d7f8992620cacba0b0cc6279858956b46e8"
+                "url": "https://git.drupalcode.org/project/jwt.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jwt-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "bc500760cc6d5ee0253a57d0d9a086d45174e883"
             },
             "require": {
-                "drupal/core": "^8.7.12 || ^9.0 || ^10.0",
+                "drupal/core": "^9.0 || ^10.0",
                 "drupal/key": "^1.3",
                 "firebase/php-jwt": "^4.0 | ^5.0",
                 "php": ">=7.0.8"
@@ -2017,8 +2023,37 @@
                 "ext-openssl": "Enabling the openssl extension is required to use RSA keys"
             },
             "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1675367553",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "edwardchiapet",
+                    "homepage": "https://www.drupal.org/user/2354784"
+                },
+                {
+                    "name": "gabesullice",
+                    "homepage": "https://www.drupal.org/user/2287430"
+                },
+                {
+                    "name": "jonathan.green",
+                    "homepage": "https://www.drupal.org/user/3505671"
+                },
+                {
+                    "name": "pwolanin",
+                    "homepage": "https://www.drupal.org/user/49851"
+                }
             ],
             "description": "Provides a JSON Web Token authentication provider",
             "homepage": "https://www.drupal.org/project/jwt",
@@ -2026,10 +2061,9 @@
                 "Drupal"
             ],
             "support": {
-                "issues": "http://drupal.org/project/issues/jwt",
-                "source": "http://cgit.drupalcode.org/jwt"
-            },
-            "time": "2023-01-21T13:52:14+00:00"
+                "source": "http://cgit.drupalcode.org/jwt",
+                "issues": "http://drupal.org/project/issues/jwt"
+            }
         },
         {
             "name": "drupal/key",
@@ -7656,7 +7690,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/gin": 5,
-        "drupal/jwt": 20,
         "grasmash/drupal-security-warning": 20
     },
     "prefer-stable": true,
