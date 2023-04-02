@@ -46,7 +46,8 @@
             "drupal-composer/drupal-paranoia": true,
             "wikimedia/composer-merge-plugin": true,
             "grasmash/drupal-security-warning": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "php-http/discovery": true
         }
     },
     "scripts": {
