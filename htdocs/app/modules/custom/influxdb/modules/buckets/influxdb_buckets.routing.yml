@@ -1,0 +1,31 @@
+entity.influxdb_bucket.collection:
+  path: '/admin/config/services/influxdb/buckets'
+  defaults:
+    _entity_list: 'influxdb_bucket'
+    _title: 'Buckets'
+  requirements:
+    _permission: 'administer influxdb bucket'
+
+entity.influxdb_bucket.add_form:
+  path: '/admin/config/services/influxdb/buckets/add'
+  defaults:
+    _entity_form: 'influxdb_bucket.add'
+    _title: 'Add a bucket'
+  requirements:
+    _permission: 'administer influxdb bucket'
+
+entity.influxdb_bucket.edit_form:
+  path: '/admin/config/services/influxdb/buckets/{influxdb_bucket}'
+  defaults:
+    _entity_form: 'influxdb_bucket.edit'
+    _title: 'Edit a bucket'
+  requirements:
+    _permission: 'administer influxdb bucket'
+
+entity.influxdb_bucket.delete_form:
+  path: '/admin/config/services/influxdb/buckets/{influxdb_bucket}/delete'
+  defaults:
+    _entity_form: 'influxdb_bucket.delete'
+    _title: 'Delete a bucket'
+  requirements:
+    _permission: 'administer influxdb bucket'

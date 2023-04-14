@@ -1,0 +1,4 @@
+entity.influxdb_buckets.collection:
+  title: Buckets
+  route_name: entity.influxdb_bucket.collection
+  base_route: influxdb.settings_form

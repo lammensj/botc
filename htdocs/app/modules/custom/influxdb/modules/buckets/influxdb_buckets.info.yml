@@ -1,0 +1,9 @@
+name: influxdb
+type: module
+description: 'Provides a bucket configuration entity.'
+package: Faraday
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - influxdb
+configure: entity.influxdb_bucket.collection
