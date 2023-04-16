@@ -1,5 +1,5 @@
 entity.influxdb_bucket.add_form:
   route_name: 'entity.influxdb_bucket.add_form'
-  title: 'Add bucket'
+  title: influxdb.titles.bucket_add
   appears_on:
-    - influxdb.settings_form
+    - entity.influxdb_bucket.collection

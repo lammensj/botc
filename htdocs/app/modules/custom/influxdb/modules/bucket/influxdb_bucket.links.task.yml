@@ -1,4 +1,4 @@
-entity.influxdb_buckets.collection:
-  title: Buckets
+entity.influxdb_bucket.collection:
+  title: influxdb.titles.buckets
   route_name: entity.influxdb_bucket.collection
   base_route: influxdb.settings_form

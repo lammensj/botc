@@ -1,4 +1,4 @@
-influxdb_buckets.bucket.*:
+influxdb_bucket.bucket.*:
   type: config_entity
   label: Bucket
   mapping:
@@ -9,6 +9,4 @@ influxdb_buckets.bucket.*:
       type: label
       label: Label
     uuid:
-      type: string
-    description:
       type: string

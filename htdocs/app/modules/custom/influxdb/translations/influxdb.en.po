@@ -8,8 +8,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgctxt "influxdb"
+msgid "influxdb.titles.influxdb"
+msgstr "InfluxDB"
+
+msgctxt "influxdb"
 msgid "influxdb.titles.settings"
 msgstr "Settings"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket"
+msgstr "Bucket"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_singular"
+msgstr "bucket"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_plural"
+msgstr "buckets"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_count_singular"
+msgstr "@count bucket"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_count_plural"
+msgstr "@count buckets"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.buckets"
+msgstr "Buckets"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_add"
+msgstr "Add a Bucket"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_edit"
+msgstr "Edit a Bucket"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.bucket_delete"
+msgstr "Delete a Bucket"
 
 msgctxt "influxdb"
 msgid "influxdb.labels.server_url"
@@ -28,5 +68,89 @@ msgid "influxdb.labels.debug"
 msgstr "Enable verbose logging of http requests"
 
 msgctxt "influxdb"
-msgid "influxdb.other.description_module"
-msgstr "Provides integration with InfluxDB, an open-source time series database."
+msgid "influxdb.labels.label"
+msgstr "Label"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.machine_name"
+msgstr "Machine name"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.retention_seconds"
+msgstr "Retention period"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.status"
+msgstr "Status"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.default"
+msgstr "Default"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.enabled"
+msgstr "Enabled"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.disabled"
+msgstr "Disabled"
+
+msgctxt "influxdb"
+msgid "influxdb.labels.not_default"
+msgstr "Not default"
+
+msgctxt "influxdb"
+msgid "influxdb.messages.bucket_created"
+msgstr "Created new bucket %label."
+
+msgctxt "influxdb"
+msgid "influxdb.messages.bucket_updated"
+msgstr "Updated bucket %label."
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.never"
+msgstr "Never"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.1h"
+msgstr "1 hour"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.6h"
+msgstr "6 hours"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.12h"
+msgstr "12 hours"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.24h"
+msgstr "24 hours"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.48h"
+msgstr "48 hours"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.72h"
+msgstr "72 hours"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.7d"
+msgstr "7 days"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.14d"
+msgstr "14 days"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.30d"
+msgstr "30 days"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.90d"
+msgstr "90 days"
+
+msgctxt "influxdb"
+msgid "influxdb.options.retention_seconds.1y"
+msgstr "1 year"

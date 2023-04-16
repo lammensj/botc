@@ -1,5 +1,5 @@
 influxdb.settings_form:
-  title: InfluxDB
+  title: influxdb.titles.influxdb
   description: influxdb.other.description
   parent: system.admin_config_search
   route_name: influxdb.settings_form

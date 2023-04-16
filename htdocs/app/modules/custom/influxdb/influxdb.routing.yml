@@ -1,7 +1,7 @@
 influxdb.settings_form:
   path: '/admin/config/services/influxdb'
   defaults:
-    _title: 'InfluxDB settings'
+    _title: influxdb.titles.influxdb
     _form: 'Drupal\influxdb\Form\SettingsForm'
   requirements:
     _permission: 'administer influxdb'

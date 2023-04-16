@@ -1,9 +1,9 @@
-name: influxdb
+name: InfluxDB - Bucket
 type: module
 description: 'Provides a bucket configuration entity.'
-package: Faraday
+package: The Green Plug
 core: 8.x
 core_version_requirement: ^8 || ^9 || ^10
 dependencies:
-  - influxdb
+  - influxdb:influxdb
 configure: entity.influxdb_bucket.collection

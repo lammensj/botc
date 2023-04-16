@@ -1,4 +1,4 @@
 influxdb.settings_form:
-  title: InfluxDB
+  title: influxdb.titles.settings
   route_name: influxdb.settings_form
   base_route: influxdb.settings_form
