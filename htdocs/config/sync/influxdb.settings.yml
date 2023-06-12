@@ -1,0 +1,5 @@
+server_url: 'http://influxdb:8086'
+organization: koren45
+token: influxdb
+allow_redirects: true
+debug: true
