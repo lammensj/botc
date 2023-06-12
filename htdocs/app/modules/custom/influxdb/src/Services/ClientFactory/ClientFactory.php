@@ -5,8 +5,9 @@ namespace Drupal\influxdb\Services\ClientFactory;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\key\Entity\Key;
 use Drupal\key\KeyRepositoryInterface;
-use Http\Adapter\Guzzle6\Client as HttpClient;
+use Http\Adapter\Guzzle7\Client as HttpClient;
 use InfluxDB2\Client;
+use InfluxDB2\Service\OrganizationsService;
 
 class ClientFactory implements ClientFactoryInterface {
 
@@ -33,11 +34,30 @@ class ClientFactory implements ClientFactoryInterface {
 
     return new Client([
       'url' => $config->get('server_url'),
-      'token' => $config->get('token'),
+      'org' => $config->get('organization'),
+      'token' => $this->getToken($config->get('token')),
       'httpClient' => $http,
       'allow_redirects' => $config->get('allow_redirects'),
       'debug' => $config->get('debug'),
     ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOrganizationId(?string $name = NULL): string {
+    /** @var \InfluxDB2\Service\OrganizationsService $orgService */
+    $orgService = $this->createClient('influxdb.settings')
+      ->createService(OrganizationsService::class);
+
+    if (empty($name)) {
+      $config = $this->configFactory->get('influxdb.settings');
+      $name = $config->get('organization');
+    }
+
+    $response = $orgService->getOrgs(NULL, NULL, 1, FALSE, $name);
+
+    return $response->getOrgs()[0]->getId();
   }
 
   /**

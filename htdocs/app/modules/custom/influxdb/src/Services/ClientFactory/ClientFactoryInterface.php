@@ -19,4 +19,17 @@ interface ClientFactoryInterface {
    */
   public function createClient(string $configName, array $clientConfig = []): Client;
 
+  /**
+   * Get the organization ID.
+   *
+   * @param string|null $name
+   *   The name of the organization.
+   *
+   * @return string
+   *   Returns the ID.
+   *
+   * @throws \InfluxDB2\ApiException
+   */
+  public function getOrganizationId(?string $name): string;
+
 }

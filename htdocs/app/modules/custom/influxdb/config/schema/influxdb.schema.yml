@@ -5,6 +5,9 @@ influxdb.settings:
     server_url:
       type: string
       label: 'influxdb.labels.server_url'
+    organization:
+      type: string
+      label: 'influxdb.labels.organization'
     token:
       type: string
       label: 'influxdb.labels.token'

@@ -3,6 +3,7 @@ services:
     class: Drupal\influxdb\Services\ClientFactory\ClientFactory
     arguments:
       - '@config.factory'
+      - '@key.repository'
 
   influxdb.services.client:
     class: InfluxDB2\Client
