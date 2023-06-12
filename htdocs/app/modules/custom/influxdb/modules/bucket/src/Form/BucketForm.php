@@ -4,6 +4,8 @@ namespace Drupal\influxdb_bucket\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\influxdb_bucket\Services\BucketManager\BucketManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Bucket form.
@@ -13,10 +15,26 @@ use Drupal\Core\Form\FormStateInterface;
 class BucketForm extends EntityForm {
 
   /**
+   * The bucket manager.
+   *
+   * @var \Drupal\influxdb_bucket\Services\BucketManager\BucketManagerInterface
+   */
+  protected BucketManagerInterface $bucketManager;
+
+  /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state) {
+  public static function create(ContainerInterface $container): BucketForm {
+    $instance = parent::create($container);
+    $instance->bucketManager = $container->get('influxdb_bucket.services.bucket_manager');
 
+    return $instance;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function form(array $form, FormStateInterface $form_state): array {
     $form = parent::form($form, $form_state);
 
     $form['label'] = [
@@ -75,7 +93,7 @@ class BucketForm extends EntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state): int {
     $result = parent::save($form, $form_state);
     $message_args = ['%label' => $this->entity->label()];
     $message = $result == SAVED_NEW
@@ -83,6 +101,8 @@ class BucketForm extends EntityForm {
       : $this->t('influxdb.messages.bucket_updated', $message_args);
     $this->messenger()->addStatus($message);
     $form_state->setRedirectUrl($this->entity->toUrl('collection'));
+
+    $this->bucketManager->upsertBucket($form_state->getValues());
 
     return $result;
   }
