@@ -1,0 +1,5 @@
+services:
+  influxdb_bucket.services.bucket_manager:
+    class: Drupal\influxdb_bucket\Services\BucketManager\BucketManager
+    arguments:
+      - '@influxdb.services.client_factory'
