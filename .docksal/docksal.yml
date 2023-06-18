@@ -1,6 +1,9 @@
 version: '3'
 
 services:
+  cli:
+    ports:
+      - '2222:22'
   grafana:
     image: grafana/grafana-oss:9.2.5
     restart: unless-stopped
@@ -43,15 +46,3 @@ services:
       - no-new-privileges=true
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/nodered/data:/data
-
-  timescaledb:
-    image: timescale/timescaledb:latest-pg15
-    restart: unless-stopped
-    environment:
-      - POSTGRES_PASSWORD=password
-    ports:
-      - "5432:5432"
-    security_opt:
-      - no-new-privileges=true
-    volumes:
-      - ${PROJECT_ROOT}/.docksal/etc/timescaledb/data:/home/postgres/pgdata/data
