@@ -32,6 +32,16 @@ services:
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/influxdb/data:/var/lib/influxdb2
 
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - ${PROJECT_ROOT}/.docksal/etc/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ${PROJECT_ROOT}/.docksal/etc/mosquitto/data:/mosquitto/data
+      - ${PROJECT_ROOT}/.docksal/etc/shared:/shared
+
   nodered:
     image: nodered/node-red:latest-18-minimal
     restart: unless-stopped
