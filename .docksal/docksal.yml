@@ -56,3 +56,15 @@ services:
       - no-new-privileges=true
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/nodered/data:/data
+
+  rabbitmq:
+    image: bitnami/rabbitmq:3.12
+    restart: unless-stopped
+    environment:
+      RABBITMQ_VHOST: ${VIRTUAL_HOST}
+      RABBITMQ_SECURE_PASSWORD: true
+    labels:
+      - io.docksal.virtual-host=rabbitmq.${VIRTUAL_HOST}
+      - io.docksal.virtual-port=15672
+    security_opt:
+      - no-new-privileges=true
