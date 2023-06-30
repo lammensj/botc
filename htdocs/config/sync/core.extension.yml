@@ -4,11 +4,17 @@ module:
   admin_toolbar: 0
   basic_auth: 0
   block: 0
+  bpmn_io: 0
   breakpoint: 0
   config: 0
   dblog: 0
   dotenv: 0
   dynamic_page_cache: 0
+  eca: 0
+  eca_base: 0
+  eca_log: 0
+  eca_modeller_bpmn: 0
+  eca_ui: 0
   field: 0
   field_ui: 0
   file: 0
