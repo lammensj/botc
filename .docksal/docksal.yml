@@ -42,21 +42,6 @@ services:
       - ${PROJECT_ROOT}/.docksal/etc/mosquitto/data:/mosquitto/data
       - ${PROJECT_ROOT}/.docksal/etc/shared:/shared
 
-  nodered:
-    image: nodered/node-red:latest-18-minimal
-    restart: unless-stopped
-    env_file:
-      - ${PROJECT_ROOT}/.docksal/etc/nodered/config/node-red.env
-    environment:
-      - TZ=${TZ}
-    labels:
-      - io.docksal.virtual-host=node-red.${VIRTUAL_HOST}
-      - io.docksal.virtual-port=1880
-    security_opt:
-      - no-new-privileges=true
-    volumes:
-      - ${PROJECT_ROOT}/.docksal/etc/nodered/data:/data
-
   rabbitmq:
     image: bitnami/rabbitmq:3.12
     restart: unless-stopped
