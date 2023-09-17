@@ -1,0 +1,8 @@
+uuid: 5d3b13fc-edec-4638-a9e1-b3ad32a96ff1
+langcode: en
+status: 1
+dependencies: {  }
+id: green_plug
+label: 'Green Plug'
+retention_seconds: 1209600
+default: true
