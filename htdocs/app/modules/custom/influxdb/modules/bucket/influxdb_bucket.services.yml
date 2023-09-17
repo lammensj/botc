@@ -1,5 +1,11 @@
 services:
+  logger.channel.influxdb_bucket:
+    parent: logger.channel_base
+    arguments:
+      - 'influxdb_bucket'
+
   influxdb_bucket.services.bucket_manager:
     class: Drupal\influxdb_bucket\Services\BucketManager\BucketManager
     arguments:
       - '@influxdb.services.client_factory'
+      - '@logger.channel.influxdb_bucket'

@@ -2,6 +2,7 @@
 
 namespace Drupal\influxdb_bucket\Services\BucketManager;
 
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\influxdb\Services\ClientFactory\ClientFactoryInterface;
 use InfluxDB2\ApiException;
 use InfluxDB2\Model\BucketRetentionRules;
@@ -23,9 +24,12 @@ class BucketManager implements BucketManagerInterface {
    *
    * @param \Drupal\influxdb\Services\ClientFactory\ClientFactory $clientFactory
    *   The client factory.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
    */
   public function __construct(
     protected ClientFactoryInterface $clientFactory,
+    protected LoggerChannelInterface $logger
   ) {
     $this->bucketsService = $this->clientFactory
       ->createClient('influxdb.settings')
@@ -56,6 +60,8 @@ class BucketManager implements BucketManagerInterface {
       return TRUE;
     }
     catch (ApiException $e) {
+      $this->logger->error($e->getMessage());
+
       return FALSE;
     }
   }

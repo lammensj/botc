@@ -4,6 +4,7 @@ namespace Drupal\influxdb_bucket\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\influxdb_bucket\Services\BucketManager\BucketManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -97,12 +98,16 @@ class BucketForm extends EntityForm {
     $result = parent::save($form, $form_state);
     $message_args = ['%label' => $this->entity->label()];
     $message = $result == SAVED_NEW
-      ? $this->t('influxdb.messages.bucket_created', $message_args)
-      : $this->t('influxdb.messages.bucket_updated', $message_args);
+      ? $this->t('influxdb_bucket.messages.bucket_created', $message_args)
+      : $this->t('influxdb_bucket.messages.bucket_updated', $message_args);
     $this->messenger()->addStatus($message);
     $form_state->setRedirectUrl($this->entity->toUrl('collection'));
 
-    $this->bucketManager->upsertBucket($form_state->getValues());
+    $response = $this->bucketManager->upsertBucket($form_state->getValues());
+    $message = $response
+      ? $this->t('influxdb_bucket.messages.bucket_upserted')
+      : $this->t('influxdb_bucket.messages.bucket_upserted_failed');
+    $this->messenger()->addMessage($message, $response ? MessengerInterface::TYPE_STATUS : MessengerInterface::TYPE_ERROR);
 
     return $result;
   }
