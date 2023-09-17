@@ -1,7 +1,10 @@
 {
-    "patches": {
-        "drupal/jwt": {
-            "Deprecated function: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated": "https://www.drupal.org/files/issues/2022-07-22/3298726-3.patch"
-        }
+  "patches": {
+    "drupal/eca": {
+      "New actions to access key value stores": "https://git.drupalcode.org/project/eca/-/merge_requests/288.diff"
+    },
+    "drupal/jwt": {
+      "Deprecated function: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated": "https://www.drupal.org/files/issues/2022-07-22/3298726-3.patch"
     }
+  }
 }
