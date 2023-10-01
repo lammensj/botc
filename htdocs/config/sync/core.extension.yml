@@ -14,6 +14,7 @@ module:
   eca_base: 0
   eca_log: 0
   eca_modeller_bpmn: 0
+  eca_tamper: 0
   eca_ui: 0
   field: 0
   field_ui: 0
@@ -38,6 +39,7 @@ module:
   rabbitmq: 0
   solcast: 0
   system: 0
+  tamper: 0
   text: 0
   token: 0
   toolbar: 0
