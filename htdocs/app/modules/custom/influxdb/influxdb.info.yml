@@ -1,9 +1,8 @@
 name: InfluxDB
 type: module
 description: Provides integration with InfluxDB, an open-source time series database.
-package: The Green Plug
-core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+package: InfluxDB
+core_version_requirement: ^9 || ^10
 configure: influxdb.settings_form
 dependencies:
   - key:key

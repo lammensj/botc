@@ -1,0 +1,8 @@
+name: Citadel Tamper
+type: module
+description: Adjustments for Tamper
+package: Koren45 Citadel
+
+core_version_requirement: ^9 || ^10
+dependencies:
+  - tamper:tamper
