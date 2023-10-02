@@ -1,0 +1,8 @@
+services:
+  citadel_eca.command.trigger_inject_event:
+    class: Drupal\citadel_eca\Commands\TriggerInjectEventCommand
+    arguments:
+      - '@eca.token_services'
+      - '@event_dispatcher'
+    tags:
+      - { name: console.command }
