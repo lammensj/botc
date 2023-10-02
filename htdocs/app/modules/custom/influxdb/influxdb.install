@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the InfluxDB-module.
+ */
+
+use InfluxDB2\ApiException;
+use InfluxDB2\Service\HealthService;
+
+/**
+ * Implements hook_requirements.
+ */
+function influxdb_requirements($phase): array {
+  $requirements = [];
+
+  if ($phase === 'runtime') {
+    /** @var \Drupal\influxdb\Services\ClientFactory\ClientFactoryInterface $factory */
+    $factory = Drupal::service('influxdb.services.client_factory');
+    /** @var \InfluxDB2\Service\HealthService $service */
+    $service = $factory->createClient('influxdb.settings')
+      ->createService(HealthService::class);
+
+    $requirements['influxdb_status'] = [
+      'title' => t('influxdb.titles.health_status', [], [
+        'context' => 'influxdb',
+      ]),
+      'severity' => REQUIREMENT_OK,
+    ];
+
+    try {
+      $response = $service->getHealth();
+
+      $requirements['influxdb_status']['value'] = $response->getStatus();
+
+      $requirements['influxdb_version'] = [
+        'title' => t('influxdb.titles.health_version', [], [
+          'context' => 'influxdb',
+        ]),
+        'value' => $response->getVersion(),
+        'severity' => REQUIREMENT_OK,
+      ];
+      $requirements['influxdb_message'] = [
+        'title' => t('influxdb.titles.health_message', [], [
+          'context' => 'influxdb',
+        ]),
+        'value' => $response->getMessage(),
+        'severity' => REQUIREMENT_OK,
+      ];
+    }
+    catch (ApiException $e) {
+      $requirements['influxdb_status']['value'] = $e->getMessage();
+      $requirements['influxdb_status']['severity'] = REQUIREMENT_ERROR;
+    }
+  }
+
+  return $requirements;
+}

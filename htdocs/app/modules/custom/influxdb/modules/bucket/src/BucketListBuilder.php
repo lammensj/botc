@@ -13,7 +13,7 @@ class BucketListBuilder extends ConfigEntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function buildHeader() {
+  public function buildHeader(): array {
     $header['label'] = $this->t('influxdb.labels.label');
     $header['id'] = $this->t('influxdb.labels.machine_name');
     $header['retention_seconds'] = $this->t('influxdb.labels.retention_seconds');
@@ -26,7 +26,7 @@ class BucketListBuilder extends ConfigEntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function buildRow(EntityInterface $entity) {
+  public function buildRow(EntityInterface $entity): array {
     /** @var \Drupal\influxdb_bucket\BucketInterface $entity */
     $row['label'] = $entity->label();
     $row['id'] = $entity->id();

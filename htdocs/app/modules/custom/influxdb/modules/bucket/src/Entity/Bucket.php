@@ -79,7 +79,7 @@ class Bucket extends ConfigEntityBase implements BucketInterface {
   protected $status;
 
   /**
-   * A boolean indicating whether the Bucket is the defaul one.
+   * A boolean indicating whether the Bucket is the default one.
    *
    * @var bool
    */

@@ -52,6 +52,18 @@ msgid "influxdb.titles.bucket_delete"
 msgstr "Delete a Bucket"
 
 msgctxt "influxdb"
+msgid "influxdb.titles.health_status"
+msgstr "InfluxDB: status"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.health_version"
+msgstr "InfluxDB: version"
+
+msgctxt "influxdb"
+msgid "influxdb.titles.health_message"
+msgstr "InfluxDB: message"
+
+msgctxt "influxdb"
 msgid "influxdb.labels.server_url"
 msgstr "Server URL"
 
