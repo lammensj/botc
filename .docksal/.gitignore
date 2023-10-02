@@ -1,3 +1,4 @@
 # Exclude local configuration overrides
 docksal-local.env
 docksal-local.yml
+/etc/homeassistant

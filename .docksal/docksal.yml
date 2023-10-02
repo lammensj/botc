@@ -3,7 +3,7 @@ version: '3'
 services:
   cli:
     ports:
-      - '2222:22'
+      - '2223:22'
   grafana:
     image: grafana/grafana-oss:9.2.5
     restart: unless-stopped
@@ -18,6 +18,18 @@ services:
       - no-new-privileges=true
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/grafana/data:/var/lib/grafana
+
+  homeassistant:
+    image: homeassistant/home-assistant:2023.7.1
+    restart: unless-stopped
+    labels:
+      - io.docksal.virtual-host=ha.${VIRTUAL_HOST}
+      - io.docksal.virtual-port=8123
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - ${PROJECT_ROOT}/.docksal/etc/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
 
   influxdb:
     image: influxdb:2.5.1
@@ -41,6 +53,17 @@ services:
       - ${PROJECT_ROOT}/.docksal/etc/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ${PROJECT_ROOT}/.docksal/etc/mosquitto/data:/mosquitto/data
       - ${PROJECT_ROOT}/.docksal/etc/shared:/shared
+
+  portainer:
+    image: portainer/portainer-ce
+    restart: unless-stopped
+    labels:
+      - io.docksal.virtual-host=portainer.${VIRTUAL_HOST}
+      - io.docksal.virtual-port=9000
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   rabbitmq:
     image: bitnami/rabbitmq:3.12
