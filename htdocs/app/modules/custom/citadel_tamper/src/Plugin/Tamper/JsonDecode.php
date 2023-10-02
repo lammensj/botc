@@ -28,7 +28,7 @@ class JsonDecode extends TamperBase {
    */
   public function defaultConfiguration(): array {
     $config = parent::defaultConfiguration();
-    $config[self::SETTING_ASSOC] = TRUE;
+    $config[self::SETTING_ASSOC] = FALSE;
 
     return $config;
   }
@@ -53,7 +53,10 @@ class JsonDecode extends TamperBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
     parent::submitConfigurationForm($form, $form_state);
-    $this->setConfiguration([self::SETTING_ASSOC => $form_state->getValue(self::SETTING_ASSOC)]);
+
+    $this->setConfiguration([
+      self::SETTING_ASSOC => (bool) $form_state->getValue(self::SETTING_ASSOC),
+    ]);
   }
 
   /**
