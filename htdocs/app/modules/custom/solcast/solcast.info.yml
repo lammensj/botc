@@ -1,9 +1,0 @@
-name: Solcast
-type: module
-description: Solar resource assessment and forecasting data for irradiance and PV power.
-package: The Green Plug
-core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
-
-dependencies:
-  - http_client_manager:http_client_manager

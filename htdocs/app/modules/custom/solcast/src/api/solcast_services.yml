@@ -1,5 +1,0 @@
-name: '[Solcast] - API'
-apiVersion: '1.0'
-description: 'Client wrapper for the Solcast services API'
-imports:
-  - 'resources/rooftop_sites.yml'
