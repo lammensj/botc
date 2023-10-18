@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43c2a890a50fe410252ae600e06494df",
+    "content-hash": "53258bdfb2ca5d63587e7afb5c0576dd",
     "packages": [
         {
             "name": "arthurkirkosa/guzzle-description-loader",
@@ -2653,6 +2653,54 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/rabbitmq",
                 "issues": "https://www.drupal.org/project/issues/rabbitmq"
+            }
+        },
+        {
+            "name": "drupal/solcast",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/solcast.git",
+                "reference": "ed6edebfb026c0b52788eb039b8fedf75ae810a3"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "drupal/http_client_manager": "^3.0 || ^9.3",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "drupal/eca": "*",
+                "drupal/key": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1697624172",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lammensj",
+                    "homepage": "https://www.drupal.org/user/1939186"
+                }
+            ],
+            "description": "Solcast provides solar resource assessments and forecasting data for irradiance and PV power.",
+            "homepage": "https://www.drupal.org/project/solcast",
+            "support": {
+                "source": "https://drupal.org/project/solcast",
+                "issues": "https://drupal.org/project/issues/solcast"
             }
         },
         {
@@ -13403,7 +13451,9 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=8.1"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }

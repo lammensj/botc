@@ -40,6 +40,8 @@ module:
   queue_ui: 0
   rabbitmq: 0
   solcast: 0
+  solcast_eca: 0
+  solcast_key: 0
   system: 0
   tamper: 0
   text: 0
