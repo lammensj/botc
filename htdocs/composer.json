@@ -35,7 +35,7 @@
         "drupal/rabbitmq": "^3.1",
         "drupal/solcast": "^1.0@dev",
         "drupal/token": "^1.12",
-        "drush/drush": "^11.4",
+        "drush/drush": "^12.0",
         "grasmash/drupal-security-warning": "1.x-dev",
         "wikimedia/composer-merge-plugin": "^2.0"
     },
