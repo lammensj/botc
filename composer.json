@@ -31,6 +31,7 @@
         "drupal/http_client_manager": "^3",
         "drupal/jwt": "^1.1",
         "drupal/key": "^1.17",
+        "drupal/plugin": "^2.10",
         "drupal/queue_ui": "^3.1",
         "drupal/rabbitmq": "^3.1",
         "drupal/solcast": "^1.0@dev",
@@ -65,13 +66,13 @@
     },
     "scripts": {
         "post-drupal-scaffold-cmd": [
-            "cd app && patch -p1 < ../assets/.htaccess.patch"
+            "cd ./htdocs/app && patch -p1 < ../../assets/.htaccess.patch"
         ]
     },
     "extra": {
         "drupal-paranoia": {
-            "app-dir": "app",
-            "web-dir": "web",
+            "app-dir": "htdocs/app",
+            "web-dir": "htdocs/web",
             "excludes": [
                 "sites/simpletest"
             ],
@@ -85,8 +86,8 @@
                 "drupal/core"
             ],
             "locations": {
-                "project-root": "./",
-                "web-root": "./app"
+                "project-root": "./htdocs",
+                "web-root": "./htdocs/app"
             },
             "file-mapping": {
                 "[web-root]/INSTALL.txt": false,
@@ -99,38 +100,38 @@
             "gitignore": true
         },
         "installer-paths": {
-            "app/core": [
+            "htdocs/app/core": [
                 "type:drupal-core"
             ],
-            "app/libraries/{$name}": [
+            "htdocs/app/libraries/{$name}": [
                 "type:drupal-library"
             ],
-            "app/modules/contrib/{$name}": [
+            "htdocs/app/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
-            "app/profiles/contrib/{$name}": [
+            "htdocs/app/profiles/contrib/{$name}": [
                 "type:drupal-profile"
             ],
-            "app/themes/contrib/{$name}": [
+            "htdocs/app/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
-            "drush/Commands/contrib/{$name}": [
+            "htdocs/drush/Commands/contrib/{$name}": [
                 "type:drupal-drush"
             ],
-            "app/modules/custom/{$name}": [
+            "htdocs/app/modules/custom/{$name}": [
                 "type:drupal-custom-module"
             ],
-            "app/themes/custom/{$name}": [
+            "htdocs/app/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
             ]
         },
         "merge-plugin": {
             "include": [
-                "app/modules/custom/*/composer.json",
-                "app/themes/custom/*/composer.json"
+                "./htdocs/app/modules/custom/*/composer.json",
+                "./htdpcs/app/themes/custom/*/composer.json"
             ]
         },
-        "patches-file": "./composer.patches.json",
+        "patches-file": "composer.patches.json",
         "drupal-core-project-message": {
             "include-keys": [
                 "homepage",
@@ -155,7 +156,7 @@
     },
     "autoload": {
         "files": [
-            "load.environment.php"
+            "htdocs/load.environment.php"
         ]
     }
 }

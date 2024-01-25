@@ -9,5 +9,7 @@ label: Koren45
 service_api: solcast_services
 command_name: GetForecast
 parameters:
+  accept: application/json
+  authorization: 'Bearer KewjiFcb8sIIJY_8mVsdEIagLP25jvqh'
   resourceId: f14e-45aa-12cf-bb03
   hours: 0

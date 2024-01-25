@@ -1,3 +1,7 @@
 _core:
   default_config_hash: vFotbAssMkZPpjiuVb0HrqppKkfujpTGrMSWsZrLiP4
 enable_overriding_service_definitions: 1
+overrides:
+  home_assistant_services:
+    config:
+      debug: true

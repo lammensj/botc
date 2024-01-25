@@ -2,4 +2,4 @@ server_url: 'http://green_plug_influxdb_1:8086'
 organization: koren45
 token: influxdb
 allow_redirects: true
-debug: true
+debug: false
