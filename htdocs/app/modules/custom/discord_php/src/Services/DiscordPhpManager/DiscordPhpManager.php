@@ -33,13 +33,16 @@ class DiscordPhpManager implements DiscordPhpManagerInterface {
     protected readonly LoggerChannelInterface $logger,
     protected readonly KeyRepositoryInterface $keyRepository,
   ) {
-    $this->initClient();
   }
 
   /**
    * {@inheritdoc}
    */
   public function getClient(): ?Discord {
+    if (!$this->client) {
+      $this->initClient();
+    }
+
     return $this->client;
   }
 
