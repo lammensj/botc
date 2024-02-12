@@ -1,0 +1,82 @@
+uuid: 785e6d44-5fba-4384-8d97-4ff57a8d6366
+langcode: en
+status: true
+dependencies:
+  module:
+    - discord_php_eca
+    - eca_base
+    - eca_log
+id: process_ilwj9jq
+modeller: bpmn_io
+label: DiscordPHP
+version: 1.0.0
+weight: null
+events:
+  Event_0zlafqh:
+    plugin: 'discord_php_eca:ready'
+    label: 'DiscordPHP is ready'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_09u70l7
+        condition: ''
+  Event_0s3wt07:
+    plugin: 'discord_php_eca:message_create'
+    label: 'Message received'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_0m3u1zp
+        condition: Flow_0w5i1tr
+      -
+        id: Activity_0mszrs9
+        condition: Flow_0uq7dxy
+conditions:
+  Flow_0w5i1tr:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      left: '[message:content]'
+      right: command
+      operator: equal
+      type: value
+      case: true
+  Flow_0uq7dxy:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      left: '[message:content]'
+      right: image
+      operator: equal
+      type: value
+      case: true
+gateways: {  }
+actions:
+  Activity_0m3u1zp:
+    plugin: discord_php_eca_send_message
+    label: Reply
+    configuration:
+      content: Reply
+      channel_id: '[message:channel_id]'
+      reply_to_id: '[message:id]'
+      reply_to_channel_id: '[message:channel_id]'
+      filepath: ''
+    successors: {  }
+  Activity_0mszrs9:
+    plugin: discord_php_eca_send_message
+    label: 'Reply with img'
+    configuration:
+      content: Image
+      channel_id: '[message:channel_id]'
+      reply_to_id: '[message:id]'
+      reply_to_channel_id: '[message:channel_id]'
+      filepath: 'public://76855592.png'
+    successors: {  }
+  Activity_09u70l7:
+    plugin: eca_write_log_message
+    label: Log
+    configuration:
+      channel: discord_php
+      severity: '7'
+      message: 'DiscordPHP is ready.'
+    successors: {  }

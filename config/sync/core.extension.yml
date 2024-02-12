@@ -12,6 +12,7 @@ module:
   config: 0
   dblog: 0
   discord_php: 0
+  discord_php_eca: 0
   dotenv: 0
   dynamic_page_cache: 0
   eca: 0
@@ -44,6 +45,7 @@ module:
   plugin: 0
   queue_ui: 0
   rabbitmq: 0
+  serialization: 0
   solcast: 0
   solcast_eca: 0
   solcast_key: 0

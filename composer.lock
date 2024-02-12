@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e81e0599d658508e5099f9986f5dca4",
+    "content-hash": "f50776a56cf1a4d39278aa94086514f1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2003,6 +2003,55 @@
                 "source": "https://github.com/drupal/core-recommended/tree/10.2.2"
             },
             "time": "2024-01-16T21:10:58+00:00"
+        },
+        {
+            "name": "drupal/discord_php",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/discord_php.git",
+                "reference": "578fab29ba3e3ae38b7d1ac9e1b1e357b4028894"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10",
+                "drupal/key": "^1.17",
+                "php": "^7.4 || ^8.0",
+                "team-reflex/discord-php": "^7.3"
+            },
+            "require-dev": {
+                "drupal/eca": "^1.1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1707772191",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jasper Lammens",
+                    "homepage": "https://www.drupal.org/user/1939186",
+                    "email": "lammensjasper@gmail.com"
+                }
+            ],
+            "description": "Provides support for an API to interact with the popular messaging app Discord",
+            "homepage": "https://www.drupal.org/project/discord_php",
+            "support": {
+                "source": "https://drupal.org/project/discord_php",
+                "issues": "https://drupal.org/project/issues/discord_php"
+            }
         },
         {
             "name": "drupal/dotenv",

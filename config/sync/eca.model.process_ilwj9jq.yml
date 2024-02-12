@@ -1,0 +1,194 @@
+uuid: 20977ae4-df28-47cc-a001-ced0f57230d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_ilwj9jq
+id: process_ilwj9jq
+label: DiscordPHP
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_iLWJ9Jq" name="DiscordPHP" isExecutable="true" camunda:versionTag="1.0.0">
+      <bpmn2:startEvent id="Event_0zlafqh" name="DiscordPHP is ready" camunda:modelerTemplate="org.drupal.event.discord_php_eca:ready">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="discord_php_eca:ready" />
+          </camunda:properties>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_1v8ipi4</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:startEvent id="Event_0s3wt07" name="Message received" camunda:modelerTemplate="org.drupal.event.discord_php_eca:message_create">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="discord_php_eca:message_create" />
+          </camunda:properties>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_0w5i1tr</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0uq7dxy</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:task id="Activity_0m3u1zp" name="Reply" camunda:modelerTemplate="org.drupal.action.discord_php_eca_send_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="discord_php_eca_send_message" />
+          </camunda:properties>
+          <camunda:field name="content">
+            <camunda:string>Reply</camunda:string>
+          </camunda:field>
+          <camunda:field name="channel_id">
+            <camunda:string>[message:channel_id]</camunda:string>
+          </camunda:field>
+          <camunda:field name="reply_to_id">
+            <camunda:string>[message:id]</camunda:string>
+          </camunda:field>
+          <camunda:field name="reply_to_channel_id">
+            <camunda:string>[message:channel_id]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0w5i1tr</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0w5i1tr" name="Is command" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Event_0s3wt07" targetRef="Activity_0m3u1zp">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[message:content]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>command</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_0mszrs9" name="Reply with img" camunda:modelerTemplate="org.drupal.action.discord_php_eca_send_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="discord_php_eca_send_message" />
+          </camunda:properties>
+          <camunda:field name="content">
+            <camunda:string>Image</camunda:string>
+          </camunda:field>
+          <camunda:field name="channel_id">
+            <camunda:string>[message:channel_id]</camunda:string>
+          </camunda:field>
+          <camunda:field name="reply_to_id">
+            <camunda:string>[message:id]</camunda:string>
+          </camunda:field>
+          <camunda:field name="reply_to_channel_id">
+            <camunda:string>[message:channel_id]</camunda:string>
+          </camunda:field>
+          <camunda:field name="filepath">
+            <camunda:string>public://76855592.png</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0uq7dxy</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0uq7dxy" name="Is image" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Event_0s3wt07" targetRef="Activity_0mszrs9">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[message:content]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>image</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_09u70l7" name="Log" camunda:modelerTemplate="org.drupal.action.eca_write_log_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_write_log_message" />
+          </camunda:properties>
+          <camunda:field name="channel">
+            <camunda:string>discord_php</camunda:string>
+          </camunda:field>
+          <camunda:field name="severity">
+            <camunda:string>7</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>DiscordPHP is ready.</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1v8ipi4</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1v8ipi4" sourceRef="Event_0zlafqh" targetRef="Activity_09u70l7" />
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-772023e1-4e8c-4e7b-8590-804e4ac2b261">
+      <bpmndi:BPMNPlane id="sid-03b3c8c9-49d9-49f0-afd5-c11579cc1c8a" bpmnElement="Process_iLWJ9Jq">
+        <bpmndi:BPMNShape id="Event_0zlafqh_di" bpmnElement="Event_0zlafqh">
+          <dc:Bounds x="262" y="132" width="36" height="36" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="245" y="175" width="71" height="27" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Event_0s3wt07_di" bpmnElement="Event_0s3wt07">
+          <dc:Bounds x="262" y="292" width="36" height="36" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="235" y="335" width="90" height="14" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0m3u1zp_di" bpmnElement="Activity_0m3u1zp">
+          <dc:Bounds x="510" y="270" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0mszrs9_di" bpmnElement="Activity_0mszrs9">
+          <dc:Bounds x="510" y="380" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_09u70l7_di" bpmnElement="Activity_09u70l7">
+          <dc:Bounds x="510" y="110" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_0w5i1tr_di" bpmnElement="Flow_0w5i1tr">
+          <di:waypoint x="298" y="310" />
+          <di:waypoint x="510" y="310" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="374" y="292" width="60" height="14" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0uq7dxy_di" bpmnElement="Flow_0uq7dxy">
+          <di:waypoint x="298" y="310" />
+          <di:waypoint x="400" y="310" />
+          <di:waypoint x="400" y="420" />
+          <di:waypoint x="510" y="420" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="395" y="362" width="42" height="14" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1v8ipi4_di" bpmnElement="Flow_1v8ipi4">
+          <di:waypoint x="298" y="150" />
+          <di:waypoint x="510" y="150" />
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>
