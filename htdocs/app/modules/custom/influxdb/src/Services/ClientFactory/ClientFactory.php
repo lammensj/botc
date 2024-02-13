@@ -35,7 +35,7 @@ class ClientFactory implements ClientFactoryInterface {
     return new Client([
       'url' => $config->get('server_url'),
       'org' => $config->get('organization'),
-      'token' => $this->getToken($config->get('token')),
+      'token' => $this->getToken((string) $config->get('token')),
       'httpClient' => $http,
       'allow_redirects' => $config->get('allow_redirects'),
       'debug' => $config->get('debug'),
@@ -67,6 +67,7 @@ class ClientFactory implements ClientFactoryInterface {
    *   The key ID.
    *
    * @return string
+   *   Returns the auth-token.
    */
   protected function getToken(string $keyId): string {
     $keyEntity = $this->keyRepository->getKey($keyId);
