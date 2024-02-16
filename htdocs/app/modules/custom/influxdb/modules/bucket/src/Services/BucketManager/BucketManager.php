@@ -44,7 +44,7 @@ class BucketManager implements BucketManagerInterface {
       /** @var \InfluxDB2\Model\Buckets $response */
       $response = $this->bucketsService->getBuckets(NULL, NULL, 1, NULL, NULL, NULL, $data['label']);
 
-      if (sizeof($response->getBuckets()) === 0) {
+      if (count($response->getBuckets()) === 0) {
         $request = new PostBucketRequest();
         $request->setOrgId($this->clientFactory->getOrganizationId());
         $this->adjustUpsertRequest($request, $data);
