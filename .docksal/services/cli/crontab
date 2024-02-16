@@ -1,1 +1,1 @@
-*/5 * * * * bash -l -c 'drush --root=/var/www/htdocs cron'
+*/5 * * * * bash -l -c 'drush --root=/var/www cron'

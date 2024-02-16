@@ -4,5 +4,5 @@ status: 1
 dependencies: {  }
 id: green_plug
 label: 'Green Plug'
-retention_seconds: 1209600
+retention_seconds: 31557600
 default: true
