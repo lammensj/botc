@@ -1,0 +1,15 @@
+{
+    "name": "drupal/citadel_eca",
+    "description": "Adjustments for ECA",
+    "type": "drupal-module",
+    "require": {
+        "drupal/eca": "^1.1"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10"
+            }
+        }
+    }
+}

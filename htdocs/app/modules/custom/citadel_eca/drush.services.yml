@@ -4,5 +4,6 @@ services:
     arguments:
       - '@eca.token_services'
       - '@event_dispatcher'
+      - '@typed_data_manager'
     tags:
       - { name: console.command }

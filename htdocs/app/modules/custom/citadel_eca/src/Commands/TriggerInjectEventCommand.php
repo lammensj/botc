@@ -2,6 +2,9 @@
 
 namespace Drupal\citadel_eca\Commands;
 
+use Drupal\Core\TypedData\DataDefinition;
+use Drupal\Core\TypedData\MapDataDefinition;
+use Drupal\Core\TypedData\TypedDataManagerInterface;
 use Drupal\eca\Token\TokenInterface;
 use Drupal\eca_base\BaseEvents;
 use Drupal\eca_base\Event\CustomEvent;
@@ -27,7 +30,8 @@ class TriggerInjectEventCommand extends Command {
    */
   public function __construct(
     protected TokenInterface $tokenService,
-    protected EventDispatcherInterface $eventDispatcher
+    protected EventDispatcherInterface $eventDispatcher,
+    protected TypedDataManagerInterface $dataManager,
   ) {
     parent::__construct();
   }
@@ -50,8 +54,14 @@ class TriggerInjectEventCommand extends Command {
 
     $payload = $input->getOption('payload');
     if (!empty($payload)) {
-      $this->tokenService->addTokenData('custom_event:payload', $payload);
-      $event->addTokenNamesFromString('custom_event.payload');
+      $definition = MapDataDefinition::create()
+        ->setPropertyDefinition('payload', DataDefinition::create('string'));
+      $data = $this->dataManager->create($definition, [
+        'payload' => $payload,
+      ]);
+
+      $this->tokenService->addTokenData('custom_event', $data);
+      $event->addTokenNamesFromString('custom_event');
     }
 
     $this->eventDispatcher->dispatch($event, BaseEvents::CUSTOM);
