@@ -1,6 +1,6 @@
 services:
-  influxdb_bucket.commands.query:
-    class: Drupal\influxdb_bucket\Commands\QueryCommand
+  influxdb.commands.query:
+    class: Drupal\influxdb\Commands\QueryCommand
     arguments:
       - '@influxdb.services.client_factory'
     tags:

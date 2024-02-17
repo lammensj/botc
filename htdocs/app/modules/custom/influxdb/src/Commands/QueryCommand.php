@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\influxdb_bucket\Commands;
+namespace Drupal\influxdb\Commands;
 
 use Composer\Console\Input\InputOption;
 use Drupal\influxdb\Services\ClientFactory\ClientFactoryInterface;
