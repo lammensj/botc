@@ -1,0 +1,7 @@
+services:
+  influxdb_bucket.commands.query:
+    class: Drupal\influxdb_bucket\Commands\QueryCommand
+    arguments:
+      - '@influxdb.services.client_factory'
+    tags:
+      - { name: console.command }
