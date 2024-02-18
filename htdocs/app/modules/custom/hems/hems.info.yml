@@ -1,0 +1,10 @@
+name: Home Energy Management System
+type: module
+description: Provides integrations for the HEMS
+package: InfluxDB
+core_version_requirement: ^9 || ^10
+dependencies:
+  - key:key
+
+'interface translation project': influxdb
+'interface translation server pattern': modules/custom/%project/translations/%project.%language.po
