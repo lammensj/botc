@@ -1,5 +1,0 @@
-services:
-  hems.commands.schedule:
-    class: Drupal\hems\Commands\ScheduleCommand
-    tags:
-      - { name: console.command }

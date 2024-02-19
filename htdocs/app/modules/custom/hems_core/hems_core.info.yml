@@ -1,0 +1,10 @@
+name: Home Energy Management System - Core
+type: module
+description: Provides core-integrations for the HEMS
+package: HEMS
+core_version_requirement: ^9 || ^10
+dependencies:
+  - influxdb:influxdb
+
+'interface translation project': hems_core
+'interface translation server pattern': modules/custom/%project/translations/%project.%language.po
