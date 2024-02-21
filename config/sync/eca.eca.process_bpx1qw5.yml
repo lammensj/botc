@@ -11,7 +11,7 @@ dependencies:
     - solcast_eca
 id: process_bpx1qw5
 modeller: bpmn_io
-label: 'Green Plug'
+label: 'HEMS - Solcast to InfluxDB'
 version: 1.0.0
 weight: null
 events:
@@ -19,7 +19,7 @@ events:
     plugin: 'eca_base:eca_custom'
     label: Event_0qv4993
     configuration:
-      event_id: influxdb
+      event_id: solcast
     successors:
       -
         id: Activity_176ao79
@@ -130,7 +130,7 @@ actions:
         condition: Flow_002fuva
   Activity_1j1lesx:
     plugin: solcast_eca_set_interval_start
-    label: 'Solcast: set period start'
+    label: 'Set period start'
     configuration:
       datetime: '[forecast_item:period_end]'
       datetime_format: 'Y-m-d\TH:i:s.u0p'
@@ -140,6 +140,12 @@ actions:
     successors:
       -
         id: Activity_0w7j6rc
+        condition: ''
+      -
+        id: Activity_1cm4rm1
+        condition: ''
+      -
+        id: Activity_0uo2dsm
         condition: ''
   Activity_0qyyyf1:
     plugin: influxdb_create_point
@@ -171,7 +177,7 @@ actions:
         condition: ''
   Activity_0w7j6rc:
     plugin: 'eca_tamper:number_format'
-    label: 'Solcast: convert estm to float'
+    label: 'Convert estm to float'
     configuration:
       decimals: '4'
       dec_point: .
@@ -180,30 +186,93 @@ actions:
       eca_token_name: '[forecast_item:pv_estimate]'
     successors:
       -
-        id: Activity_0id5w8m
+        id: Activity_19aczom
         condition: ''
-  Activity_0id5w8m:
+  Activity_19aczom:
+    plugin: 'eca_tamper:math'
+    label: 'kW to W'
+    configuration:
+      operation: multiplication
+      flip: false
+      value: '1000'
+      eca_data: '[forecast_item:pv_estimate]'
+      eca_token_name: '[forecast_item:pv_estimate]'
+    successors:
+      -
+        id: Activity_1v4zgu7
+        condition: ''
+  Activity_1v4zgu7:
+    plugin: 'eca_tamper:cast_to_int'
+    label: 'Convert to int'
+    configuration:
+      eca_data: '[forecast_item:pv_estimate]'
+      eca_token_name: '[forecast_item:pv_estimate]'
+    successors: {  }
+  Activity_1cm4rm1:
     plugin: 'eca_tamper:number_format'
-    label: 'Solcast: convert estm10 to float'
+    label: 'Convert estm10 to float'
     configuration:
       decimals: '4'
       dec_point: .
       thousands_sep: ','
       eca_data: '[forecast_item:pv_estimate10]'
-      eca_token_name: '[forecast_item:pv_estimate10]'
+      eca_token_name: 'forecast_item:pv_estimate10'
     successors:
       -
-        id: Activity_08ns07f
+        id: Activity_02m0ci0
         condition: ''
-  Activity_08ns07f:
+  Activity_02m0ci0:
+    plugin: 'eca_tamper:math'
+    label: 'kW to W'
+    configuration:
+      operation: multiplication
+      flip: false
+      value: '1000'
+      eca_data: '[forecast_item:pv_estimate10]'
+      eca_token_name: 'forecast_item:pv_estimate10'
+    successors:
+      -
+        id: Activity_1kp5qbf
+        condition: ''
+  Activity_1kp5qbf:
+    plugin: 'eca_tamper:cast_to_int'
+    label: 'Convert to int'
+    configuration:
+      eca_data: '[forecast_item:pv_estimate10]'
+      eca_token_name: 'forecast_item:pv_estimate10'
+    successors: {  }
+  Activity_0uo2dsm:
     plugin: 'eca_tamper:number_format'
-    label: 'Solcast: convert estm90 to float'
+    label: 'Convert estm90 to float'
     configuration:
       decimals: '4'
       dec_point: .
       thousands_sep: ','
       eca_data: '[forecast_item:pv_estimate90]'
-      eca_token_name: '[forecast_item:pv_estimate90]'
+      eca_token_name: 'forecast_item:pv_estimate90'
+    successors:
+      -
+        id: Activity_160nolu
+        condition: ''
+  Activity_160nolu:
+    plugin: 'eca_tamper:math'
+    label: 'kW to W'
+    configuration:
+      operation: multiplication
+      flip: false
+      value: '1000'
+      eca_data: '[forecast_item:pv_estimate90]'
+      eca_token_name: 'forecast_item:pv_estimate90'
+    successors:
+      -
+        id: Activity_0pmnmbw
+        condition: ''
+  Activity_0pmnmbw:
+    plugin: 'eca_tamper:cast_to_int'
+    label: 'Convert to int'
+    configuration:
+      eca_data: '[forecast_item:pv_estimate90]'
+      eca_token_name: 'forecast_item:pv_estimate90'
     successors:
       -
         id: Activity_0qyyyf1
