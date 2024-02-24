@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use InfluxDB2\Client;
 use InfluxDB2\FluxRecord;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -103,17 +104,18 @@ class ScheduleCommand extends Command {
     $output->writeln(sprintf('Total solar output unused: %sW', $end));
     $output->writeln(sprintf('Percentage used: %s%%', (1 - ($end / $start)) * 100));
 
+    $table = new Table($output);
+    $table->setHeaders(['Block ID', 'Process']);
     foreach ($data as $block) {
       if ($block->isUnused()) {
         continue;
       }
 
-      $output->writeln(sprintf('Block used: %s', $block->getId()));
-
       foreach ($block->getProcesses() as $process) {
-        $output->writeln((string) $process);
+        $table->addRow([$block->getId(), (string) $process]);
       }
     }
+    $table->render();
 
     return Command::SUCCESS;
   }
