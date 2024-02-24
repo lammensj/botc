@@ -47,7 +47,7 @@ class ScheduleCommand extends Command {
 
     $this->addOption(
       'window-duration',
-      'wdo',
+      NULL,
       InputOption::VALUE_REQUIRED,
       'Defines the duration between the data-sample windows.',
       '15m'
@@ -61,9 +61,9 @@ class ScheduleCommand extends Command {
       []
     );
 
-    $this->addUsage('-wdo 15m -a "964W:16"');
-    $this->addUsage('-wdo 30m -a "964W:8"');
-    $this->addUsage('-wdo 1h -a "964W:4"');
+    $this->addUsage('--window-duration=15m -a 964W:16');
+    $this->addUsage('--window-duration=30m -a 964W:8');
+    $this->addUsage('--window-duration=1h -a 964W:4');
   }
 
   /**
