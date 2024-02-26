@@ -216,15 +216,6 @@ $databases['default']['default'] = [
   'database' => $_ENV['DB_NAME'],
   'prefix' => $_ENV['DB_PREFIX'],
 ];
-$databases['timescaledb']['default'] = [
-  'driver' => $_ENV['TS_DRIVER'],
-  'host' => $_ENV['TS_HOST'],
-  'username' => $_ENV['TS_USER'],
-  'password' => $_ENV['TS_PASSWORD'],
-  'database' => $_ENV['TS_NAME'],
-  'prefix' => $_ENV['TS_PREFIX'],
-];
-
 
 /**
  * Location of the site configuration files.

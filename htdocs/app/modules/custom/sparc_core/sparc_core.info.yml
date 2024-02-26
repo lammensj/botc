@@ -1,10 +1,12 @@
-name: Home Energy Management System - Core
+name: SPARC - Core
 type: module
-description: Provides core-integrations for the HEMS
-package: HEMS
+description: Provides core-integrations for SPARC
+package: SPARC
 core_version_requirement: ^9 || ^10
 dependencies:
+  - eca:eca
   - influxdb:influxdb
+  - tamper:tamper
 
-'interface translation project': hems_core
+'interface translation project': sparc_core
 'interface translation server pattern': modules/custom/%project/translations/%project.%language.po

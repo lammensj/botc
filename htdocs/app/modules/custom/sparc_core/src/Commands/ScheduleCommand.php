@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hems_core\Commands;
+namespace Drupal\sparc_core\Commands;
 
 use Drupal\influxdb\Commands\MemoryBlock;
 use Drupal\influxdb\Commands\Process;

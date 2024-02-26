@@ -1,6 +1,6 @@
 services:
-  hems.commands.schedule:
-    class: Drupal\hems_core\Commands\ScheduleCommand
+  sparc.commands.schedule:
+    class: Drupal\sparc_core\Commands\ScheduleCommand
     arguments:
       - '@influxdb.services.client_factory'
     tags:

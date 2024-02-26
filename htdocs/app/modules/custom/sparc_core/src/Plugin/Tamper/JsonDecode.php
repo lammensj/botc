@@ -1,8 +1,7 @@
 <?php
 
-namespace Drupal\citadel_tamper\Plugin\Tamper;
+namespace Drupal\sparc_core\Plugin\Tamper;
 
-use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\tamper\TamperableItemInterface;
 use Drupal\tamper\TamperBase;

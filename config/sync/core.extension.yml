@@ -7,8 +7,6 @@ module:
   block: 0
   bpmn_io: 0
   breakpoint: 0
-  citadel_eca: 0
-  citadel_tamper: 0
   config: 0
   dblog: 0
   discord_php: 0
@@ -27,7 +25,6 @@ module:
   filter: 0
   gin_login: 0
   gin_toolbar: 0
-  hems_core: 0
   http_client_manager: 0
   influxdb: 0
   influxdb_bucket: 0
@@ -44,11 +41,11 @@ module:
   phpass: 0
   plugin: 0
   queue_ui: 0
-  rabbitmq: 0
   serialization: 0
   solcast: 0
   solcast_eca: 0
   solcast_key: 0
+  sparc_core: 0
   system: 0
   tamper: 0
   text: 0

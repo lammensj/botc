@@ -1,9 +1,9 @@
 {
-    "name": "drupal/citadel_eca",
-    "description": "Adjustments for ECA",
+    "name": "drupal/sparc_core",
+    "description": "Provides core integrations for SPARC.",
     "type": "drupal-module",
     "require": {
-        "drupal/eca": "^1.1"
+        "illuminate/collections": "^v10.8"
     },
     "extra": {
         "drush": {

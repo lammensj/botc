@@ -9,9 +9,10 @@ dependencies:
     - http_client_manager
     - influxdb_bucket_eca
     - solcast_eca
+    - sparc_core
 id: process_bpx1qw5
 modeller: bpmn_io
-label: 'HEMS - Solcast to InfluxDB'
+label: 'SPARC - Solcast to InfluxDB'
 version: 1.0.0
 weight: null
 events:
@@ -106,6 +107,15 @@ actions:
       -
         id: Activity_1j1lesx
         condition: ''
+      -
+        id: Activity_0w7j6rc
+        condition: ''
+      -
+        id: Activity_1cm4rm1
+        condition: ''
+      -
+        id: Activity_0uo2dsm
+        condition: ''
   Activity_1j0ibmn:
     plugin: eca_write_log_message
     label: 'Log invalid payload'
@@ -137,16 +147,7 @@ actions:
       period: '[forecast_item:period]'
       operation: sub
       eca_token_name: 'forecast_item:period_start'
-    successors:
-      -
-        id: Activity_0w7j6rc
-        condition: ''
-      -
-        id: Activity_1cm4rm1
-        condition: ''
-      -
-        id: Activity_0uo2dsm
-        condition: ''
+    successors: {  }
   Activity_0qyyyf1:
     plugin: influxdb_create_point
     label: 'InfluxDB: create point'

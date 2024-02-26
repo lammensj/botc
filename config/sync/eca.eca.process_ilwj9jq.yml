@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - citadel_eca
+    - sparc_core
     - discord_php_eca
     - eca_base
     - eca_log
@@ -110,7 +110,7 @@ actions:
       message: 'DiscordPHP is ready.'
     successors: {  }
   Activity_1pb917l:
-    plugin: citadel_exa_execute_drush_command
+    plugin: sparc_core_execute_drush_command
     label: drush
     configuration:
       command: '[drush_command]'
@@ -152,7 +152,7 @@ actions:
         id: Activity_0fvjh7d
         condition: ''
   Activity_04bcpzc:
-    plugin: citadel_exa_execute_drush_command
+    plugin: sparc_core_execute_drush_command
     label: drush
     configuration:
       command: '[drush_command]'

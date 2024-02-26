@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\citadel_eca\Commands;
+namespace Drupal\sparc_Core\Commands;
 
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\TypedData\MapDataDefinition;
@@ -14,11 +14,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\VarDumper\VarDumper;
 
 class TriggerInjectEventCommand extends Command {
 
-  protected static $defaultName = 'citadel-eca:trigger:inject-event';
+  protected static $defaultName = 'sparc:trigger:inject-event';
 
   /**
    * Constructs a TriggerInjectEventCommand-instance.

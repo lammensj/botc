@@ -1,8 +1,0 @@
-name: Citadel ECA
-type: module
-description: Adjustments for ECA
-package: Koren45 Citadel
-
-core_version_requirement: ^9 || ^10
-dependencies:
-  - eca:eca

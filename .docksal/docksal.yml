@@ -19,21 +19,6 @@ services:
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/grafana/data:/var/lib/grafana
 
-#  homeassistant:
-#    image: homeassistant/home-assistant:2023.10.5
-#    restart: unless-stopped
-#    environment:
-#      TZ: 'Europe/Brussels'
-#    labels:
-#      - io.docksal.virtual-host=ha.${VIRTUAL_HOST}
-#      - io.docksal.virtual-port=8123
-#    ports:
-#      - '8123:8123'
-#    security_opt:
-#      - no-new-privileges=true
-#    volumes:
-#      - ${PROJECT_ROOT}/.docksal/etc/homeassistant/config:/config
-
   influxdb:
     image: influxdb:2.5.1
     restart: unless-stopped
@@ -46,37 +31,3 @@ services:
       - no-new-privileges=true
     volumes:
       - ${PROJECT_ROOT}/.docksal/etc/influxdb/data:/var/lib/influxdb2
-
-#  mosquitto:
-#    image: eclipse-mosquitto:2.0
-#    restart: unless-stopped
-#    security_opt:
-#      - no-new-privileges=true
-#    volumes:
-#      - ${PROJECT_ROOT}/.docksal/etc/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
-#      - ${PROJECT_ROOT}/.docksal/etc/mosquitto/data:/mosquitto/data
-#      - ${PROJECT_ROOT}/.docksal/etc/shared:/shared
-
-#  portainer:
-#    image: portainer/portainer-ce
-#    restart: unless-stopped
-#    labels:
-#      - io.docksal.virtual-host=portainer.${VIRTUAL_HOST}
-#      - io.docksal.virtual-port=9000
-#    security_opt:
-#      - no-new-privileges=true
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-
-  rabbitmq:
-    image: bitnami/rabbitmq:3.12
-    restart: unless-stopped
-    environment:
-      RABBITMQ_VHOST: ${VIRTUAL_HOST}
-      RABBITMQ_SECURE_PASSWORD: true
-      RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS: true
-    labels:
-      - io.docksal.virtual-host=rabbitmq.${VIRTUAL_HOST}
-      - io.docksal.virtual-port=15672
-    security_opt:
-      - no-new-privileges=true

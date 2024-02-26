@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\citadel_eca\Plugin\Action;
+namespace Drupal\sparc_core\Plugin\Action;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\eca\Plugin\Action\ConfigurableActionBase;
@@ -8,7 +8,7 @@ use Symfony\Component\Process\Process;
 
 /**
  * @Action(
- *   id = "citadel_exa_execute_drush_command",
+ *   id = "sparc_core_execute_drush_command",
  *   label = @Translation("Execute drush-command")
  * )
  */

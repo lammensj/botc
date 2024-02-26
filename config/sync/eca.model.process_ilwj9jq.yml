@@ -128,10 +128,10 @@ modeldata: |
         </bpmn2:extensionElements>
         <bpmn2:outgoing>Flow_1cj9ouk</bpmn2:outgoing>
       </bpmn2:startEvent>
-      <bpmn2:task id="Activity_1pb917l" name="drush" camunda:modelerTemplate="org.drupal.action.citadel_exa_execute_drush_command">
+      <bpmn2:task id="Activity_1pb917l" name="drush" camunda:modelerTemplate="org.drupal.action.sparc_core_execute_drush_command">
         <bpmn2:extensionElements>
           <camunda:properties>
-            <camunda:property name="pluginid" value="citadel_exa_execute_drush_command" />
+            <camunda:property name="pluginid" value="sparc_core_execute_drush_command" />
           </camunda:properties>
           <camunda:field name="command">
             <camunda:string>[drush_command]</camunda:string>
@@ -228,10 +228,10 @@ modeldata: |
         <bpmn2:incoming>Flow_0z03gml</bpmn2:incoming>
         <bpmn2:outgoing>Flow_0kt4hdb</bpmn2:outgoing>
       </bpmn2:task>
-      <bpmn2:task id="Activity_04bcpzc" name="drush" camunda:modelerTemplate="org.drupal.action.citadel_exa_execute_drush_command">
+      <bpmn2:task id="Activity_04bcpzc" name="drush" camunda:modelerTemplate="org.drupal.action.sparc_core_execute_drush_command">
         <bpmn2:extensionElements>
           <camunda:properties>
-            <camunda:property name="pluginid" value="citadel_exa_execute_drush_command" />
+            <camunda:property name="pluginid" value="sparc_core_execute_drush_command" />
           </camunda:properties>
           <camunda:field name="command">
             <camunda:string>[drush_command]</camunda:string>
