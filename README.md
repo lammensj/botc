@@ -31,15 +31,13 @@ I am not responsible, nor can I be kept accountable for any change that might oc
 ### Contributed Modules
 - [DiscordPHP](https://www.drupal.org/project/discord_php): using the team-reflex/discord-php-package, this module offers a drush-command to start the included ReactPHP-loop and dispatches Symfony-events for certain things that happen inside it;
 - [Solcast](https://www.drupal.org/project/solcast): this module exposes HTTP Client Manager-resources for the Solcast API. This platform provides solar resource assessment and forecasting data for irradiance and PV power;
+### Custom Modules
+### ECA-Models
 
-## Setup
-- `cp ./.docksal/etc/shared/mosquitto/mqttpasswd.tpl.txt ./.docksal/etc/shared/mosquitto/mqttpasswd.txt`
-- `fin p up`
+## Results
 
-### MQTT
-- `fin bash mosquitto`
-- `mosquitto_passwd -c /shared/mosquitto/mqttpasswd.txt [USERNAME]`
+## Conclusion
 
-
+## References
 (1) https://hackaday.com/2022/03/18/welcome-to-the-future-where-your-microwave-thinks-its-a-steam-oven/
 (2) https://thenextweb.com/news/update-brainwashes-microwaves-thinking-theyre-steam-ovens
