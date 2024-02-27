@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\influxdb\Commands;
+namespace Drupal\sparc_core\Commands;
 
 use Drupal\Component\Uuid\Uuid;
 use Drupal\eca_base\BaseEvents;

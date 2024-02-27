@@ -2,9 +2,9 @@
 
 namespace Drupal\sparc_core\Commands;
 
-use Drupal\influxdb\Commands\MemoryBlock;
-use Drupal\influxdb\Commands\Process;
 use Drupal\influxdb\Services\ClientFactory\ClientFactoryInterface;
+use Drupal\sparc_core\Models\MemoryBlock;
+use Drupal\sparc_core\Models\Process;
 use Illuminate\Support\Collection;
 use InfluxDB2\Client;
 use InfluxDB2\FluxRecord;

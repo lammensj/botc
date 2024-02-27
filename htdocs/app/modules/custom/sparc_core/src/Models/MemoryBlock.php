@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\influxdb\Commands;
+namespace Drupal\sparc_core\Models;
 
 class MemoryBlock {
 
