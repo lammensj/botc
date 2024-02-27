@@ -23,15 +23,21 @@ I am not responsible, nor can I be kept accountable for any change that might oc
 - ✅ Create ECA-models for fetching data and providing calculations
 
 ## Methodology
+I'm a huge fan of [Drupal](https://www.drupal.org) and the framework it offers. Combining contributed and custom modules, together with ECA-models, results in a project (not product) which allows me to implement the listed features.
+
 ### Contrib Modules
 - [BPMN.iO](https://www.drupal.org/project/bpmn_io): BPMN.iO is a BPMN modeller for [ECA](https://www.drupal.org/project/eca) and is fully integrated into Drupal's admin UI.
 - [ECA: Event - Condition - Action](https://www.drupal.org/project/eca): ECA is a powerful, versatile, and user-friendly rules engine for Drupal 9+. The core module is a processor that validates and executes event-condition-action plugins;
 - [ECA Tamper Integration](https://www.drupal.org/project/eca_tamper): Integrates [ECA](https://www.drupal.org/project/eca) with [Tamper](https://www.drupal.org/project/tamper);
 - [HTTP Client Manager](https://www.drupal.org/project/http_client_manager): Http Client Manager introduces a new Guzzle based plugin which allows you to manage HTTP clients using Guzzle Service Descriptions via YAML, JSON or PHP files, in a simple and efficient way;
 ### Contributed Modules
-- [DiscordPHP](https://www.drupal.org/project/discord_php): using the team-reflex/discord-php-package, this module offers a drush-command to start the included ReactPHP-loop and dispatches Symfony-events for certain things that happen inside it;
+- [DiscordPHP](https://www.drupal.org/project/discord_php): using the [team-reflex/discord-php](https://github.com/discord-php/DiscordPHP)-package, this module offers a drush-command to start the included ReactPHP-loop and dispatches Symfony-events for certain things that happen inside it;
 - [Solcast](https://www.drupal.org/project/solcast): this module exposes HTTP Client Manager-resources for the Solcast API. This platform provides solar resource assessment and forecasting data for irradiance and PV power;
 ### Custom Modules
+- InfluxbDB: there's an existing PHP-package for talking with an InfluxDB-instance ([influxdata/influxdb-client-php](https://github.com/influxdata/influxdb-client-php)), but it lacked an integration for Drupal. This module provides some general configuration, the option to perform operations on Buckets and a couple of ECA-actions to create and write Points.
+- SPARC - Core: implementation of the core-functionalities
+  - `Drupal\sparc_core\Commands\ScheduleCommand`: calculates and outputs a schedule for a set of given appliances
+  - `Drupal\sparc_core\Plugin\Action\ExecuteDrushCommand`: action to execute a drush-command
 ### ECA-Models
 
 ## Results
