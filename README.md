@@ -1,4 +1,4 @@
-# SPARC by Drupal
+# ⚡️SPARC by Drupal
 
 ## TLDR;
 SPARC is Solar Powered, Advanced, Renewable Control for optimizing self-consumption of electricty.
@@ -39,6 +39,11 @@ I'm a huge fan of [Drupal](https://www.drupal.org) and the framework it offers. 
   - `Drupal\sparc_core\Commands\ScheduleCommand`: calculates and outputs a schedule for a set of given appliances
   - `Drupal\sparc_core\Plugin\Action\ExecuteDrushCommand`: action to execute a drush-command
 ### ECA-Models
+- Discord:
+  - Logs a message when the underlying ReactPHP-loop is ready to receive events
+  - Executes a drush command when an incoming message starts with `/drush`and responds with the output
+- Solcast
+  - Calls the configured http-client endpoint, parses the json-response by creating Points and sending them to InfluxDB
 
 ## Results
 
