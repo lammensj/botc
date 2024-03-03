@@ -5,8 +5,3 @@ services:
       - '@influxdb.services.client_factory'
     tags:
       - { name: console.command }
-
-  influxdb.commands.recommend:
-    class: Drupal\influxdb\Commands\RecommendCommand
-    tags:
-      - { name: console.command }

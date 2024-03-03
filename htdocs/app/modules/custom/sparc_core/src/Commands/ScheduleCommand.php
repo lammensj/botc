@@ -3,7 +3,6 @@
 namespace Drupal\sparc_core\Commands;
 
 use Drupal\influxdb\Services\ClientFactory\ClientFactoryInterface;
-use Drupal\sparc_core\Models\MemoryBlock;
 use Drupal\sparc_core\Models\Process;
 use Illuminate\Support\Collection;
 use InfluxDB2\Client;
@@ -43,7 +42,7 @@ class ScheduleCommand extends Command {
   protected function configure(): void {
     parent::configure();
 
-    $this->setName('hems:schedule');
+    $this->setName('sparc:schedule');
     $this->setDescription('Schedule the appliances.');
 
     $this->addOption(
@@ -78,18 +77,12 @@ class ScheduleCommand extends Command {
       return Command::SUCCESS;
     }
 
-    /** @var \Drupal\influxdb\Commands\MemoryBlock[] $data */
-    $data = array_reduce($data, function (array $carry, FluxRecord $record) {
-      $carry[] = new MemoryBlock(uniqid(), $record->getValue());
-
-      return $carry;
-    }, []);
-    $start = array_reduce($data, function (float $total, MemoryBlock $block) {
-      return $total + $block->getSize();
-    }, 0.0);
+    $start = array_reduce($data, function (int $total, FluxRecord $record) {
+      return $total + $record->getValue();
+    }, 0);
     $output->writeln(sprintf('Total solar output: %sW', $start));
 
-    /** @var \Drupal\influxdb\Commands\Process[] $processes */
+    /** @var \Drupal\sparc_core\Models\Process[] $processes */
     $processes = array_reduce($input->getOption('appliance'), function (array $carry, string $appliance) {
       preg_match('/^(?<watt>\d+)W:(?<cycles>\d+)$/', $appliance, $matches);
       $carry[] = new Process((int) $matches['watt'], (int) $matches['cycles']);
@@ -98,21 +91,21 @@ class ScheduleCommand extends Command {
     }, []);
 
     $this->allocateBestFit($data, $processes);
-    $end = array_reduce($data, function (float $total, MemoryBlock $block) {
-      return $total + $block->getSize();
+    $end = array_reduce($data, function (float $total, FluxRecord $record) {
+      return $total + $record->getValue();
     }, 0.0);
     $output->writeln(sprintf('Total solar output unused: %sW', $end));
     $output->writeln(sprintf('Percentage used: %s%%', (1 - ($end / $start)) * 100));
 
     $table = new Table($output);
-    $table->setHeaders(['Block ID', 'Process']);
-    foreach ($data as $block) {
-      if ($block->isUnused()) {
+    $table->setHeaders(['Start', 'Process']);
+    foreach ($data as $record) {
+      if (empty($record->values['processes'])) {
         continue;
       }
 
-      foreach ($block->getProcesses() as $process) {
-        $table->addRow([$block->getId(), (string) $process]);
+      foreach ($record->values['processes'] as $process) {
+        $table->addRow([$record->getTime(), (string) $process]);
       }
     }
     $table->render();
@@ -143,20 +136,20 @@ class ScheduleCommand extends Command {
   /**
    * Allocate the processes for the available blocks, using 'best fit'-algo.
    *
-   * @param \Drupal\influxdb\Commands\MemoryBlock[] $blocks
+   * @param \InfluxDB2\FluxRecord[] $records
    *   The blocks.
-   * @param \Drupal\influxdb\Commands\Process[] $processes
+   * @param \Drupal\sparc_core\Models\Process[] $processes
    *   The processes.
    */
-  protected function allocateBestFit(array &$blocks, array $processes) {
-    $processBlocks = collect($blocks);
+  protected function allocateBestFit(array &$records, array $processes) {
+    $processBlocks = collect($records);
 
     foreach ($processes as $process) {
       // Create sliding windows per process cycle, and filter them by process
       // size.
       $windows = $processBlocks
         ->sliding($process->getCycles())
-        ->filter(fn (Collection $window) => $window->every(fn (MemoryBlock $block) => $block->getSize() >= $process->getSize()));
+        ->filter(fn (Collection $window) => $window->every(fn (FluxRecord $record) => $record->getValue() >= $process->getSize()));
 
       if ($windows->isEmpty()) {
         // There are no windows available for the process.
@@ -165,8 +158,8 @@ class ScheduleCommand extends Command {
 
       // Create a queue, where the priority is the negative sum of the blocks.
       $queue = array_reduce($windows->toArray(), static function (\SplPriorityQueue $queue, array $window) {
-        $total = array_reduce($window, static function (int $total, MemoryBlock $block) {
-          return $total + $block->getSize();
+        $total = array_reduce($window, static function (int $total, FluxRecord $record) {
+          return $total + $record->getValue();
         }, 0);
         $queue->insert($window, -$total);
 
@@ -175,12 +168,12 @@ class ScheduleCommand extends Command {
 
       // Get the item at the top, it matches the process restrictions as close
       // as possible (combination of size and cycles).
-      /** @var \Drupal\influxdb\Commands\MemoryBlock[] $window */
+      /** @var \InfluxDB2\FluxRecord[] $window */
       $window = $queue->extract();
 
-      foreach ($window as &$block) {
-        $block->allocate($process);
-        $block->setSize($block->getSize() - $process->getSize());
+      foreach ($window as &$record) {
+        $record->values['_value'] = $record->getValue() - $process->getSize();
+        $record->values['processes'][] = $process;
       }
     }
   }
