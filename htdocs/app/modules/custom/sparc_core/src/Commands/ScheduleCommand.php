@@ -142,12 +142,12 @@ class ScheduleCommand extends Command {
    *   The processes.
    */
   protected function allocateBestFit(array &$records, array $processes) {
-    $processBlocks = collect($records);
+    $processRecords = collect($records);
 
     foreach ($processes as $process) {
       // Create sliding windows per process cycle, and filter them by process
       // size.
-      $windows = $processBlocks
+      $windows = $processRecords
         ->sliding($process->getCycles())
         ->filter(fn (Collection $window) => $window->every(fn (FluxRecord $record) => $record->getValue() >= $process->getSize()));
 
@@ -170,6 +170,41 @@ class ScheduleCommand extends Command {
       // as possible (combination of size and cycles).
       /** @var \InfluxDB2\FluxRecord[] $window */
       $window = $queue->extract();
+
+      foreach ($window as &$record) {
+        $record->values['_value'] = $record->getValue() - $process->getSize();
+        $record->values['processes'][] = $process;
+      }
+    }
+  }
+
+  /**
+   * Allocate the processes for the available blocks, using 'first fit'-algo.
+   *
+   * @param \InfluxDB2\FluxRecord[] $records
+   *   The blocks.
+   * @param \Drupal\sparc_core\Models\Process[] $processes
+   *   The processes.
+   */
+  protected function allocateFirstFit(array &$records, array $processes) {
+    $processRecords = collect($records);
+
+    foreach ($processes as $process) {
+      // Create sliding windows per process cycle, and filter them by process
+      // size.
+      $windows = $processRecords
+        ->sliding($process->getCycles())
+        ->filter(fn (Collection $window) => $window->every(fn (FluxRecord $record) => $record->getValue() >= $process->getSize()));
+
+      if ($windows->isEmpty()) {
+        // There are no windows available for the process.
+        continue;
+      }
+
+      // Get the first item, it matches the process restrictions as close
+      // as possible (combination of size and cycles).
+      /** @var \InfluxDB2\FluxRecord[] $window */
+      $window = $windows->first();
 
       foreach ($window as &$record) {
         $record->values['_value'] = $record->getValue() - $process->getSize();
