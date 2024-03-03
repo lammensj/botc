@@ -15,6 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ScheduleCommand extends Command {
 
+  protected const ALGO_FIRST_FIT = 'first_fit';
+  protected const ALGO_BEST_FIT = 'best_fit';
+  protected const ALGO_WORST_FIT = 'worst_fit';
+
   /**
    * The InfluxDB-client.
    *
@@ -61,6 +65,14 @@ class ScheduleCommand extends Command {
       []
     );
 
+    $this->addOption(
+      'algorithm',
+      'f',
+      InputOption::VALUE_REQUIRED,
+      'Defines the fit-algorithm to use.',
+      self::ALGO_BEST_FIT
+    );
+
     $this->addUsage('--window-duration=15m -a 964W:16');
     $this->addUsage('--window-duration=30m -a 964W:8');
     $this->addUsage('--window-duration=1h -a 964W:4');
@@ -90,7 +102,7 @@ class ScheduleCommand extends Command {
       return $carry;
     }, []);
 
-    $this->allocateBestFit($data, $processes);
+    $this->allocateFit($data, $processes, $input->getOption('algorithm'));
     $end = array_reduce($data, function (float $total, FluxRecord $record) {
       return $total + $record->getValue();
     }, 0.0);
@@ -140,8 +152,10 @@ class ScheduleCommand extends Command {
    *   The blocks.
    * @param \Drupal\sparc_core\Models\Process[] $processes
    *   The processes.
+   * @param string $algo
+   *   The fit-algorithm to use.
    */
-  protected function allocateBestFit(array &$records, array $processes) {
+  protected function allocateFit(array &$records, array $processes, string $algo = self::ALGO_BEST_FIT) {
     $processRecords = collect($records);
 
     foreach ($processes as $process) {
@@ -156,55 +170,49 @@ class ScheduleCommand extends Command {
         continue;
       }
 
-      // Create a queue, where the priority is the negative sum of the blocks.
-      $queue = array_reduce($windows->toArray(), static function (\SplPriorityQueue $queue, array $window) {
-        $total = array_reduce($window, static function (int $total, FluxRecord $record) {
-          return $total + $record->getValue();
-        }, 0);
-        $queue->insert($window, -$total);
+      switch ($algo) {
+        case self::ALGO_FIRST_FIT:
+          // Get the first item, it matches the process restrictions as close
+          // as possible (combination of size and cycles).
+          /** @var \InfluxDB2\FluxRecord[] $window */
+          $window = $windows->first();
+          break;
 
-        return $queue;
-      }, new \SplPriorityQueue());
+        case self::ALGO_WORST_FIT:
+          // Create a queue, the priority is the positive sum of the values.
+          $queue = array_reduce($windows->toArray(), static function (\SplPriorityQueue $queue, array $window) {
+            $total = array_reduce($window, static function (int $total, FluxRecord $record) {
+              return $total + $record->getValue();
+            }, 0);
+            $queue->insert($window, $total);
 
-      // Get the item at the top, it matches the process restrictions as close
-      // as possible (combination of size and cycles).
-      /** @var \InfluxDB2\FluxRecord[] $window */
-      $window = $queue->extract();
+            return $queue;
+          }, new \SplPriorityQueue());
 
-      foreach ($window as &$record) {
-        $record->values['_value'] = $record->getValue() - $process->getSize();
-        $record->values['processes'][] = $process;
+          // Get the item at the top, it matches the process restrictions
+          // as close as possible (combination of size and cycles).
+          /** @var \InfluxDB2\FluxRecord[] $window */
+          $window = $queue->extract();
+          break;
+
+        default:
+        case self::ALGO_BEST_FIT:
+          // Create a queue, the priority is the negative sum of the blocks.
+          $queue = array_reduce($windows->toArray(), static function (\SplPriorityQueue $queue, array $window) {
+            $total = array_reduce($window, static function (int $total, FluxRecord $record) {
+              return $total + $record->getValue();
+            }, 0);
+            $queue->insert($window, -$total);
+
+            return $queue;
+          }, new \SplPriorityQueue());
+
+          // Get the item at the top, it matches the process restrictions
+          // as close as possible (combination of size and cycles).
+          /** @var \InfluxDB2\FluxRecord[] $window */
+          $window = $queue->extract();
+          break;
       }
-    }
-  }
-
-  /**
-   * Allocate the processes for the available blocks, using 'first fit'-algo.
-   *
-   * @param \InfluxDB2\FluxRecord[] $records
-   *   The blocks.
-   * @param \Drupal\sparc_core\Models\Process[] $processes
-   *   The processes.
-   */
-  protected function allocateFirstFit(array &$records, array $processes) {
-    $processRecords = collect($records);
-
-    foreach ($processes as $process) {
-      // Create sliding windows per process cycle, and filter them by process
-      // size.
-      $windows = $processRecords
-        ->sliding($process->getCycles())
-        ->filter(fn (Collection $window) => $window->every(fn (FluxRecord $record) => $record->getValue() >= $process->getSize()));
-
-      if ($windows->isEmpty()) {
-        // There are no windows available for the process.
-        continue;
-      }
-
-      // Get the first item, it matches the process restrictions as close
-      // as possible (combination of size and cycles).
-      /** @var \InfluxDB2\FluxRecord[] $window */
-      $window = $windows->first();
 
       foreach ($window as &$record) {
         $record->values['_value'] = $record->getValue() - $process->getSize();
