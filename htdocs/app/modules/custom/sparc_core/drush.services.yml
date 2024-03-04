@@ -1,6 +1,6 @@
 services:
   sparc.commands.schedule:
-    class: Drupal\sparc_core\Commands\ScheduleCommand
+    class: Drupal\sparc_core\Commands\AllocateCommand
     arguments:
       - '@influxdb.services.client_factory'
     tags:

@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ScheduleCommand extends Command {
+class AllocateCommand extends Command {
 
   protected const ALGO_FIRST_FIT = 'first_fit';
   protected const ALGO_BEST_FIT = 'best_fit';
@@ -46,8 +46,8 @@ class ScheduleCommand extends Command {
   protected function configure(): void {
     parent::configure();
 
-    $this->setName('sparc:schedule');
-    $this->setDescription('Schedule the appliances.');
+    $this->setName('sparc:allocate');
+    $this->setDescription('Allocate the appliances.');
 
     $this->addOption(
       'window-duration',
