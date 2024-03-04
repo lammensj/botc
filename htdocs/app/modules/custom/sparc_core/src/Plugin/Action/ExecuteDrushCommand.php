@@ -25,7 +25,7 @@ class ExecuteDrushCommand extends ConfigurableActionBase {
     $process = new Process($command);
     $process->run();
 
-    $this->tokenServices->addTokenData('command_is_successful', $process->isSuccessful());
+    $this->tokenServices->addTokenData('command_is_successful', $process->isSuccessful() ? 'true' : 'false');
     if (!$process->isSuccessful()) {
       $this->tokenServices->addTokenData($this->configuration['output_token_name'], $process->getErrorOutput());
 

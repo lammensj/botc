@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - sparc_core
     - discord_php_eca
     - eca_base
     - eca_log
     - eca_tamper
+    - sparc_core
 id: process_ilwj9jq
 modeller: bpmn_io
 label: DiscordPHP
@@ -28,14 +28,11 @@ events:
     configuration: {  }
     successors:
       -
-        id: Activity_0mszrs9
-        condition: Flow_0uq7dxy
-      -
         id: Activity_0r4qsv3
         condition: Flow_0z03gml
   Event_01lo1pu:
     plugin: 'eca_base:eca_custom'
-    label: Event_01lo1pu
+    label: 'Debug drush-command'
     configuration:
       event_id: drush
     successors:
@@ -43,15 +40,6 @@ events:
         id: Activity_15zojwg
         condition: ''
 conditions:
-  Flow_0uq7dxy:
-    plugin: eca_scalar
-    configuration:
-      negate: false
-      left: '[message:content]'
-      right: image
-      operator: equal
-      type: value
-      case: true
   Flow_0z03gml:
     plugin: eca_scalar
     configuration:
@@ -67,10 +55,28 @@ conditions:
       negate: false
       case: false
       left: '[command_is_successful]'
-      right: '1'
+      right: 'true'
       operator: equal
       type: value
   Flow_0x94ue8:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[command_is_successful]'
+      right: 'false'
+      operator: equal
+      type: value
+  Flow_18i86fy:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[command_is_successful]'
+      right: 'true'
+      operator: equal
+      type: value
+  Flow_19g28r5:
     plugin: eca_scalar
     configuration:
       negate: false
@@ -91,16 +97,6 @@ actions:
       reply_to_channel_id: '[message:channel_id]'
       filepath: ''
     successors: {  }
-  Activity_0mszrs9:
-    plugin: discord_php_eca_send_message
-    label: 'Reply with img'
-    configuration:
-      content: Image
-      channel_id: '[message:channel_id]'
-      reply_to_id: '[message:id]'
-      reply_to_channel_id: '[message:channel_id]'
-      filepath: 'public://76855592.png'
-    successors: {  }
   Activity_09u70l7:
     plugin: eca_write_log_message
     label: Log
@@ -119,20 +115,12 @@ actions:
       -
         id: Activity_0nawmt3
         condition: ''
-  Activity_0kcl9ea:
-    plugin: eca_write_log_message
-    label: Log
-    configuration:
-      channel: eca
-      severity: '7'
-      message: '[command_output]'
-    successors: {  }
   Activity_15zojwg:
     plugin: eca_token_set_value
     label: 'Set command'
     configuration:
       token_name: drush_command
-      token_value: 'hems:schedule -a 150W:4 -a 10W:6'
+      token_value: non-existing
       use_yaml: false
     successors:
       -
@@ -153,7 +141,7 @@ actions:
         condition: ''
   Activity_04bcpzc:
     plugin: sparc_core_execute_drush_command
-    label: drush
+    label: 'Run drush-command'
     configuration:
       command: '[drush_command]'
       output_token_name: drush_output
@@ -172,8 +160,11 @@ actions:
       eca_token_name: drush_output
     successors:
       -
-        id: Activity_0woavtj
-        condition: ''
+        id: Activity_0m3u1zp
+        condition: Flow_15kxtsd
+      -
+        id: Activity_0czyrzn
+        condition: Flow_0x94ue8
   Activity_0fvjh7d:
     plugin: 'eca_tamper:explode'
     label: 'Explode arguments'
@@ -209,18 +200,11 @@ actions:
       eca_token_name: command_output
     successors:
       -
-        id: Activity_0kcl9ea
-        condition: ''
+        id: Activity_1lyo1xs
+        condition: Flow_18i86fy
       -
-        id: Activity_0cl2c5q
-        condition: ''
-  Activity_0cl2c5q:
-    plugin: action_message_action
-    label: Message
-    configuration:
-      message: '[command_output]'
-      replace_tokens: true
-    successors: {  }
+        id: Activity_00qj17g
+        condition: Flow_19g28r5
   Activity_1uiqpar:
     plugin: discord_php_eca_send_message
     label: Reply
@@ -233,7 +217,7 @@ actions:
     successors: {  }
   Activity_1avkr69:
     plugin: 'eca_tamper:truncate_text'
-    label: 'Truncate output'
+    label: 'Truncate for error'
     configuration:
       num_char: '1993'
       ellipses: 1
@@ -244,21 +228,54 @@ actions:
       -
         id: Activity_1uiqpar
         condition: ''
-  Activity_0woavtj:
-    plugin: 'eca_tamper:convert_boolean'
-    label: 'Convert isSuccessful to bool'
+  Activity_1lyo1xs:
+    plugin: action_message_action
+    label: Log
     configuration:
-      true_value: '1'
-      false_value: ''
-      match_case: false
-      no_match_value: false
-      eca_data: '[command_is_successful]'
-      eca_token_name: command_is_successful
-      other_text: ''
+      message: '[command_output]'
+      replace_tokens: true
+    successors: {  }
+  Activity_1cwlh1h:
+    plugin: action_message_action
+    label: Log
+    configuration:
+      replace_tokens: false
+      message: 'Error: [command_output]'
+    successors: {  }
+  Activity_0sl4k6x:
+    plugin: 'eca_tamper:truncate_text'
+    label: 'Truncate for error'
+    configuration:
+      num_char: '20'
+      ellipses: 1
+      wordsafe: false
+      eca_data: '[command_output]'
+      eca_token_name: command_output
     successors:
       -
-        id: Activity_0m3u1zp
-        condition: Flow_15kxtsd
+        id: Activity_1cwlh1h
+        condition: ''
+  Activity_00qj17g:
+    plugin: 'eca_tamper:trim'
+    label: Trim
+    configuration:
+      character: ''
+      side: trim
+      eca_data: '[command_output]'
+      eca_token_name: command_output
+    successors:
+      -
+        id: Activity_0sl4k6x
+        condition: ''
+  Activity_0czyrzn:
+    plugin: 'eca_tamper:trim'
+    label: 'Trim error-message'
+    configuration:
+      character: ''
+      side: trim
+      eca_data: '[drush_output]'
+      eca_token_name: drush_output
+    successors:
       -
         id: Activity_1avkr69
-        condition: Flow_0x94ue8
+        condition: ''
