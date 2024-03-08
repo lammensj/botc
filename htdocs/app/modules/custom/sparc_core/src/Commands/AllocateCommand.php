@@ -108,6 +108,7 @@ class AllocateCommand extends Command {
     }, 0.0);
     $output->writeln(sprintf('Total solar output unused: %sW', $end));
     $output->writeln(sprintf('Percentage used: %s%%', (1 - ($end / $start)) * 100));
+    $output->writeln(sprintf('Algorithm used: %s', $input->getOption('algorithm')));
 
     $table = new Table($output);
     $table->setHeaders(['Start', 'Process']);
@@ -136,9 +137,12 @@ class AllocateCommand extends Command {
     $result = $queryApi->query(sprintf('
       from(bucket: "Green Plug")
         |> range(start: now(), stop: %s)
-        |> filter(fn: (r) => r._measurement == "solcast")
-        |> filter(fn: (r) => r._field == "pv_estimate")
-        |> aggregateWindow(every: %s, fn: mean, createEmpty: false)
+        |> filter(fn: (r) =>
+          r._measurement == "solcast" and
+          r._field == "pv_estimate"
+        )
+        |> aggregateWindow(every: %s, fn: mean, createEmpty: true)
+        |> fill(usePrevious: true)
         |> yield(name: "mean")
     ', '1d', $windowDuration));
 
