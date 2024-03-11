@@ -1,5 +1,5 @@
 {
-    "name": "lammensj/sparc",
+    "name": "lammensj/botc",
     "description": "Project template for Drupal 8 projects with a relocated document root",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -34,7 +34,6 @@
         "drupal/key": "^1.17",
         "drupal/plugin": "^2.10",
         "drupal/queue_ui": "^3.1",
-        "drupal/rabbitmq": "^3.1",
         "drupal/solcast": "^1.0@dev",
         "drupal/token": "^1.12",
         "drush/drush": "^12.0",
