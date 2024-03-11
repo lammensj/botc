@@ -46,6 +46,7 @@ fin exec COMPOSER_MEMORY_LIMIT=-1 composer install --no-interaction
 # Set up botc
 cp $PROJECT_ROOT/htdocs/.env.example $PROJECT_ROOT/htdocs/.env
 cp $PROJECT_ROOT/assets/settings.local.php $PROJECT_ROOT/htdocs/app/sites/default/settings.local.php
+echo "2dSsqJleem3M3Fw" > ./htdocs/private/keys/influxdb.key.txt
 fin drush si --existing-config -y
 fin drush uli
 

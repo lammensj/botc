@@ -1,0 +1,8 @@
+uuid: d7b29bf2-a1e7-402f-90a1-2880967fdfd6
+langcode: en
+status: 1
+dependencies: {  }
+id: botc
+label: botc
+retention_seconds: 1209600
+default: false
