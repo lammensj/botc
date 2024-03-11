@@ -2,9 +2,9 @@ _core:
   default_config_hash: l58O_yEXSo-SeJi19LXdzTU1tNJG3lmnIhCitRkM1tk
 langcode: en
 uuid: 0230af47-923e-48cc-817f-5064fa1dfae4
-name: Faraday
-mail: lammensjasper+faraday@gmail.com
-slogan: ''
+name: SPARC
+mail: lammensjasper+sparc@gmail.com
+slogan: 'Solar Powered, Advanced, Renewable Control'
 page:
   403: ''
   404: ''
