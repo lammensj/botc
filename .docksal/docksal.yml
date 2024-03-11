@@ -20,7 +20,7 @@ services:
       - ${PROJECT_ROOT}/.docksal/etc/grafana/data:/var/lib/grafana
 
   influxdb:
-    image: influxdb:2.5.1
+    image: influxdb:2.7.5
     restart: unless-stopped
     env_file:
       - ${PROJECT_ROOT}/.docksal/etc/influxdb/config/.env
