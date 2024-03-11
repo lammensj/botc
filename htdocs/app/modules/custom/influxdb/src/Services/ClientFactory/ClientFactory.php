@@ -72,7 +72,7 @@ class ClientFactory implements ClientFactoryInterface {
   protected function getToken(string $keyId): string {
     $keyEntity = $this->keyRepository->getKey($keyId);
     if ($keyEntity instanceof Key) {
-      return $keyEntity->getKeyValue();
+      return (string) $keyEntity->getKeyValue();
     }
 
     return '';
