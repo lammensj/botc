@@ -54,9 +54,10 @@ class QueryCommand extends Command {
     $queryApi = $this->client->createQueryApi();
     $result = $queryApi->query(sprintf('
       from(bucket: "%s")
-        |> range(start: now(), stop: %s)
-        |> filter(fn: (r) => r._measurement == "solcast")
-        |> filter(fn: (r) => r._field == "pv_estimate" and r._value > 0)
+        |> range(start: 2024-03-11T21:00:00Z, stop: 2024-03-11T21:30:00Z)
+        |> filter(fn: (r) => r._measurement == "airSensors")
+//        |> filter(fn: (r) => r._field == "temperature" or r["_field"] == "humidity")
+        |> filter(fn: (r) => r["sensor_id"] == "TLM0100")
         |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)
         |> yield(name: "mean")
     ', $input->getArgument('bucket'), $input->getOption('stop')));

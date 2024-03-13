@@ -2,4 +2,4 @@ server_url: 'http://botc_influxdb_1:8086'
 organization: botc
 token: influxdb
 allow_redirects: true
-debug: false
+debug: true
