@@ -1,0 +1,113 @@
+uuid: 2dc324f5-8472-431f-8cd1-5af6f05a6423
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_base
+    - eca_log
+    - influxdb_bucket_eca
+id: process_qlcfave
+modeller: bpmn_io
+label: InfluxDB
+version: 1.0.0
+weight: null
+events:
+  Event_17h4i95:
+    plugin: 'eca_base:eca_custom'
+    label: Event_17h4i95
+    configuration:
+      event_id: influxdb
+    successors:
+      -
+        id: Activity_0cl2v6l
+        condition: ''
+conditions:
+  Flow_00g1i0g:
+    plugin: eca_count
+    configuration:
+      negate: false
+      case: false
+      left: influxdb_result
+      right: '0'
+      operator: greaterthan
+      type: numeric
+gateways:
+  Gateway_1hte67r:
+    type: 0
+    successors:
+      -
+        id: Activity_19vbzoe
+        condition: Flow_00g1i0g
+actions:
+  Activity_0cl2v6l:
+    plugin: influxdb_run_query
+    label: 'Run query'
+    configuration:
+      query: |-
+        from(bucket: "eca")
+                |> range(start: 2024-03-11T16:45:00Z, stop: 2024-03-11T21:30:00Z)
+                |> filter(fn: (r) => r._measurement == "airSensors")
+                |> filter(fn: (r) => r.sensor_id == "TLM0100")
+                |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)
+                |> yield(name: "mean")
+      eca_token_name: influxdb_result
+    successors:
+      -
+        id: Gateway_1hte67r
+        condition: ''
+  Activity_19vbzoe:
+    plugin: eca_list_remove
+    label: 'Pop item'
+    configuration:
+      value: ''
+      token_name: influxdb_row
+      method: first
+      index: ''
+      list_token: influxdb_result
+    successors:
+      -
+        id: Activity_06ww151
+        condition: ''
+  Activity_06ww151:
+    plugin: action_message_action
+    label: 'Debug item'
+    configuration:
+      replace_tokens: false
+      message: '[influxdb_row]'
+    successors:
+      -
+        id: Activity_1cjpphu
+        condition: ''
+  Activity_1cjpphu:
+    plugin: eca_write_log_message
+    label: 'Log value'
+    configuration:
+      channel: influxdb
+      severity: '7'
+      message: '[influxdb_row:_value]'
+    successors:
+      -
+        id: Activity_1kjdz7d
+        condition: ''
+  Activity_1kjdz7d:
+    plugin: eca_write_log_message
+    label: 'Log sensor ID'
+    configuration:
+      channel: influxdb
+      severity: '7'
+      message: '[influxdb_row:sensor_id]'
+    successors:
+      -
+        id: Activity_0i1o8dw
+        condition: ''
+  Activity_0i1o8dw:
+    plugin: eca_write_log_message
+    label: 'Log measurement'
+    configuration:
+      channel: influxdb
+      severity: '7'
+      message: '[influxdb_row:_measurement]'
+    successors:
+      -
+        id: Gateway_1hte67r
+        condition: ''

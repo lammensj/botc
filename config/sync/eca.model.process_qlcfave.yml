@@ -1,0 +1,252 @@
+uuid: f89eb9ca-390e-49c0-ba0b-ba1cab19094d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_qlcfave
+id: process_qlcfave
+label: InfluxDB
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_qlCFavE" name="InfluxDB" isExecutable="true" camunda:versionTag="1.0.0">
+      <bpmn2:startEvent id="Event_17h4i95" camunda:modelerTemplate="org.drupal.event.eca_base:eca_custom">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_base:eca_custom" />
+          </camunda:properties>
+          <camunda:field name="event_id">
+            <camunda:string>influxdb</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_0gg7iuc</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:task id="Activity_0cl2v6l" name="Run query" camunda:modelerTemplate="org.drupal.action.influxdb_run_query">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="influxdb_run_query" />
+          </camunda:properties>
+          <camunda:field name="query">
+            <camunda:string>from(bucket: "eca")
+          |&gt; range(start: 2024-03-11T16:45:00Z, stop: 2024-03-11T21:30:00Z)
+          |&gt; filter(fn: (r) =&gt; r._measurement == "airSensors")
+          |&gt; filter(fn: (r) =&gt; r.sensor_id == "TLM0100")
+          |&gt; aggregateWindow(every: 15m, fn: mean, createEmpty: false)
+          |&gt; yield(name: "mean")</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>influxdb_result</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0gg7iuc</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0rxf24j</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0gg7iuc" sourceRef="Event_17h4i95" targetRef="Activity_0cl2v6l" />
+      <bpmn2:exclusiveGateway id="Gateway_1hte67r">
+        <bpmn2:incoming>Flow_0rxf24j</bpmn2:incoming>
+        <bpmn2:incoming>Flow_10gws3b</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_00g1i0g</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_0rxf24j" sourceRef="Activity_0cl2v6l" targetRef="Gateway_1hte67r" />
+      <bpmn2:task id="Activity_19vbzoe" name="Pop item" camunda:modelerTemplate="org.drupal.action.eca_list_remove">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_list_remove" />
+          </camunda:properties>
+          <camunda:field name="list_token">
+            <camunda:string>influxdb_result</camunda:string>
+          </camunda:field>
+          <camunda:field name="method">
+            <camunda:string>first</camunda:string>
+          </camunda:field>
+          <camunda:field name="index">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="value">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>influxdb_row</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_00g1i0g</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1l3qqtj</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_00g1i0g" camunda:modelerTemplate="org.drupal.condition.eca_count" sourceRef="Gateway_1hte67r" targetRef="Activity_19vbzoe">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_count" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>influxdb_result</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>0</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>numeric</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_10gws3b" sourceRef="Activity_0i1o8dw" targetRef="Gateway_1hte67r" />
+      <bpmn2:task id="Activity_06ww151" name="Debug item" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action" />
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>[influxdb_row]</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1l3qqtj</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0s1zmh9</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0mqw9h5" sourceRef="Activity_1cjpphu" targetRef="Activity_1kjdz7d" />
+      <bpmn2:sequenceFlow id="Flow_1jhmssv" sourceRef="Activity_1kjdz7d" targetRef="Activity_0i1o8dw" />
+      <bpmn2:sequenceFlow id="Flow_1l3qqtj" sourceRef="Activity_19vbzoe" targetRef="Activity_06ww151" />
+      <bpmn2:sequenceFlow id="Flow_0s1zmh9" sourceRef="Activity_06ww151" targetRef="Activity_1cjpphu" />
+      <bpmn2:task id="Activity_1cjpphu" name="Log value" camunda:modelerTemplate="org.drupal.action.eca_write_log_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_write_log_message" />
+          </camunda:properties>
+          <camunda:field name="channel">
+            <camunda:string>influxdb</camunda:string>
+          </camunda:field>
+          <camunda:field name="severity">
+            <camunda:string>7</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>[influxdb_row:_value]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0s1zmh9</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0mqw9h5</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_1kjdz7d" name="Log sensor ID" camunda:modelerTemplate="org.drupal.action.eca_write_log_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_write_log_message" />
+          </camunda:properties>
+          <camunda:field name="channel">
+            <camunda:string>influxdb</camunda:string>
+          </camunda:field>
+          <camunda:field name="severity">
+            <camunda:string>7</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>[influxdb_row:sensor_id]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0mqw9h5</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1jhmssv</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_0i1o8dw" name="Log measurement" camunda:modelerTemplate="org.drupal.action.eca_write_log_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_write_log_message" />
+          </camunda:properties>
+          <camunda:field name="channel">
+            <camunda:string>influxdb</camunda:string>
+          </camunda:field>
+          <camunda:field name="severity">
+            <camunda:string>7</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>[influxdb_row:_measurement]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1jhmssv</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_10gws3b</bpmn2:outgoing>
+      </bpmn2:task>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-f7a7200b-829f-48e5-8266-156a97122282">
+      <bpmndi:BPMNPlane id="sid-dfcd900b-0a29-41dc-a43c-650c8e17035a" bpmnElement="Process_qlCFavE">
+        <bpmndi:BPMNShape id="Event_17h4i95_di" bpmnElement="Event_17h4i95">
+          <dc:Bounds x="302" y="152" width="36" height="36" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0cl2v6l_di" bpmnElement="Activity_0cl2v6l">
+          <dc:Bounds x="390" y="130" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_1hte67r_di" bpmnElement="Gateway_1hte67r" isMarkerVisible="true">
+          <dc:Bounds x="565" y="145" width="50" height="50" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_19vbzoe_di" bpmnElement="Activity_19vbzoe">
+          <dc:Bounds x="690" y="130" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_06ww151_di" bpmnElement="Activity_06ww151">
+          <dc:Bounds x="690" y="300" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1mx0x0b_di" bpmnElement="Activity_1cjpphu">
+          <dc:Bounds x="880" y="130" width="100" height="80" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_09xq31z_di" bpmnElement="Activity_1kjdz7d">
+          <dc:Bounds x="880" y="270" width="100" height="80" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0tzy3rw_di" bpmnElement="Activity_0i1o8dw">
+          <dc:Bounds x="880" y="410" width="100" height="80" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_0gg7iuc_di" bpmnElement="Flow_0gg7iuc">
+          <di:waypoint x="338" y="170" />
+          <di:waypoint x="390" y="170" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0rxf24j_di" bpmnElement="Flow_0rxf24j">
+          <di:waypoint x="490" y="170" />
+          <di:waypoint x="565" y="170" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_00g1i0g_di" bpmnElement="Flow_00g1i0g">
+          <di:waypoint x="615" y="170" />
+          <di:waypoint x="690" y="170" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_10gws3b_di" bpmnElement="Flow_10gws3b">
+          <di:waypoint x="980" y="450" />
+          <di:waypoint x="1030" y="450" />
+          <di:waypoint x="1030" y="50" />
+          <di:waypoint x="590" y="50" />
+          <di:waypoint x="590" y="145" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0mqw9h5_di" bpmnElement="Flow_0mqw9h5">
+          <di:waypoint x="980" y="170" />
+          <di:waypoint x="1010" y="170" />
+          <di:waypoint x="1010" y="310" />
+          <di:waypoint x="980" y="310" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1jhmssv_di" bpmnElement="Flow_1jhmssv">
+          <di:waypoint x="880" y="310" />
+          <di:waypoint x="835" y="310" />
+          <di:waypoint x="835" y="450" />
+          <di:waypoint x="880" y="450" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1l3qqtj_di" bpmnElement="Flow_1l3qqtj">
+          <di:waypoint x="740" y="210" />
+          <di:waypoint x="740" y="300" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0s1zmh9_di" bpmnElement="Flow_0s1zmh9">
+          <di:waypoint x="740" y="300" />
+          <di:waypoint x="740" y="270" />
+          <di:waypoint x="835" y="270" />
+          <di:waypoint x="835" y="170" />
+          <di:waypoint x="880" y="170" />
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>
