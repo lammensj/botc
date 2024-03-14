@@ -2,6 +2,7 @@ _core:
   default_config_hash: vFotbAssMkZPpjiuVb0HrqppKkfujpTGrMSWsZrLiP4
 enable_overriding_service_definitions: 1
 overrides:
-  home_assistant_services:
+  atak_services:
     config:
-      debug: true
+      base_uri: 'http://35.206.145.140:8087'
+      debug: 1

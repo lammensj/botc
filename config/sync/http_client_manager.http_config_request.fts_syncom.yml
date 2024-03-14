@@ -1,0 +1,11 @@
+uuid: 20727269-a91a-4351-878d-ab7eafe64022
+langcode: en
+status: true
+dependencies:
+  module:
+    - atak
+id: fts_syncom
+label: 'FTS SYNCOM'
+service_api: atak_services
+command_name: getHelp
+parameters: null
