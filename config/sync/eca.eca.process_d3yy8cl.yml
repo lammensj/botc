@@ -1,0 +1,42 @@
+uuid: 232d3dc4-b99a-4270-8825-e8d129f7d70e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.presence
+  module:
+    - eca_content
+id: process_d3yy8cl
+modeller: bpmn_io
+label: Presence
+version: 1.0.0
+weight: null
+events:
+  Event_0v2798w:
+    plugin: 'content_entity:update'
+    label: 'On PRSNC update'
+    configuration:
+      type: 'node presence'
+    successors:
+      -
+        id: Activity_0o2fg55
+        condition: ''
+  Event_179bmqv:
+    plugin: 'content_entity:insert'
+    label: 'On PRSNCE insert'
+    configuration:
+      type: 'node presence'
+    successors:
+      -
+        id: Activity_0o2fg55
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  Activity_0o2fg55:
+    plugin: action_message_action
+    label: Log
+    configuration:
+      replace_tokens: false
+      message: 'ECA: [node:title]'
+    successors: {  }

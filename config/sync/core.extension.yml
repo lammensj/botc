@@ -17,6 +17,7 @@ module:
   dynamic_page_cache: 0
   eca: 0
   eca_base: 0
+  eca_content: 0
   eca_log: 0
   eca_modeller_bpmn: 0
   eca_tamper: 0
