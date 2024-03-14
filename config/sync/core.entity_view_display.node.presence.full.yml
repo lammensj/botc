@@ -1,18 +1,19 @@
-uuid: ce066130-e21c-4d49-8383-1e6ef3008a12
+uuid: ff6a34da-f4ec-49ac-9237-560d60193a3b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.presence.field_prsnc_geolocation
     - field.field.node.presence.field_prsnc_team
     - node.type.presence
   module:
     - leaflet
     - user
-id: node.presence.default
+id: node.presence.full
 targetEntityType: node
 bundle: presence
-mode: default
+mode: full
 content:
   field_prsnc_geolocation:
     type: leaflet_formatter_default
@@ -28,13 +29,13 @@ content:
       fitbounds_options: '{"padding":[0,0]}'
       reset_map:
         control: false
-        options: '{"position":"topleft","title":"Reset View"}'
+        options: '{"position": "topleft", "title": "Reset View"}'
       map_scale:
         control: false
         options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
       locate:
         control: false
-        options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
+        options: '{"position": "topright", "setView": "untilPanOrZoom", "returnToPrevBounds":true, "keepCurrentZoomLevel": true, "strings": {"title": "Locate my position"}}'
         automatic: false
       leaflet_tooltip:
         value: ''
@@ -42,9 +43,11 @@ content:
       popup: false
       popup_content: ''
       leaflet_popup:
-        control: '0'
+        control: ''
         content: ''
-        options: '{"maxWidth":"300","minWidth":"50","autoPan":true}'
+        options: '{"maxWidth":"300","minWidth":"50", "autoPan": true}'
+        value: ''
+        view_mode: full
       map_position:
         force: false
         center:
@@ -61,23 +64,23 @@ content:
         shadowUrl: ''
         className: ''
         iconSize:
-          x: ''
-          'y': ''
+          x: null
+          'y': null
         iconAnchor:
-          x: ''
-          'y': ''
+          x: null
+          'y': null
         shadowSize:
-          x: ''
-          'y': ''
+          x: null
+          'y': null
         shadowAnchor:
-          x: ''
-          'y': ''
+          x: null
+          'y': null
         popupAnchor:
-          x: ''
-          'y': ''
+          x: null
+          'y': null
         html: '<div></div>'
         html_class: leaflet-map-divicon
-        circle_marker_options: '{"radius":100,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
+        circle_marker_options: '{"radius": 100, "color": "red", "fillColor": "#f03", "fillOpacity": 0.5}'
       leaflet_markercluster:
         control: false
         options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds": false}'
