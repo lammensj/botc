@@ -1,0 +1,21 @@
+uuid: 3ed51b44-baef-45dc-b378-3d3aceec5978
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prsnc_geolocation
+    - node.type.presence
+  module:
+    - geofield
+id: node.presence.field_prsnc_geolocation
+field_name: field_prsnc_geolocation
+entity_type: node
+bundle: presence
+label: Geolocation
+description: "Longitude : the angular distance of the geoobject from the meridian of the greenwich, UK expressed in positive or negative float. (e.g. -76.107.7998). Remember to set the display of your TAK in decimal coordinates, where West 77.08 is equal to '-77.08' in the API.\r\nLatitude : the angular distance of the geoobject from the earths equator expressed in positive or negative float. (e.g. 43.855682)."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield

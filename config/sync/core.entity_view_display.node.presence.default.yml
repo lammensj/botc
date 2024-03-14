@@ -3,15 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.presence.field_prsnc_geolocation
     - field.field.node.presence.field_prsnc_team
     - node.type.presence
   module:
+    - geofield
     - user
 id: node.presence.default
 targetEntityType: node
 bundle: presence
 mode: default
 content:
+  field_prsnc_geolocation:
+    type: geofield_default
+    label: above
+    settings:
+      output_format: wkt
+      output_escape: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
   field_prsnc_team:
     type: string
     label: above

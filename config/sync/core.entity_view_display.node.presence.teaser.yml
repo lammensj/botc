@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.presence.field_prsnc_geolocation
     - field.field.node.presence.field_prsnc_team
     - node.type.presence
   module:
@@ -19,5 +20,6 @@ content:
     weight: 100
     region: content
 hidden:
+  field_prsnc_geolocation: true
   field_prsnc_team: true
   langcode: true
