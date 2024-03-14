@@ -28,6 +28,7 @@
         "drupal/dotenv": "^1.2",
         "drupal/eca": "^1.1",
         "drupal/eca_tamper": "^1.0",
+        "drupal/geofield": "^1.57",
         "drupal/gin": "^3.0@RC",
         "drupal/gin_login": "^2.0",
         "drupal/http_client_manager": "^3",
