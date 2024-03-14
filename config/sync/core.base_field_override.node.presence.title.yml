@@ -1,0 +1,18 @@
+uuid: 397abe64-0dc0-427b-91ea-73365357fa58
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.presence
+id: node.presence.title
+field_name: title
+entity_type: node
+bundle: presence
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: 23d7f9a1-944a-4eed-b07f-989c21680c1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.presence
+id: node.presence
+target_entity_type_id: node
+target_bundle: presence
+default_langcode: site_default
+language_alterable: false

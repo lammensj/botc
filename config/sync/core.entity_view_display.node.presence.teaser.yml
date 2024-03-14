@@ -1,0 +1,23 @@
+uuid: 4da9e5c7-5bd8-41c7-a98e-18d523283de5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.presence.field_prsnc_team
+    - node.type.presence
+  module:
+    - user
+id: node.presence.teaser
+targetEntityType: node
+bundle: presence
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_prsnc_team: true
+  langcode: true

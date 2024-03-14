@@ -1,0 +1,29 @@
+uuid: ce066130-e21c-4d49-8383-1e6ef3008a12
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.presence.field_prsnc_team
+    - node.type.presence
+  module:
+    - user
+id: node.presence.default
+targetEntityType: node
+bundle: presence
+mode: default
+content:
+  field_prsnc_team:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

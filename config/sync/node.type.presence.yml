@@ -1,0 +1,11 @@
+uuid: 4ff67df7-4054-4ca5-9df4-c68282a01b38
+langcode: en
+status: true
+dependencies: {  }
+name: Presence
+type: presence
+description: 'Resembles a team member position.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

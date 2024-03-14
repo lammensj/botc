@@ -1,0 +1,21 @@
+uuid: cd6bbdc7-fb7d-4c94-9636-a5efda799671
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prsnc_team
+    - node.type.presence
+id: node.presence.field_prsnc_team
+field_name: field_prsnc_team
+entity_type: node
+bundle: presence
+label: Team
+description: 'The color of the team.'
+required: true
+translatable: false
+default_value:
+  -
+    value: Yellow
+default_value_callback: ''
+settings: {  }
+field_type: string
