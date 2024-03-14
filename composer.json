@@ -34,6 +34,7 @@
         "drupal/http_client_manager": "^3",
         "drupal/jwt": "^2.0",
         "drupal/key": "^1.17",
+        "drupal/leaflet": "^10.2",
         "drupal/plugin": "^2.10",
         "drupal/queue_ui": "^3.1",
         "drupal/solcast": "^1.0@dev",
