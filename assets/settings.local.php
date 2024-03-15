@@ -28,6 +28,7 @@ if (PHP_SAPI !== 'cli') {
 // Use the docksal VIRTUAL_HOST value.
 $trusted_host = str_replace('.', '\.', getenv('VIRTUAL_HOST'));
 $settings['trusted_host_patterns'] = [$trusted_host];
+$settings['trusted_host_patterns'][] = '35.206.145.140';
 
 /**
  * Enable local development services.
