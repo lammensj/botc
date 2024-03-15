@@ -1,0 +1,32 @@
+{
+    "name": "fatal-error/guzzle-description-loader",
+    "description": "Load guzzle service description from various file formats",
+    "require": {
+        "php": "^7.0|^8.0",
+        "symfony/config": "*",
+        "symfony/yaml": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gordon Franke",
+            "email": "info@nevalon.de"
+        },
+        {
+            "name": "Community",
+            "homepage": "https://github.com/gimler/guzzle-description-loader/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Guzzle\\Service\\Loader\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
