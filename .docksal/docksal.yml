@@ -11,6 +11,7 @@ services:
   grafana:
     image: grafana/grafana-oss:9.2.5
     restart: unless-stopped
+    user: '0:0'
     depends_on:
       - influxdb
     env_file:
