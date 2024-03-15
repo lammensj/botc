@@ -37,19 +37,6 @@ final class GeneratedConfig
     ),
     'version' => '1.2.7',
   ),
-  'nesbot/carbon' => 
-  array (
-    'install_path' => '/var/www/vendor/nesbot/carbon',
-    'relative_install_path' => '../../../nesbot/carbon',
-    'extra' => 
-    array (
-      'includes' => 
-      array (
-        0 => 'extension.neon',
-      ),
-    ),
-    'version' => '2.72.3',
-  ),
   'phpstan/phpstan-deprecation-rules' => 
   array (
     'install_path' => '/var/www/vendor/phpstan/phpstan-deprecation-rules',

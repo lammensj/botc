@@ -16,20 +16,18 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
-        '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/htdocs/app/core/includes/bootstrap.inc',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
+        '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/htdocs/app/core/includes/bootstrap.inc',
         '5897ea0ac4cccf14d323035e65887801' => __DIR__ . '/..' . '/symfony/polyfill-php82/bootstrap.php',
         '8e92226780215d0ec758aa7b73e0ede9' => __DIR__ . '/..' . '/open-telemetry/context/fiber/initialize_fiber_handler.php',
         '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
         '029bffbd721800038bcfaf4916fa491c' => __DIR__ . '/..' . '/mtownsend/xml-to-array/src/helpers.php',
         'c7b4a5d8b94d270f0f9a84f81e1dd63d' => __DIR__ . '/..' . '/open-telemetry/api/Trace/functions.php',
-        'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
@@ -41,15 +39,11 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         '062120a429d7568eacd495a8c34fcf09' => __DIR__ . '/..' . '/open-telemetry/sdk/Common/Dev/Compatibility/_load.php',
         '88e3b63cfb48eb8ea316a8a85a5f5c5f' => __DIR__ . '/..' . '/open-telemetry/sdk/_autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        '49d7e2e91a66e18467cc8d8b8b02459b' => __DIR__ . '/..' . '/mollie/polyfill-libsodium/bootstrap.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
-        '3be16222a6efa6dd226a219eaaff823b' => __DIR__ . '/..' . '/ratchet/pawl/src/functions_include.php',
-        '83835a8f9e1906eeec7f4923b03042b8' => __DIR__ . '/..' . '/react/partial/src/functions.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '157bbd0180425c7142fbaf1b1646bec3' => __DIR__ . '/..' . '/open-telemetry/exporter-otlp/_register.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
-        '864b292aadc96fda0e2642b894a38d16' => __DIR__ . '/..' . '/team-reflex/discord-php/src/Discord/functions.php',
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
         'eb39a964d031790763bd1b071fb8aa73' => __DIR__ . '/../..' . '/htdocs/load.environment.php',
     );
@@ -108,7 +102,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
             'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Validator\\' => 28,
-            'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Serializer\\' => 29,
             'Symfony\\Component\\Routing\\' => 26,
@@ -141,19 +134,7 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         'R' => 
         array (
             'Robo\\' => 5,
-            'RingCentral\\Psr7\\' => 17,
-            'React\\Stream\\' => 13,
-            'React\\Socket\\' => 13,
             'React\\Promise\\' => 14,
-            'React\\Partial\\' => 14,
-            'React\\Http\\' => 11,
-            'React\\EventLoop\\' => 16,
-            'React\\Dns\\' => 10,
-            'React\\Datagram\\' => 15,
-            'React\\ChildProcess\\' => 19,
-            'React\\Cache\\' => 12,
-            'Ratchet\\RFC6455\\' => 16,
-            'Ratchet\\Client\\' => 15,
         ),
         'P' => 
         array (
@@ -164,7 +145,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
             'Psr\\Http\\Client\\' => 16,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
-            'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
             'Prophecy\\PhpUnit\\' => 17,
             'Prophecy\\' => 9,
@@ -187,7 +167,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         'M' => 
         array (
             'Mtownsend\\XmlToArray\\' => 21,
-            'Monolog\\' => 8,
             'Micheh\\PhpCodeSniffer\\' => 22,
             'Masterminds\\' => 12,
         ),
@@ -232,11 +211,9 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
-            'Fig\\Http\\Message\\' => 17,
         ),
         'E' => 
         array (
-            'Evenement\\' => 10,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -254,8 +231,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
             'Doctrine\\Deprecations\\' => 22,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
-            'Discord\\Http\\' => 13,
-            'Discord\\' => 8,
             'Dflydev\\DotAccessData\\' => 22,
             'DeepCopy\\' => 9,
         ),
@@ -280,8 +255,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
             'Composer\\' => 9,
             'ColinODell\\PsrTestLogger\\' => 25,
             'Clue\\StreamFilter\\' => 18,
-            'Carbon\\Doctrine\\' => 16,
-            'Carbon\\' => 7,
         ),
         'B' => 
         array (
@@ -417,10 +390,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         array (
             0 => __DIR__ . '/..' . '/symfony/validator',
         ),
-        'Symfony\\Component\\Translation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/translation',
-        ),
         'Symfony\\Component\\String\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/string',
@@ -537,57 +506,9 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         array (
             0 => __DIR__ . '/..' . '/consolidation/robo/src',
         ),
-        'RingCentral\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ringcentral/psr7/src',
-        ),
-        'React\\Stream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/stream/src',
-        ),
-        'React\\Socket\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/socket/src',
-        ),
         'React\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/react/promise/src',
-        ),
-        'React\\Partial\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/partial/src',
-        ),
-        'React\\Http\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/http/src',
-        ),
-        'React\\EventLoop\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/event-loop/src',
-        ),
-        'React\\Dns\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/dns/src',
-        ),
-        'React\\Datagram\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/datagram/src',
-        ),
-        'React\\ChildProcess\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/child-process/src',
-        ),
-        'React\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/cache/src',
-        ),
-        'Ratchet\\RFC6455\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ratchet/rfc6455/src',
-        ),
-        'Ratchet\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ratchet/pawl/src',
         ),
         'Psy\\' => 
         array (
@@ -617,10 +538,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
-        'Psr\\Clock\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/clock/src',
         ),
         'Psr\\Cache\\' => 
         array (
@@ -686,10 +603,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         'Mtownsend\\XmlToArray\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtownsend/xml-to-array/src',
-        ),
-        'Monolog\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Micheh\\PhpCodeSniffer\\' => 
         array (
@@ -797,14 +710,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
-        'Fig\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/fig/http-message-util/src',
-        ),
-        'Evenement\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/evenement/evenement/src',
-        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
@@ -860,15 +765,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         'Doctrine\\Common\\Annotations\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
-        ),
-        'Discord\\Http\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/discord-php/http/src/Discord',
-        ),
-        'Discord\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/discord/interactions/discord',
-            1 => __DIR__ . '/..' . '/team-reflex/discord-php/src/Discord',
         ),
         'Dflydev\\DotAccessData\\' => 
         array (
@@ -954,14 +850,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
         array (
             0 => __DIR__ . '/..' . '/clue/stream-filter/src',
         ),
-        'Carbon\\Doctrine\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine',
-        ),
-        'Carbon\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
         'Behat\\Mink\\Driver\\' => 
         array (
             0 => __DIR__ . '/..' . '/behat/mink-browserkit-driver/src',
@@ -990,13 +878,6 @@ class ComposerStaticInit5840b31164b2ac0e9ddc801b65b6320e
             'WebDriver' => 
             array (
                 0 => __DIR__ . '/..' . '/instaclick/php-webdriver/lib',
-            ),
-        ),
-        'T' => 
-        array (
-            'TrafficCophp' => 
-            array (
-                0 => __DIR__ . '/..' . '/trafficcophp/bytebuffer/src',
             ),
         ),
         'C' => 
