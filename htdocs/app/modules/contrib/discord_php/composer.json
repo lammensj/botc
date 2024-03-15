@@ -1,0 +1,30 @@
+{
+    "name": "drupal/discord_php",
+    "description": "Provides support for an API to interact with the popular messaging app Discord",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "support": {
+        "issues": "https://drupal.org/project/issues/discord_php",
+        "source": "https://drupal.org/project/discord_php"
+    },
+    "authors": [
+        {
+            "name": "Jasper Lammens",
+            "email": "lammensjasper@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/key": "^1.17",
+        "php": "^7.4 || ^8.0",
+        "team-reflex/discord-php": "^7.3"
+    },
+    "require-dev": {
+        "drupal/eca": "^1.1"
+    }
+}

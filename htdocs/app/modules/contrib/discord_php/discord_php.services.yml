@@ -1,0 +1,16 @@
+services:
+  logger.channel.discord_php:
+    parent: logger.channel_base
+    arguments:
+      - 'discord_php'
+
+  discord_php.services.discord_php_manager:
+    class: Drupal\discord_php\Services\DiscordPhpManager\DiscordPhpManager
+    arguments:
+      - '@logger.channel.discord_php'
+      - '@key.repository'
+
+  serializer.discord_php.message:
+    class: Drupal\discord_php\Normalizer\MessageNormalizer
+    tags:
+      - { name: normalizer }

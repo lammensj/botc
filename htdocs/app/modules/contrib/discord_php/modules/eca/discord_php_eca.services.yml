@@ -1,0 +1,10 @@
+services:
+  discord_php_eca.event_subscribers.eca_event:
+    class: Drupal\discord_php_eca\EventSubscriber\EcaEventSubscriber
+    parent: eca.default_event_subscriber
+    arguments:
+      - '@logger.channel.discord_php'
+      - '@serializer'
+      - '@typed_data_manager'
+    tags:
+      - { name: event_subscriber }

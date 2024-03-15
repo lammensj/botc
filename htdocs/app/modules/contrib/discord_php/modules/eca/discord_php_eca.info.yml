@@ -1,0 +1,11 @@
+name: DiscordPHP - ECA
+type: module
+description: Provides ECA-support for DiscordPHP
+package: Discord
+
+core_version_requirement: ^9.4 || ^10
+
+dependencies:
+  - discord_php:discord_php
+  - drupal:serialization
+  - eca:eca

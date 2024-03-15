@@ -1,0 +1,9 @@
+name: DiscordPHP
+type: module
+description: Provides support for an API to interact with the popular messaging app Discord
+package: Discord
+
+core_version_requirement: ^9.4 || ^10
+
+dependencies:
+  - key:key
