@@ -17,7 +17,6 @@
     "require": {
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
-        "drupal-composer/drupal-paranoia": "^1.1",
         "drupal/admin_toolbar": "^3.2",
         "drupal/atak": "^1.0@dev",
         "drupal/bpmn_io": "^1.1",
@@ -58,7 +57,6 @@
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "drupal-composer/drupal-paranoia": true,
             "wikimedia/composer-merge-plugin": true,
             "grasmash/drupal-security-warning": true,
             "cweagans/composer-patches": true,
@@ -73,17 +71,6 @@
         ]
     },
     "extra": {
-        "drupal-paranoia": {
-            "app-dir": "htdocs/app",
-            "web-dir": "htdocs/web",
-            "excludes": [
-                "sites/simpletest"
-            ],
-            "asset-files": [
-                "browserconfig.xml",
-                "site.webmanifest"
-            ]
-        },
         "drupal-scaffold": {
             "allowed-packages": [
                 "drupal/core"
