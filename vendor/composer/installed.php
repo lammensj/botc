@@ -3,7 +3,7 @@
         'name' => 'lammensj/botc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '4f6314df7c65b0964c1153444736f47ba8051be9',
+        'reference' => '48a7c62303c1b4f8ae9c034e0908e38717b15514',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -955,7 +955,7 @@
         'lammensj/botc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '4f6314df7c65b0964c1153444736f47ba8051be9',
+            'reference' => '48a7c62303c1b4f8ae9c034e0908e38717b15514',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
