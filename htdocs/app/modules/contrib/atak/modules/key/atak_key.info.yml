@@ -1,0 +1,9 @@
+name: Atak / CiviTAK - Key
+type: module
+description: Provides an extension for using an API key for authentication.
+package: Web services
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - key:key
+  - atak:atak

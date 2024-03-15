@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0c80ac64041ddb745769148fe9ce109",
+    "content-hash": "fc400f0812ebd8685a610f75f8165352",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1570,6 +1570,57 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
+            }
+        },
+        {
+            "name": "drupal/atak",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/atak.git",
+                "reference": "8dca1803d294547118d747e853297ec9e2a3afd3"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "drupal/http_client_manager": "^3.0 || ^9.3",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "drupal/key": "^1.17"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1710440252",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lammensj",
+                    "homepage": "https://www.drupal.org/user/1939186"
+                },
+                {
+                    "name": "wouters_f",
+                    "homepage": "https://www.drupal.org/user/721548"
+                }
+            ],
+            "description": "Provides integrations for Atak / CiviTAK.",
+            "homepage": "https://www.drupal.org/project/atak",
+            "support": {
+                "source": "https://drupal.org/project/atak",
+                "issues": "https://drupal.org/project/issues/atak"
             }
         },
         {

@@ -1,0 +1,17 @@
+{
+    "name": "drupal/atak",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-module",
+    "description": "Provides integrations for Atak / CiviTAK.",
+    "support": {
+        "issues": "https://drupal.org/project/issues/atak",
+        "source": "https://drupal.org/project/atak"
+    },
+    "require": {
+        "php": ">=8.1",
+        "drupal/http_client_manager": "^3.0 || ^9.3"
+    },
+    "require-dev": {
+        "drupal/key": "^1.17"
+    }
+}
