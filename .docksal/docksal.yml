@@ -7,6 +7,7 @@ services:
   web:
     labels:
       - io.docksal.virtual-host=35.206.145.140
+
   grafana:
     image: grafana/grafana-oss:9.2.5
     restart: unless-stopped
@@ -17,6 +18,8 @@ services:
     labels:
       - io.docksal.virtual-host=grafana.${VIRTUAL_HOST}
       - io.docksal.virtual-port=3000
+    ports:
+      - '3000:3000'
     security_opt:
       - no-new-privileges=true
     volumes:
@@ -30,6 +33,8 @@ services:
     labels:
       - io.docksal.virtual-host=influxdb.${VIRTUAL_HOST}
       - io.docksal.virtual-port=8086
+    ports:
+      - '8086:8086'
     security_opt:
       - no-new-privileges=true
     volumes:
