@@ -1,0 +1,7 @@
+name: '[Solcast] - API'
+apiVersion: '1.0'
+description: 'Client wrapper for the Solcast services API'
+imports:
+  - 'resources/data/data_dictionary.yml'
+  - 'resources/rooftop_sites/estimated_actuals.yml'
+  - 'resources/rooftop_sites/forecasts.yml'

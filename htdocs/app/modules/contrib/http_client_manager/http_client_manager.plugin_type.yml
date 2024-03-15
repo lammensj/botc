@@ -1,0 +1,4 @@
+http_client_manager_request_location:
+  label: Request Location
+  plugin_manager_service_id: plugin.manager.http_client_manager.request_location
+  plugin_definition_decorator_class: \Drupal\plugin\PluginDefinition\ArrayPluginDefinitionDecorator

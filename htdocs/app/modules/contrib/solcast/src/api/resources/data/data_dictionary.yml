@@ -1,0 +1,37 @@
+operations:
+  GetDataDictionary:
+    httpMethod: 'GET'
+    uri: '/data/data_dictionary'
+    summary: 'The data dictionary contains records that specify the data fields available in the API, including the display name and description of each field.'
+    responseModel: 'OutputParameterList'
+    parameters:
+      accept:
+        type: 'string'
+        location: 'header'
+        description: 'The response format. For more information: https://docs.solcast.com.au/#response-formats.'
+        default: 'application/json'
+        required: true
+
+models:
+  OutputParameterList:
+    type: object
+    location: json
+    properties:
+      output_parameters:
+        type: array
+        items:
+          '$ref': OutputParameter
+  OutputParameter:
+    type: object
+    location: json
+    properties:
+      api_name:
+        type: string
+      units:
+        type: string
+      display_name:
+        type: string
+      description:
+        type: string
+      extended_description:
+        type: string

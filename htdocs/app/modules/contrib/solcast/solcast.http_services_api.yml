@@ -1,0 +1,5 @@
+solcast_services:
+  title: '[YAML] Solcast API'
+  api_path: 'src/api/solcast_services.yml'
+  config:
+    base_uri: 'https://api.solcast.com.au'

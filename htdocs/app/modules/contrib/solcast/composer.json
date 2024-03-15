@@ -1,0 +1,18 @@
+{
+    "name": "drupal/solcast",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-module",
+    "description": "Solcast provides solar resource assessments and forecasting data for irradiance and PV power.",
+    "support": {
+        "issues": "https://drupal.org/project/issues/solcast",
+        "source": "https://drupal.org/project/solcast"
+    },
+    "require": {
+        "php": ">=8.1",
+        "drupal/http_client_manager": "^3.0 || ^9.3"
+    },
+    "require-dev": {
+        "drupal/eca": "^1.1",
+        "drupal/key": "^1.17"
+    }
+}

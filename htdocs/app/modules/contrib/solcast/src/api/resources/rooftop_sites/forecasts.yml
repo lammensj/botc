@@ -1,0 +1,51 @@
+operations:
+  GetForecast:
+    httpMethod: 'GET'
+    uri: '/rooftop_sites/{resourceId}/forecasts'
+    summary: 'Get basic rooftop PV power forecasts from the present time up to 14 days ahead for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas, nowcasted for approx. four hours ahead) and numerical weather models (other data and longer horizons).'
+    responseModel: 'ForecastList'
+    parameters:
+      accept:
+        type: 'string'
+        location: 'header'
+        description: 'The response format. For more information, see https://docs.solcast.com.au/#response-formats.'
+        default: 'application/json'
+        required: true
+      authorization:
+        type: string
+        location: 'header'
+        description: 'Optional authentication header. When providing your API key, make sure to prefix it with "Bearer": eg. "Bearer 123abc". For more information, see https://docs.solcast.com.au/#api-authentication.'
+      resourceId:
+        location: uri
+        description: 'The resource id of the rooftop site'
+        type: string
+        required: true
+      hours:
+        location: query
+        description: 'An offset to which the number of forecasts will be included in the response'
+        type: integer
+        default: 168
+
+models:
+  ForecastList:
+    type: object
+    location: json
+    properties:
+      forecasts:
+        type: array
+        items:
+          '$ref': Forecast
+  Forecast:
+    type: object
+    location: json
+    properties:
+      period:
+        type: string
+      period_end:
+        type: string
+      pv_estimate:
+        type: float
+      pv_estimate10:
+        type: float
+      pv_estimate90:
+        type: float

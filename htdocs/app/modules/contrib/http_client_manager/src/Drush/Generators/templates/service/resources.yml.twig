@@ -1,0 +1,22 @@
+operations:
+  {{  operation }}:
+    httpMethod: "{{ method|upper }}"
+    uri: "{{ path }}"
+    summary: "{{ summary }}"
+    responseClass: "Result"
+
+models:
+  ResultRow:
+    type: "object"
+    properties:
+      prop1:
+        location: "json"
+        type: "string"
+      prop2:
+        location: "json"
+        type: "string"
+  Result:
+    type: "array"
+    location: "json"
+    items:
+      "$ref": "ResultRow"

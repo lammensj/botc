@@ -1,0 +1,5 @@
+services:
+  logger.channel.solcast:
+    parent: logger.channel_base
+    arguments:
+      - 'solcast'

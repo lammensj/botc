@@ -1,0 +1,13 @@
+name: Plugin Test (Single-value plugin base field)
+package: Testing
+type: module
+dependencies:
+  - plugin:plugin
+  - plugin:plugin_test_helper
+  - drupal:views
+hidden: true
+
+# Information added by Drupal.org packaging script on 2023-10-31
+version: '8.x-2.11'
+project: 'plugin'
+datestamp: 1698749528

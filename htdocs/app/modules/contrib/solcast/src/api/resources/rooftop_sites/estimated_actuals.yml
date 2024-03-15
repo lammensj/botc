@@ -1,0 +1,47 @@
+operations:
+  GetEstimatedActuals:
+    httpMethod: 'GET'
+    uri: '/rooftop_sites/{resourceId}/estimated_actuals'
+    summary: 'Get basic rooftop PV power estimated actuals for near real-time and past 7 days for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data).'
+    responseModel: 'EstimatedActualList'
+    parameters:
+      accept:
+        type: 'string'
+        location: 'header'
+        description: 'The response format. For more information: https://docs.solcast.com.au/#response-formats.'
+        default: 'application/json'
+        required: true
+      authorization:
+        type: string
+        location: 'header'
+        description: 'Optional authentication header. When providing your API key, make sure to prefix it with "Bearer": eg. "Bearer 123abc". For more information, see https://docs.solcast.com.au/#api-authentication.'
+      resourceId:
+        location: uri
+        description: 'The resource id of the rooftop site'
+        type: string
+        required: true
+      hours:
+        location: query
+        description: 'Number of hours of forecasts to be included in the response'
+        type: integer
+        default: 168
+
+models:
+  EstimatedActualList:
+    type: object
+    location: json
+    properties:
+      estimated_actuals:
+        type: array
+        items:
+          '$ref': EstimatedActual
+  EstimatedActual:
+    type: object
+    location: json
+    properties:
+      period:
+        type: string
+      period_end:
+        type: string
+      pv_estimate:
+        type: float

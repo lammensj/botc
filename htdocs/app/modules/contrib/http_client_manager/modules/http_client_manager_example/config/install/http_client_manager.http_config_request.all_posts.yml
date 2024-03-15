@@ -1,0 +1,13 @@
+uuid: 00018629-7342-4456-95ee-ec3725657eaf
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - http_client_manager_example
+id: all_posts
+label: 'All posts'
+service_api: example_services
+command_name: FindPosts
+parameters:
+  postId: ''

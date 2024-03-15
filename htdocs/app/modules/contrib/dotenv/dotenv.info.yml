@@ -1,0 +1,10 @@
+name: Dotenv
+description: Integrates the Symfony Dotenv component with Drupal
+type: module
+core_version_requirement: ^10
+php: 8.0.2
+
+# Information added by Drupal.org packaging script on 2023-07-12
+version: '1.2.1'
+project: 'dotenv'
+datestamp: 1689154355

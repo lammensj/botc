@@ -1,0 +1,14 @@
+name: Solcast - Key
+type: module
+description: Provides an extension for using an API key for authentication.
+package: Solcast
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - key:key
+  - solcast:solcast
+
+# Information added by Drupal.org packaging script on 2023-10-27
+version: '1.0.2'
+project: 'solcast'
+datestamp: 1698400152

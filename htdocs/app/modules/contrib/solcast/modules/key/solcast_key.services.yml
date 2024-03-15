@@ -1,0 +1,7 @@
+services:
+  solcast_key.event_subscribers.add_authorization:
+    class: Drupal\solcast_key\EventSubscriber\AddAuthorizationSubscriber
+    arguments:
+      - '@key.repository'
+    tags:
+      - { name: event_subscriber }

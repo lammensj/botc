@@ -1,0 +1,24 @@
+parameters:
+  dotenv.project_dir: ''
+  dotenv.environment: ''
+
+services:
+  dotenv.dump:
+    class: Symfony\Component\Dotenv\Command\DotenvDumpCommand
+    tags: [{ name: console.command }]
+    arguments:
+      - '%dotenv.project_dir%'
+      - '%dotenv.environment%'
+
+  dotenv.debug:
+    class: Symfony\Component\Dotenv\Command\DebugCommand
+    tags: [{ name: console.command }]
+    arguments:
+      - "%dotenv.environment%"
+      - '%dotenv.project_dir%'
+
+  dotenv.init:
+    class: Drupal\dotenv\Commands\DotenvInitCommand
+    tags: [{ name: drush.command }]
+    arguments:
+      - "%site.path%"
