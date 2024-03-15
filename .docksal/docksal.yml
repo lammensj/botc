@@ -4,6 +4,9 @@ services:
   cli:
     ports:
       - '2223:22'
+  web:
+    labels:
+      - io.docksal.virtual-host=35.206.145.140
   grafana:
     image: grafana/grafana-oss:9.2.5
     restart: unless-stopped
