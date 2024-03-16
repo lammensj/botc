@@ -1,0 +1,27 @@
+uuid: 60b6a779-8f9a-43da-a217-14de6465facd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_prsnc_how
+field_name: field_prsnc_how
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: nonCoT
+      label: h-g-i-g-o
+    -
+      value: human
+      label: h-t
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

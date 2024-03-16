@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.presence.field_prsnc_geolocation
+    - field.field.node.presence.field_prsnc_how
+    - field.field.node.presence.field_prsnc_role
     - field.field.node.presence.field_prsnc_team
     - node.type.presence
   module:
@@ -77,6 +79,20 @@ content:
       geometry_validation: 0
       feature_properties:
         values: ''
+    third_party_settings: {  }
+  field_prsnc_how:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_prsnc_role:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_prsnc_team:
     type: string_textfield

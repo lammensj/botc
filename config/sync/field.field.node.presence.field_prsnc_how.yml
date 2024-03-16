@@ -1,0 +1,21 @@
+uuid: bb3f9589-c32c-42a7-a0a2-906c677391e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prsnc_how
+    - node.type.presence
+  module:
+    - options
+id: node.presence.field_prsnc_how
+field_name: field_prsnc_how
+entity_type: node
+bundle: presence
+label: How
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -5,6 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.presence.field_prsnc_geolocation
+    - field.field.node.presence.field_prsnc_how
+    - field.field.node.presence.field_prsnc_role
     - field.field.node.presence.field_prsnc_team
     - node.type.presence
   module:
@@ -121,5 +123,7 @@ content:
     weight: 0
     region: content
 hidden:
+  field_prsnc_how: true
+  field_prsnc_role: true
   langcode: true
   links: true
