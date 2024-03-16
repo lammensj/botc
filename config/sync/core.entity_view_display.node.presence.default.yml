@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.presence.field_prsnc_role
     - field.field.node.presence.field_prsnc_sensor_id
     - field.field.node.presence.field_prsnc_team
+    - field.field.node.presence.field_remote_uuid
     - node.type.presence
   module:
     - leaflet
@@ -143,6 +144,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_remote_uuid:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
     region: content
 hidden:
   langcode: true

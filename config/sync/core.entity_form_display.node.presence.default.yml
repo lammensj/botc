@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.presence.field_prsnc_role
     - field.field.node.presence.field_prsnc_sensor_id
     - field.field.node.presence.field_prsnc_team
+    - field.field.node.presence.field_remote_uuid
     - node.type.presence
   module:
     - leaflet
@@ -38,19 +39,19 @@ content:
         scroll_zoom_enabled: 1
       input:
         show: true
-        readonly: false
+        readonly: true
       toolbar:
         position: topright
         marker: defaultMarker
-        drawPolyline: true
-        drawRectangle: true
-        drawPolygon: true
+        drawPolyline: false
+        drawRectangle: false
+        drawPolygon: false
         drawCircle: false
         drawText: false
-        editMode: true
-        dragMode: true
+        editMode: false
+        dragMode: false
         cutPolygon: false
-        removalMode: true
+        removalMode: false
         rotateMode: false
       reset_map:
         control: false
@@ -106,6 +107,14 @@ content:
   field_prsnc_team:
     type: string_textfield
     weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_remote_uuid:
+    type: string_textfield
+    weight: 29
     region: content
     settings:
       size: 60
