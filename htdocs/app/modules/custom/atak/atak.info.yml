@@ -1,0 +1,12 @@
+name: Atak / CiviTAK
+type: module
+description: Provides integrations for Atak / CiviTAK
+package: Web services
+core_version_requirement: ^9 || ^10
+dependencies:
+  - http_client_manager:http_client_manager
+
+# Information added by Drupal.org packaging script on 2024-03-14
+version: '1.0.x-dev'
+project: 'atak'
+datestamp: 1710440253

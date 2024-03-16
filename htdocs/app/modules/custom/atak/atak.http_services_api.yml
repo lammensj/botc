@@ -1,0 +1,5 @@
+atak_services:
+  title: '[YAML] Atak'
+  api_path: 'src/api/atak_services.yml'
+  config:
+    base_uri: ''
