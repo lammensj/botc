@@ -3,7 +3,7 @@
         'name' => 'lammensj/botc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '77ab69331ff00187f13198c825e2f7b7cf16c6d1',
+        'reference' => '3611435bc92b78810d9fe67884024473f3b6e5c4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -955,7 +955,7 @@
         'lammensj/botc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '77ab69331ff00187f13198c825e2f7b7cf16c6d1',
+            'reference' => '3611435bc92b78810d9fe67884024473f3b6e5c4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1550,8 +1550,8 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0|3.0',
-                2 => '3.0.0',
+                1 => '3.0.0',
+                2 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(

@@ -41,6 +41,7 @@ module:
   locale: 0
   mysql: 0
   node: 0
+  options: 0
   page_cache: 0
   path_alias: 0
   phpass: 0
