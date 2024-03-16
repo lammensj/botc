@@ -1,0 +1,54 @@
+uuid: 6d5655d6-d711-4e5a-a672-c1a543585a80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.presence.field_prsnc_sensor_id
+    - field.storage.node.field_prsnc_sensor_id
+  module:
+    - atak
+    - eca_base
+    - eca_content
+id: process_os21snz
+modeller: bpmn_io
+label: Atak
+version: ''
+weight: null
+events:
+  Event_0wdky4s:
+    plugin: 'eca_base:eca_custom'
+    label: Event_0wdky4s
+    configuration:
+      event_id: atak
+    successors:
+      -
+        id: Activity_16a4qkv
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  Activity_13bu9da:
+    plugin: atak_send_presence
+    label: 'Send PRSNC'
+    configuration:
+      entity: presence
+      team: Yellow
+    successors: {  }
+  Activity_16a4qkv:
+    plugin: eca_token_load_entity
+    label: 'Load PRSNC'
+    configuration:
+      token_name: presence
+      from: properties
+      entity_type: node
+      entity_id: ''
+      revision_id: ''
+      properties: 'field_prsnc_sensor_id: "seismic"'
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_13bu9da
+        condition: ''

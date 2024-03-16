@@ -1,0 +1,104 @@
+uuid: f0d3269a-f4c0-43e7-b914-155bb7d7aa86
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_os21snz
+id: process_os21snz
+label: Atak
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_os21SNz" name="Atak" isExecutable="true">
+      <bpmn2:startEvent id="Event_0wdky4s" camunda:modelerTemplate="org.drupal.event.eca_base:eca_custom">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_base:eca_custom" />
+          </camunda:properties>
+          <camunda:field name="event_id">
+            <camunda:string>atak</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_1wkfwqh</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:task id="Activity_13bu9da" name="Send PRSNC" camunda:modelerTemplate="org.drupal.action.atak_send_presence">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="atak_send_presence" />
+          </camunda:properties>
+          <camunda:field name="entity">
+            <camunda:string>presence</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0lp5zt8</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_16a4qkv" name="Load PRSNC" camunda:modelerTemplate="org.drupal.action.eca_token_load_entity">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_token_load_entity" />
+          </camunda:properties>
+          <camunda:field name="token_name">
+            <camunda:string>presence</camunda:string>
+          </camunda:field>
+          <camunda:field name="from">
+            <camunda:string>properties</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity_type">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity_id">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="revision_id">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="langcode">
+            <camunda:string>_interface</camunda:string>
+          </camunda:field>
+          <camunda:field name="latest_revision">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="unchanged">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="properties">
+            <camunda:string>field_prsnc_sensor_id: "seismic"</camunda:string>
+          </camunda:field>
+          <camunda:field name="object">
+            <camunda:string></camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1wkfwqh</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0lp5zt8</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1wkfwqh" sourceRef="Event_0wdky4s" targetRef="Activity_16a4qkv" />
+      <bpmn2:sequenceFlow id="Flow_0lp5zt8" sourceRef="Activity_16a4qkv" targetRef="Activity_13bu9da" />
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-0d8f0039-010a-450f-8a7b-cace152bf3a9">
+      <bpmndi:BPMNPlane id="sid-ae5d0c17-3887-4884-a249-f6f41704940e" bpmnElement="Process_os21SNz">
+        <bpmndi:BPMNShape id="Event_0wdky4s_di" bpmnElement="Event_0wdky4s">
+          <dc:Bounds x="202" y="2" width="36" height="36" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_13bu9da_di" bpmnElement="Activity_13bu9da">
+          <dc:Bounds x="470" y="-20" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_16a4qkv_di" bpmnElement="Activity_16a4qkv">
+          <dc:Bounds x="310" y="-20" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_1wkfwqh_di" bpmnElement="Flow_1wkfwqh">
+          <di:waypoint x="238" y="20" />
+          <di:waypoint x="310" y="20" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0lp5zt8_di" bpmnElement="Flow_0lp5zt8">
+          <di:waypoint x="410" y="20" />
+          <di:waypoint x="470" y="20" />
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>
