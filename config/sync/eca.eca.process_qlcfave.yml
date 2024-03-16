@@ -2,8 +2,12 @@ uuid: 2dc324f5-8472-431f-8cd1-5af6f05a6423
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.field.node.presence.field_prsnc_team
+    - field.storage.node.field_prsnc_team
   module:
     - eca_base
+    - eca_content
     - eca_log
     - influxdb_bucket_eca
 id: process_qlcfave
@@ -16,7 +20,7 @@ events:
     plugin: 'eca_base:eca_custom'
     label: Event_17h4i95
     configuration:
-      event_id: influxdb
+      event_id: query
     successors:
       -
         id: Activity_0cl2v6l
@@ -31,6 +35,87 @@ conditions:
       right: '0'
       operator: greaterthan
       type: numeric
+  Flow_0n65qnt:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      left: '[influxdb_row:_field]'
+      right: temperature
+      operator: equal
+      type: value
+      case: true
+  Flow_0g6rqp1:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      left: '[influxdb_row:_field]'
+      right: co
+      operator: equal
+      type: value
+      case: true
+  Flow_1qpgl53:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      left: '[influxdb_row:_field]'
+      right: humidity
+      operator: equal
+      type: value
+      case: true
+  Flow_0zq55s4:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '72'
+      operator: greaterthan
+      type: value
+  Flow_0nxrfdl:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '0.50'
+      operator: greaterthan
+      type: value
+  Flow_15rl2tn:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '35'
+      operator: greaterthan
+      type: value
+  Flow_1nbq627:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '72'
+      operator: greaterthan
+      type: value
+  Flow_1kfrt4e:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '0.50'
+      operator: greaterthan
+      type: value
+  Flow_03pzaaz:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '35'
+      operator: greaterthan
+      type: value
 gateways:
   Gateway_1hte67r:
     type: 0
@@ -44,12 +129,11 @@ actions:
     label: 'Run query'
     configuration:
       query: |-
-        from(bucket: "eca")
-                |> range(start: 2024-03-11T16:45:00Z, stop: 2024-03-11T21:30:00Z)
-                |> filter(fn: (r) => r._measurement == "airSensors")
-                |> filter(fn: (r) => r.sensor_id == "TLM0100")
-                |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)
-                |> yield(name: "mean")
+        from(bucket: "sensor_demo")
+          |> range(start: 2024-03-15T23:40:00Z, stop: 2024-03-15T23:40:10Z)
+          |> filter(fn: (r) => r["_measurement"] == "airSensors")
+          |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+          |> yield(name: "mean")
       eca_token_name: influxdb_result
     successors:
       -
@@ -66,47 +150,103 @@ actions:
       list_token: influxdb_result
     successors:
       -
-        id: Activity_06ww151
+        id: Activity_0gld1rb
+        condition: Flow_0n65qnt
+      -
+        id: Activity_1cb4yrn
+        condition: Flow_0g6rqp1
+      -
+        id: Activity_0qatqgv
+        condition: Flow_1qpgl53
+      -
+        id: Activity_0q3r9kt
         condition: ''
-  Activity_06ww151:
+  Activity_0gld1rb:
+    plugin: eca_write_log_message
+    label: TEMP
+    configuration:
+      channel: query
+      severity: '7'
+      message: '_field == temperature'
+    successors:
+      -
+        id: Activity_0b0w9xg
+        condition: Flow_0zq55s4
+      -
+        id: Activity_19b8amg
+        condition: Flow_1nbq627
+  Activity_1cb4yrn:
+    plugin: eca_write_log_message
+    label: CO
+    configuration:
+      channel: influxdb
+      severity: '7'
+      message: '_field == co'
+    successors:
+      -
+        id: Activity_0b0w9xg
+        condition: Flow_0nxrfdl
+      -
+        id: Activity_19b8amg
+        condition: Flow_1kfrt4e
+  Activity_0qatqgv:
+    plugin: eca_write_log_message
+    label: HUM
+    configuration:
+      channel: influxdb
+      severity: '7'
+      message: '_field == humidity'
+    successors:
+      -
+        id: Activity_0b0w9xg
+        condition: Flow_15rl2tn
+      -
+        id: Activity_19b8amg
+        condition: Flow_03pzaaz
+  Activity_0b0w9xg:
+    plugin: eca_token_load_entity
+    label: 'Load PRSNC'
+    configuration:
+      token_name: presence
+      from: properties
+      entity_type: node
+      entity_id: ''
+      revision_id: ''
+      properties: 'field_prsnc_sensor_id: "[influxdb_row:_field]"'
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_1u75gyo
+        condition: ''
+  Activity_1u75gyo:
+    plugin: eca_set_field_value
+    label: 'Set PRSNC Team'
+    configuration:
+      field_name: field_prsnc_team
+      field_value: Red
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: true
+      object: presence
+    successors: {  }
+  Activity_19b8amg:
+    plugin: eca_write_log_message
+    label: Log
+    configuration:
+      channel: influxdb
+      severity: '7'
+      message: '[influxdb_row:_field]: [influxdb_row:_value]'
+    successors: {  }
+  Activity_0q3r9kt:
     plugin: action_message_action
-    label: 'Debug item'
+    label: Debug
     configuration:
       replace_tokens: false
       message: '[influxdb_row]'
-    successors:
-      -
-        id: Activity_1cjpphu
-        condition: ''
-  Activity_1cjpphu:
-    plugin: eca_write_log_message
-    label: 'Log value'
-    configuration:
-      channel: influxdb
-      severity: '7'
-      message: '[influxdb_row:_value]'
-    successors:
-      -
-        id: Activity_1kjdz7d
-        condition: ''
-  Activity_1kjdz7d:
-    plugin: eca_write_log_message
-    label: 'Log sensor ID'
-    configuration:
-      channel: influxdb
-      severity: '7'
-      message: '[influxdb_row:sensor_id]'
-    successors:
-      -
-        id: Activity_0i1o8dw
-        condition: ''
-  Activity_0i1o8dw:
-    plugin: eca_write_log_message
-    label: 'Log measurement'
-    configuration:
-      channel: influxdb
-      severity: '7'
-      message: '[influxdb_row:_measurement]'
     successors:
       -
         id: Gateway_1hte67r
