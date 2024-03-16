@@ -3,7 +3,7 @@
         'name' => 'lammensj/botc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3611435bc92b78810d9fe67884024473f3b6e5c4',
+        'reference' => 'ba5ceb9c299df9cd365fc3cac71ceb8370d81a19',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -341,17 +341,6 @@
             'type' => 'drupal-module',
             'install_path' => __DIR__ . '/../../htdocs/app/modules/contrib/admin_toolbar',
             'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'drupal/atak' => array(
-            'pretty_version' => 'dev-1.0.x',
-            'version' => 'dev-1.0.x',
-            'reference' => '8dca1803d294547118d747e853297ec9e2a3afd3',
-            'type' => 'drupal-module',
-            'install_path' => __DIR__ . '/../../htdocs/app/modules/contrib/atak',
-            'aliases' => array(
-                0 => '1.0.x-dev',
-            ),
             'dev_requirement' => false,
         ),
         'drupal/bpmn_io' => array(
@@ -955,7 +944,7 @@
         'lammensj/botc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3611435bc92b78810d9fe67884024473f3b6e5c4',
+            'reference' => 'ba5ceb9c299df9cd365fc3cac71ceb8370d81a19',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

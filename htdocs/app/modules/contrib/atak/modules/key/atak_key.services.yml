@@ -1,7 +1,0 @@
-services:
-  atak_key.event_subscribers.add_authorization:
-    class: Drupal\atak_key\EventSubscriber\AddAuthorizationSubscriber
-    arguments:
-      - '@key.repository'
-    tags:
-      - { name: event_subscriber }

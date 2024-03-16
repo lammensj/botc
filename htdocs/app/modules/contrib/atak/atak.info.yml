@@ -1,7 +1,0 @@
-name: Atak / CiviTAK
-type: module
-description: Provides integrations for Atak / CiviTAK
-package: Web services
-core_version_requirement: ^9 || ^10
-dependencies:
-  - http_client_manager:http_client_manager

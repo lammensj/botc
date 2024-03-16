@@ -2658,60 +2658,6 @@
             "install-path": "../../htdocs/app/modules/contrib/admin_toolbar"
         },
         {
-            "name": "drupal/atak",
-            "version": "dev-1.0.x",
-            "version_normalized": "dev-1.0.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/atak.git",
-                "reference": "8dca1803d294547118d747e853297ec9e2a3afd3"
-            },
-            "require": {
-                "drupal/core": "^9 || ^10",
-                "drupal/http_client_manager": "^3.0 || ^9.3",
-                "php": ">=8.1"
-            },
-            "require-dev": {
-                "drupal/key": "^1.17"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.0.x": "1.0.x-dev"
-                },
-                "drupal": {
-                    "version": "1.0.x-dev",
-                    "datestamp": "1710440252",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "installation-source": "source",
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "lammensj",
-                    "homepage": "https://www.drupal.org/user/1939186"
-                },
-                {
-                    "name": "wouters_f",
-                    "homepage": "https://www.drupal.org/user/721548"
-                }
-            ],
-            "description": "Provides integrations for Atak / CiviTAK.",
-            "homepage": "https://www.drupal.org/project/atak",
-            "support": {
-                "source": "https://drupal.org/project/atak",
-                "issues": "https://drupal.org/project/issues/atak"
-            },
-            "install-path": "../../htdocs/app/modules/contrib/atak"
-        },
-        {
             "name": "drupal/bpmn_io",
             "version": "1.1.3",
             "version_normalized": "1.1.3.0",
