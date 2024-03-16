@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.presence.field_prsnc_geolocation
     - field.field.node.presence.field_prsnc_how
     - field.field.node.presence.field_prsnc_role
+    - field.field.node.presence.field_prsnc_sensor_id
     - field.field.node.presence.field_prsnc_team
     - node.type.presence
   module:
@@ -126,6 +127,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_prsnc_sensor_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_prsnc_team:
     type: string

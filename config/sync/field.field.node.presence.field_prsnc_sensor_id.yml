@@ -1,0 +1,19 @@
+uuid: 1790bf3b-8bb3-4b98-8476-bf3f87077ee3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prsnc_sensor_id
+    - node.type.presence
+id: node.presence.field_prsnc_sensor_id
+field_name: field_prsnc_sensor_id
+entity_type: node
+bundle: presence
+label: 'Sensor ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
