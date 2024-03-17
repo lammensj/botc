@@ -86,12 +86,12 @@ class SendPresence extends ConfigurableActionBase {
 
     try {
       if (!$node->get('field_remote_uuid')->isEmpty()) {
-        $this->putPresence($node);
+        $this->putGeoObject($node);
 
         return;
       }
 
-      $response = $this->postPresence($node);
+      $response = $this->postGeoObject($node);
       if ($response->getStatusCode() === 200) {
         $data = json_decode((string) $response->getBody());
         $node->set('field_remote_uuid', $data->message);
@@ -118,6 +118,24 @@ class SendPresence extends ConfigurableActionBase {
     );
   }
 
+  protected function postGeoObject(NodeInterface $node) {
+    $payload = $this->createPayload($node);
+    $payload['attitude'] = 'hostile';
+    $payload['timeout'] = 600;
+    $payload['geoObject'] = 'Alarm';
+
+    return $this->client->request(
+      'POST',
+      'http://35.206.145.140:19023/ManageGeoObject/postGeoObject',
+      [
+        RequestOptions::HEADERS => [
+          'Authorization' => 'Bearer token',
+        ],
+        RequestOptions::JSON => $payload,
+      ],
+    );
+  }
+
   protected function putPresence(NodeInterface $node) {
     $payload = $this->createPayload($node);
     $payload['uid'] = $node->get('field_remote_uuid')->getString();
@@ -125,6 +143,24 @@ class SendPresence extends ConfigurableActionBase {
     $this->client->request(
       'PUT',
       'http://35.206.145.140:19023/ManagePresence/putPresence',
+      [
+        RequestOptions::HEADERS => [
+          'Authorization' => 'Bearer token',
+        ],
+        RequestOptions::JSON => $payload,
+      ],
+    );
+  }
+
+  protected function putGeoObject(NodeInterface $node) {
+    $payload = $this->createPayload($node);
+    $payload['attitude'] = 'neutral';
+    $payload['timeout'] = 600;
+    $payload['uid'] = $node->get('field_remote_uuid')->getString();
+
+    $response = $this->client->request(
+      'PUT',
+      'http://35.206.145.140:19023/ManageGeoObject/putGeoObject',
       [
         RequestOptions::HEADERS => [
           'Authorization' => 'Bearer token',
