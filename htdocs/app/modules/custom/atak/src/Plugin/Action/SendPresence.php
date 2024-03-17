@@ -7,7 +7,6 @@ use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\eca\Plugin\Action\ActionBase;
 use Drupal\eca\Plugin\Action\ConfigurableActionBase;
-use Drupal\eca_content\Service\EntityLoader;
 use Drupal\node\NodeInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
@@ -99,26 +98,12 @@ class SendPresence extends ConfigurableActionBase {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $this->tokenServices->getTokenData($this->configuration['entity']);
 
-    if ($node->get('field_remote_uuid')->isEmpty()) {
-      try {
-        $response = $this->postPresence($node);
-        $node->set('field_remote_uuid', (string) $response->getBody());
-      }
-      catch (ClientException $e) {
-        VarDumper::dump($e);
-      }
-
-      return;
-    }
-
     try {
-      $this->putPresence($node);
+      $this->postPresence($node);
     }
     catch (ClientException $e) {
       VarDumper::dump($e);
     }
-
-    return;
   }
 
   protected function postPresence(NodeInterface $node): ResponseInterface {
