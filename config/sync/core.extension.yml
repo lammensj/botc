@@ -3,6 +3,7 @@ _core:
 module:
   action: 0
   admin_toolbar: 0
+  asset_injector: 0
   atak: 0
   atak_key: 0
   basic_auth: 0
