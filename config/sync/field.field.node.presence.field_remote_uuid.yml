@@ -9,7 +9,7 @@ id: node.presence.field_remote_uuid
 field_name: field_remote_uuid
 entity_type: node
 bundle: presence
-label: UUID
+label: 'Atak UUID'
 description: 'Will be populated with the response from the remote services and determines the type of call: POST or PUT.'
 required: false
 translatable: false

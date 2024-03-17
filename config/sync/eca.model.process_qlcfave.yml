@@ -33,7 +33,7 @@ modeldata: |
           <camunda:field name="query">
             <camunda:string>from(bucket: "botc")
     |&gt; range(start: -5s)
-    |&gt; group(columns: ["UUID"])
+    |&gt; group(columns: ["UUID", "_field"])
     |&gt; filter(fn: (r) =&gt; r["_measurement"] == "TEST2")
     |&gt; aggregateWindow(every: 1s, fn: mean, createEmpty: false)
     |&gt; yield(name: "mean")</camunda:string>
@@ -136,7 +136,7 @@ modeldata: |
             <camunda:string>equal</camunda:string>
           </camunda:field>
           <camunda:field name="right">
-            <camunda:string>temperature</camunda:string>
+            <camunda:string>TEMP</camunda:string>
           </camunda:field>
           <camunda:field name="type">
             <camunda:string>value</camunda:string>
@@ -619,24 +619,24 @@ modeldata: |
           <dc:Bounds x="870" y="350" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_0q3r9kt_di" bpmnElement="Activity_0q3r9kt">
-          <dc:Bounds x="870" y="460" width="100" height="80" />
-          <bpmndi:BPMNLabel />
-        </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_1ywlnwh_di" bpmnElement="Activity_1ywlnwh">
-          <dc:Bounds x="870" y="20" width="100" height="80" />
-          <bpmndi:BPMNLabel />
-        </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_19b8amg_di" bpmnElement="Activity_19b8amg">
-          <dc:Bounds x="1320" y="440" width="100" height="80" />
-          <bpmndi:BPMNLabel />
-        </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_09gflta_di" bpmnElement="Activity_0b0w9xg">
           <dc:Bounds x="1260" y="70" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_1u75gyo_di" bpmnElement="Activity_1u75gyo">
           <dc:Bounds x="1480" y="80" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_19b8amg_di" bpmnElement="Activity_19b8amg">
+          <dc:Bounds x="1320" y="440" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0q3r9kt_di" bpmnElement="Activity_0q3r9kt">
+          <dc:Bounds x="870" y="460" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1ywlnwh_di" bpmnElement="Activity_1ywlnwh">
+          <dc:Bounds x="870" y="20" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_0gg7iuc_di" bpmnElement="Flow_0gg7iuc">
