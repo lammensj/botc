@@ -86,12 +86,12 @@ class SendPresence extends ConfigurableActionBase {
 
     try {
       if (!$node->get('field_remote_uuid')->isEmpty()) {
-        $this->putGeoObject($node);
+        $this->putPresence($node);
 
         return;
       }
 
-      $response = $this->postGeoObject($node);
+      $response = $this->postPresence($node);
       if ($response->getStatusCode() === 200) {
         $data = json_decode((string) $response->getBody());
         $node->set('field_remote_uuid', $data->message);
