@@ -85,9 +85,22 @@ modeldata: |
         </bpmn2:extensionElements>
         <bpmn2:incoming>Flow_04kjutp</bpmn2:incoming>
         <bpmn2:incoming>Flow_0cid2c7</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1dsq8yf</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_04kjutp" sourceRef="Event_077jy8l" targetRef="Activity_13s29sv" />
       <bpmn2:sequenceFlow id="Flow_0cid2c7" sourceRef="Activity_16a4qkv" targetRef="Activity_13s29sv" />
+      <bpmn2:task id="Activity_1w02syf" name="Send MSG" camunda:modelerTemplate="org.drupal.action.atak_send_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="atak_send_message" />
+          </camunda:properties>
+          <camunda:field name="entity">
+            <camunda:string>[entity]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1dsq8yf</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1dsq8yf" sourceRef="Activity_13s29sv" targetRef="Activity_1w02syf" />
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-0d8f0039-010a-450f-8a7b-cace152bf3a9">
       <bpmndi:BPMNPlane id="sid-ae5d0c17-3887-4884-a249-f6f41704940e" bpmnElement="Process_os21SNz">
@@ -111,6 +124,10 @@ modeldata: |
           <dc:Bounds x="450" y="-200" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1w02syf_di" bpmnElement="Activity_1w02syf">
+          <dc:Bounds x="680" y="-200" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_1wkfwqh_di" bpmnElement="Flow_1wkfwqh">
           <di:waypoint x="218" y="100" />
           <di:waypoint x="270" y="100" />
@@ -124,6 +141,10 @@ modeldata: |
           <di:waypoint x="410" y="100" />
           <di:waypoint x="410" y="-160" />
           <di:waypoint x="450" y="-160" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1dsq8yf_di" bpmnElement="Flow_1dsq8yf">
+          <di:waypoint x="550" y="-160" />
+          <di:waypoint x="680" y="-160" />
         </bpmndi:BPMNEdge>
       </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

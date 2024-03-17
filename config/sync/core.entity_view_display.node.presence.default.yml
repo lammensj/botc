@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.presence.field_prsnc_geolocation
     - field.field.node.presence.field_prsnc_how
+    - field.field.node.presence.field_prsnc_lur
     - field.field.node.presence.field_prsnc_role
     - field.field.node.presence.field_prsnc_sensor_id
     - field.field.node.presence.field_prsnc_team
@@ -120,6 +121,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_prsnc_lur:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_prsnc_role:
     type: string

@@ -1,0 +1,19 @@
+uuid: 516c1bbe-8742-428c-b391-38ea5eaad146
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prsnc_lur
+    - node.type.presence
+id: node.presence.field_prsnc_lur
+field_name: field_prsnc_lur
+entity_type: node
+bundle: presence
+label: 'Last Update Reason'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
