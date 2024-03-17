@@ -32,7 +32,7 @@ events:
       type: 'node presence'
     successors:
       -
-        id: Activity_1jxck8n
+        id: Activity_13s29sv
         condition: ''
 conditions: {  }
 gateways: {  }
@@ -53,12 +53,11 @@ actions:
       object: ''
     successors:
       -
-        id: Activity_1jxck8n
+        id: Activity_13s29sv
         condition: ''
-  Activity_1jxck8n:
+  Activity_13s29sv:
     plugin: atak_send_presence
     label: 'Send PRSNC'
     configuration:
       entity: '[entity]'
-      team: Green
     successors: {  }

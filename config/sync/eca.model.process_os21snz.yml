@@ -60,7 +60,7 @@ modeldata: |
           </camunda:field>
         </bpmn2:extensionElements>
         <bpmn2:incoming>Flow_1wkfwqh</bpmn2:incoming>
-        <bpmn2:outgoing>Flow_0dk2r7d</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0cid2c7</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_1wkfwqh" sourceRef="Event_0wdky4s" targetRef="Activity_16a4qkv" />
       <bpmn2:startEvent id="Event_077jy8l" name="Presave sensor" camunda:modelerTemplate="org.drupal.event.content_entity:presave">
@@ -72,9 +72,9 @@ modeldata: |
             <camunda:string>node presence</camunda:string>
           </camunda:field>
         </bpmn2:extensionElements>
-        <bpmn2:outgoing>Flow_028i4r0</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_04kjutp</bpmn2:outgoing>
       </bpmn2:startEvent>
-      <bpmn2:task id="Activity_1jxck8n" name="Send PRSNC" camunda:modelerTemplate="org.drupal.action.atak_send_presence">
+      <bpmn2:task id="Activity_13s29sv" name="Send PRSNC" camunda:modelerTemplate="org.drupal.action.atak_send_presence">
         <bpmn2:extensionElements>
           <camunda:properties>
             <camunda:property name="pluginid" value="atak_send_presence" />
@@ -82,15 +82,12 @@ modeldata: |
           <camunda:field name="entity">
             <camunda:string>[entity]</camunda:string>
           </camunda:field>
-          <camunda:field name="team">
-            <camunda:string>Green</camunda:string>
-          </camunda:field>
         </bpmn2:extensionElements>
-        <bpmn2:incoming>Flow_028i4r0</bpmn2:incoming>
-        <bpmn2:incoming>Flow_0dk2r7d</bpmn2:incoming>
+        <bpmn2:incoming>Flow_04kjutp</bpmn2:incoming>
+        <bpmn2:incoming>Flow_0cid2c7</bpmn2:incoming>
       </bpmn2:task>
-      <bpmn2:sequenceFlow id="Flow_028i4r0" sourceRef="Event_077jy8l" targetRef="Activity_1jxck8n" />
-      <bpmn2:sequenceFlow id="Flow_0dk2r7d" sourceRef="Activity_16a4qkv" targetRef="Activity_1jxck8n" />
+      <bpmn2:sequenceFlow id="Flow_04kjutp" sourceRef="Event_077jy8l" targetRef="Activity_13s29sv" />
+      <bpmn2:sequenceFlow id="Flow_0cid2c7" sourceRef="Activity_16a4qkv" targetRef="Activity_13s29sv" />
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-0d8f0039-010a-450f-8a7b-cace152bf3a9">
       <bpmndi:BPMNPlane id="sid-ae5d0c17-3887-4884-a249-f6f41704940e" bpmnElement="Process_os21SNz">
@@ -110,23 +107,23 @@ modeldata: |
             <dc:Bounds x="163" y="-135" width="77" height="14" />
           </bpmndi:BPMNLabel>
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_1jxck8n_di" bpmnElement="Activity_1jxck8n">
-          <dc:Bounds x="440" y="-200" width="100" height="80" />
+        <bpmndi:BPMNShape id="Activity_13s29sv_di" bpmnElement="Activity_13s29sv">
+          <dc:Bounds x="450" y="-200" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_1wkfwqh_di" bpmnElement="Flow_1wkfwqh">
           <di:waypoint x="218" y="100" />
           <di:waypoint x="270" y="100" />
         </bpmndi:BPMNEdge>
-        <bpmndi:BPMNEdge id="Flow_028i4r0_di" bpmnElement="Flow_028i4r0">
+        <bpmndi:BPMNEdge id="Flow_04kjutp_di" bpmnElement="Flow_04kjutp">
           <di:waypoint x="218" y="-160" />
-          <di:waypoint x="440" y="-160" />
+          <di:waypoint x="450" y="-160" />
         </bpmndi:BPMNEdge>
-        <bpmndi:BPMNEdge id="Flow_0dk2r7d_di" bpmnElement="Flow_0dk2r7d">
+        <bpmndi:BPMNEdge id="Flow_0cid2c7_di" bpmnElement="Flow_0cid2c7">
           <di:waypoint x="370" y="100" />
-          <di:waypoint x="405" y="100" />
-          <di:waypoint x="405" y="-160" />
-          <di:waypoint x="440" y="-160" />
+          <di:waypoint x="410" y="100" />
+          <di:waypoint x="410" y="-160" />
+          <di:waypoint x="450" y="-160" />
         </bpmndi:BPMNEdge>
       </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

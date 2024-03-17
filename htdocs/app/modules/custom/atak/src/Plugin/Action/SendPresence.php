@@ -51,7 +51,6 @@ class SendPresence extends ConfigurableActionBase {
   public function defaultConfiguration(): array {
     $config = parent::defaultConfiguration();
     $config['entity'] = '';
-    $config['team'] = 'Yellow';
 
     return $config;
   }
@@ -68,18 +67,6 @@ class SendPresence extends ConfigurableActionBase {
       '#description' => $this->t('Provide the token name of the entity that this action should operate with.'),
     ];
 
-    $form['team'] = [
-      '#type' => 'select',
-      '#required' => TRUE,
-      '#title' => $this->t('Team'),
-      '#default_value' => $this->configuration['team'],
-      '#options' => [
-        'Yellow' => 'Yellow',
-        'Green' => 'Green',
-        'Red' => 'Red',
-      ],
-    ];
-
     return $form;
   }
 
@@ -88,7 +75,6 @@ class SendPresence extends ConfigurableActionBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
     $this->configuration['entity'] = $form_state->getValue('entity');
-    $this->configuration['team'] = $form_state->getValue('team');
   }
 
   /**
@@ -147,7 +133,7 @@ class SendPresence extends ConfigurableActionBase {
       'longitude' => $geo['lon'],
       'name' => $node->label(),
       'role' => $node->get('field_prsnc_role')->getString(),
-      'team' => $this->configuration['team'],
+      'team' => $node->get('field_prsnc_team')->getString(),
     ];
   }
 
