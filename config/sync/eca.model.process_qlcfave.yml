@@ -31,10 +31,11 @@ modeldata: |
             <camunda:property name="pluginid" value="influxdb_run_query" />
           </camunda:properties>
           <camunda:field name="query">
-            <camunda:string>from(bucket: "sensor_demo")
-    |&gt; range(start: 2024-03-15T23:40:00Z, stop: 2024-03-15T23:40:10Z)
-    |&gt; filter(fn: (r) =&gt; r["_measurement"] == "airSensors")
-    |&gt; aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+            <camunda:string>from(bucket: "botc")
+    |&gt; range(start: -5s)
+    |&gt; group(columns: ["UUID"])
+    |&gt; filter(fn: (r) =&gt; r["_measurement"] == "TEST2")
+    |&gt; aggregateWindow(every: 1s, fn: mean, createEmpty: false)
     |&gt; yield(name: "mean")</camunda:string>
           </camunda:field>
           <camunda:field name="eca_token_name">
@@ -77,6 +78,7 @@ modeldata: |
         <bpmn2:outgoing>Flow_0g6rqp1</bpmn2:outgoing>
         <bpmn2:outgoing>Flow_1qpgl53</bpmn2:outgoing>
         <bpmn2:outgoing>Flow_0z9gqzw</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0al0j3j</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_00g1i0g" camunda:modelerTemplate="org.drupal.condition.eca_count" sourceRef="Gateway_1hte67r" targetRef="Activity_19vbzoe">
         <bpmn2:extensionElements>
@@ -115,7 +117,7 @@ modeldata: |
             <camunda:string>7</camunda:string>
           </camunda:field>
           <camunda:field name="message">
-            <camunda:string>_field == temperature</camunda:string>
+            <camunda:string>_field == TEMP</camunda:string>
           </camunda:field>
         </bpmn2:extensionElements>
         <bpmn2:incoming>Flow_0n65qnt</bpmn2:incoming>
@@ -247,7 +249,7 @@ modeldata: |
             <camunda:string>greaterthan</camunda:string>
           </camunda:field>
           <camunda:field name="right">
-            <camunda:string>72</camunda:string>
+            <camunda:string>8</camunda:string>
           </camunda:field>
           <camunda:field name="type">
             <camunda:string>value</camunda:string>
@@ -299,6 +301,7 @@ modeldata: |
         <bpmn2:incoming>Flow_0zq55s4</bpmn2:incoming>
         <bpmn2:incoming>Flow_0nxrfdl</bpmn2:incoming>
         <bpmn2:incoming>Flow_15rl2tn</bpmn2:incoming>
+        <bpmn2:incoming>Flow_1byvxf0</bpmn2:incoming>
         <bpmn2:outgoing>Flow_1f2fa69</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_0nxrfdl" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Activity_1cb4yrn" targetRef="Activity_0b0w9xg">
@@ -399,6 +402,7 @@ modeldata: |
         <bpmn2:incoming>Flow_1nbq627</bpmn2:incoming>
         <bpmn2:incoming>Flow_1kfrt4e</bpmn2:incoming>
         <bpmn2:incoming>Flow_03pzaaz</bpmn2:incoming>
+        <bpmn2:incoming>Flow_14ff4sc</bpmn2:incoming>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_1nbq627" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Activity_0gld1rb" targetRef="Activity_19b8amg">
         <bpmn2:extensionElements>
@@ -412,7 +416,7 @@ modeldata: |
             <camunda:string>greaterthan</camunda:string>
           </camunda:field>
           <camunda:field name="right">
-            <camunda:string>72</camunda:string>
+            <camunda:string>8</camunda:string>
           </camunda:field>
           <camunda:field name="type">
             <camunda:string>value</camunda:string>
@@ -492,6 +496,100 @@ modeldata: |
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_0z9gqzw" sourceRef="Activity_19vbzoe" targetRef="Activity_0q3r9kt" />
       <bpmn2:sequenceFlow id="Flow_19twyr9" sourceRef="Activity_0q3r9kt" targetRef="Gateway_1hte67r" />
+      <bpmn2:task id="Activity_1ywlnwh" name="MIC" camunda:modelerTemplate="org.drupal.action.eca_write_log_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_write_log_message" />
+          </camunda:properties>
+          <camunda:field name="channel">
+            <camunda:string>query</camunda:string>
+          </camunda:field>
+          <camunda:field name="severity">
+            <camunda:string>7</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>_field == MIC</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0al0j3j</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_14ff4sc</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_1byvxf0</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0al0j3j" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Activity_19vbzoe" targetRef="Activity_1ywlnwh">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[influxdb_row:_field]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>8</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_14ff4sc" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Activity_1ywlnwh" targetRef="Activity_19b8amg">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[influxdb_row:_value]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>8</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_1byvxf0" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Activity_1ywlnwh" targetRef="Activity_0b0w9xg">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[influxdb_row:_value]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>8</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-f7a7200b-829f-48e5-8266-156a97122282">
       <bpmndi:BPMNPlane id="sid-dfcd900b-0a29-41dc-a43c-650c8e17035a" bpmnElement="Process_qlCFavE">
@@ -521,20 +619,24 @@ modeldata: |
           <dc:Bounds x="870" y="350" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_09gflta_di" bpmnElement="Activity_0b0w9xg">
-          <dc:Bounds x="1230" y="130" width="100" height="80" />
+        <bpmndi:BPMNShape id="Activity_0q3r9kt_di" bpmnElement="Activity_0q3r9kt">
+          <dc:Bounds x="870" y="460" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_1u75gyo_di" bpmnElement="Activity_1u75gyo">
-          <dc:Bounds x="1420" y="130" width="100" height="80" />
+        <bpmndi:BPMNShape id="Activity_1ywlnwh_di" bpmnElement="Activity_1ywlnwh">
+          <dc:Bounds x="870" y="20" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_19b8amg_di" bpmnElement="Activity_19b8amg">
-          <dc:Bounds x="1130" y="270" width="100" height="80" />
+          <dc:Bounds x="1320" y="440" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_0q3r9kt_di" bpmnElement="Activity_0q3r9kt">
-          <dc:Bounds x="870" y="460" width="100" height="80" />
+        <bpmndi:BPMNShape id="Activity_09gflta_di" bpmnElement="Activity_0b0w9xg">
+          <dc:Bounds x="1260" y="70" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1u75gyo_di" bpmnElement="Activity_1u75gyo">
+          <dc:Bounds x="1480" y="80" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_0gg7iuc_di" bpmnElement="Flow_0gg7iuc">
@@ -567,41 +669,45 @@ modeldata: |
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_0zq55s4_di" bpmnElement="Flow_0zq55s4">
           <di:waypoint x="970" y="150" />
-          <di:waypoint x="1230" y="150" />
+          <di:waypoint x="1115" y="150" />
+          <di:waypoint x="1115" y="90" />
+          <di:waypoint x="1260" y="90" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_0nxrfdl_di" bpmnElement="Flow_0nxrfdl">
           <di:waypoint x="970" y="280" />
           <di:waypoint x="1015" y="280" />
-          <di:waypoint x="1015" y="170" />
-          <di:waypoint x="1230" y="170" />
+          <di:waypoint x="1015" y="110" />
+          <di:waypoint x="1260" y="110" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_15rl2tn_di" bpmnElement="Flow_15rl2tn">
           <di:waypoint x="970" y="360" />
           <di:waypoint x="1050" y="360" />
-          <di:waypoint x="1050" y="180" />
-          <di:waypoint x="1230" y="180" />
+          <di:waypoint x="1050" y="120" />
+          <di:waypoint x="1260" y="120" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_1f2fa69_di" bpmnElement="Flow_1f2fa69">
-          <di:waypoint x="1330" y="170" />
-          <di:waypoint x="1420" y="170" />
+          <di:waypoint x="1360" y="110" />
+          <di:waypoint x="1390" y="110" />
+          <di:waypoint x="1390" y="120" />
+          <di:waypoint x="1480" y="120" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_1nbq627_di" bpmnElement="Flow_1nbq627">
           <di:waypoint x="970" y="190" />
           <di:waypoint x="1100" y="190" />
-          <di:waypoint x="1100" y="310" />
-          <di:waypoint x="1130" y="310" />
+          <di:waypoint x="1100" y="480" />
+          <di:waypoint x="1320" y="480" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_1kfrt4e_di" bpmnElement="Flow_1kfrt4e">
           <di:waypoint x="970" y="280" />
           <di:waypoint x="1050" y="280" />
-          <di:waypoint x="1050" y="310" />
-          <di:waypoint x="1130" y="310" />
+          <di:waypoint x="1050" y="480" />
+          <di:waypoint x="1320" y="480" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_03pzaaz_di" bpmnElement="Flow_03pzaaz">
           <di:waypoint x="970" y="390" />
           <di:waypoint x="1050" y="390" />
-          <di:waypoint x="1050" y="310" />
-          <di:waypoint x="1130" y="310" />
+          <di:waypoint x="1050" y="480" />
+          <di:waypoint x="1320" y="480" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_0z9gqzw_di" bpmnElement="Flow_0z9gqzw">
           <di:waypoint x="790" y="170" />
@@ -614,6 +720,24 @@ modeldata: |
           <di:waypoint x="920" y="570" />
           <di:waypoint x="590" y="570" />
           <di:waypoint x="590" y="195" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0al0j3j_di" bpmnElement="Flow_0al0j3j">
+          <di:waypoint x="790" y="170" />
+          <di:waypoint x="830" y="170" />
+          <di:waypoint x="830" y="60" />
+          <di:waypoint x="870" y="60" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_14ff4sc_di" bpmnElement="Flow_14ff4sc">
+          <di:waypoint x="970" y="60" />
+          <di:waypoint x="1050" y="60" />
+          <di:waypoint x="1050" y="480" />
+          <di:waypoint x="1320" y="480" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1byvxf0_di" bpmnElement="Flow_1byvxf0">
+          <di:waypoint x="970" y="60" />
+          <di:waypoint x="1100" y="60" />
+          <di:waypoint x="1100" y="80" />
+          <di:waypoint x="1260" y="80" />
         </bpmndi:BPMNEdge>
       </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

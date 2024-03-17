@@ -68,7 +68,7 @@ conditions:
       negate: false
       case: false
       left: '[influxdb_row:_value]'
-      right: '72'
+      right: '8'
       operator: greaterthan
       type: value
   Flow_0nxrfdl:
@@ -95,7 +95,7 @@ conditions:
       negate: false
       case: false
       left: '[influxdb_row:_value]'
-      right: '72'
+      right: '8'
       operator: greaterthan
       type: value
   Flow_1kfrt4e:
@@ -116,6 +116,33 @@ conditions:
       right: '35'
       operator: greaterthan
       type: value
+  Flow_0al0j3j:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_field]'
+      right: '8'
+      operator: greaterthan
+      type: value
+  Flow_14ff4sc:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '8'
+      operator: greaterthan
+      type: value
+  Flow_1byvxf0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[influxdb_row:_value]'
+      right: '8'
+      operator: greaterthan
+      type: value
 gateways:
   Gateway_1hte67r:
     type: 0
@@ -129,10 +156,11 @@ actions:
     label: 'Run query'
     configuration:
       query: |-
-        from(bucket: "sensor_demo")
-          |> range(start: 2024-03-15T23:40:00Z, stop: 2024-03-15T23:40:10Z)
-          |> filter(fn: (r) => r["_measurement"] == "airSensors")
-          |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+        from(bucket: "botc")
+          |> range(start: -5s)
+          |> group(columns: ["UUID"])
+          |> filter(fn: (r) => r["_measurement"] == "TEST2")
+          |> aggregateWindow(every: 1s, fn: mean, createEmpty: false)
           |> yield(name: "mean")
       eca_token_name: influxdb_result
     successors:
@@ -161,13 +189,16 @@ actions:
       -
         id: Activity_0q3r9kt
         condition: ''
+      -
+        id: Activity_1ywlnwh
+        condition: Flow_0al0j3j
   Activity_0gld1rb:
     plugin: eca_write_log_message
     label: TEMP
     configuration:
       channel: query
       severity: '7'
-      message: '_field == temperature'
+      message: '_field == TEMP'
     successors:
       -
         id: Activity_0b0w9xg
@@ -251,3 +282,17 @@ actions:
       -
         id: Gateway_1hte67r
         condition: ''
+  Activity_1ywlnwh:
+    plugin: eca_write_log_message
+    label: MIC
+    configuration:
+      channel: query
+      severity: '7'
+      message: '_field == MIC'
+    successors:
+      -
+        id: Activity_19b8amg
+        condition: Flow_14ff4sc
+      -
+        id: Activity_0b0w9xg
+        condition: Flow_1byvxf0

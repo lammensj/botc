@@ -1,6 +1,6 @@
 uuid: 4da9e5c7-5bd8-41c7-a98e-18d523283de5
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
@@ -12,22 +12,46 @@ dependencies:
     - field.field.node.presence.field_remote_uuid
     - node.type.presence
   module:
+    - options
     - user
 id: node.presence.teaser
 targetEntityType: node
 bundle: presence
 mode: teaser
 content:
-  links:
+  field_prsnc_how:
+    type: list_default
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
+    region: content
+  field_prsnc_role:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_prsnc_sensor_id:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_prsnc_team:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   field_prsnc_geolocation: true
-  field_prsnc_how: true
-  field_prsnc_role: true
-  field_prsnc_sensor_id: true
-  field_prsnc_team: true
   field_remote_uuid: true
   langcode: true
+  links: true

@@ -1,0 +1,14 @@
+atak.basic:
+  path: '/fredTest'
+  defaults:
+    _controller: '\Drupal\atak\Controller\AtakController::go'
+    _title: 'AtakController'
+  requirements:
+    _permission: 'access content'
+atak.cronner:
+  path: '/fredAtak'
+  defaults:
+    _controller: '\Drupal\atak\Controller\AtakController::atak'
+    _title: 'AtakController'
+  requirements:
+    _permission: 'access content'

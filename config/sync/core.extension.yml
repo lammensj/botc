@@ -38,6 +38,7 @@ module:
   key: 0
   language: 0
   leaflet: 0
+  leaflet_views: 0
   locale: 0
   mysql: 0
   node: 0

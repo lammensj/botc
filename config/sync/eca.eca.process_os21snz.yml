@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.presence.field_prsnc_sensor_id
     - field.storage.node.field_prsnc_sensor_id
+    - node.type.presence
   module:
     - atak
     - eca_base
@@ -20,6 +21,15 @@ events:
     label: Event_0wdky4s
     configuration:
       event_id: atak
+    successors:
+      -
+        id: Activity_16a4qkv
+        condition: ''
+  Event_077jy8l:
+    plugin: 'content_entity:presave'
+    label: 'Presave sensor'
+    configuration:
+      type: 'node presence'
     successors:
       -
         id: Activity_16a4qkv
@@ -43,7 +53,7 @@ actions:
       entity_type: node
       entity_id: ''
       revision_id: ''
-      properties: 'field_prsnc_sensor_id: "seismic"'
+      properties: 'field_prsnc_sensor_id: "sensor3"'
       langcode: _interface
       latest_revision: false
       unchanged: false
@@ -52,3 +62,13 @@ actions:
       -
         id: Activity_13bu9da
         condition: ''
+      -
+        id: Activity_182ehqp
+        condition: ''
+  Activity_182ehqp:
+    plugin: action_message_action
+    label: Log
+    configuration:
+      message: '[presence:label]'
+      replace_tokens: true
+    successors: {  }
