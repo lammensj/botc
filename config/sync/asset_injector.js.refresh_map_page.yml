@@ -9,7 +9,7 @@ label: 'refresh map page'
 code: |-
   setInterval(function() {
       location.reload()
-  }, 15 * 1000);
+  }, 10 * 1000);
 noscript: ''
 noscriptRegion: {  }
 jquery: false
@@ -19,6 +19,6 @@ conditions:
   request_path:
     id: request_path
     negate: false
-    pages: /sensor-overview
+    pages: "/sensor-overview\r\n/log"
 contexts: {  }
 conditions_require_all: true
