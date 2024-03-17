@@ -3,9 +3,3 @@ services:
     parent: logger.channel_base
     arguments:
       - 'atak'
-
-  atak.commands: 
-    class: \Drupal\atak\Commands\BatchCommands
-    tags: 
-      - { name: drush.command }
-    arguments: ['@entity_type.manager', '@logger.factory'] 

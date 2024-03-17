@@ -13,5 +13,12 @@
     },
     "require-dev": {
         "drupal/key": "^1.17"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10"
+            }
+        }
     }
 }

@@ -1,0 +1,5 @@
+services:
+  atak.commands.batch:
+    class: Drupal\atak\Commands\BatchCommand
+    tags:
+      - { name: console.command }
