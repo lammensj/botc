@@ -1,0 +1,24 @@
+uuid: 7617b88f-9a57-4e47-9c62-31688803adf2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: refresh_map_page
+label: 'refresh map page'
+code: |-
+  setInterval(function() {
+      location.reload()
+  }, 15 * 1000);
+noscript: ''
+noscriptRegion: {  }
+jquery: false
+header: false
+preprocess: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /sensor-overview
+contexts: {  }
+conditions_require_all: true
