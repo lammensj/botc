@@ -3,13 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.presence.field_prsnc_lur
     - field.field.node.presence.field_prsnc_sensor_id
+    - field.storage.node.field_prsnc_lur
     - field.storage.node.field_prsnc_sensor_id
     - node.type.presence
   module:
     - atak
     - eca_base
     - eca_content
+    - eca_log
 id: process_os21snz
 modeller: bpmn_io
 label: Atak
@@ -34,7 +37,13 @@ events:
       -
         id: Activity_13s29sv
         condition: ''
-conditions: {  }
+conditions:
+  Flow_19dk52s:
+    plugin: eca_entity_field_value_empty
+    configuration:
+      field_name: field_prsnc_lur
+      negate: true
+      entity: entity
 gateways: {  }
 actions:
   Activity_16a4qkv:
@@ -64,9 +73,20 @@ actions:
       -
         id: Activity_1w02syf
         condition: ''
+      -
+        id: Activity_0jvcxny
+        condition: Flow_19dk52s
   Activity_1w02syf:
     plugin: atak_send_message
     label: 'Send MSG'
     configuration:
       entity: '[entity]'
+    successors: {  }
+  Activity_0jvcxny:
+    plugin: eca_write_log_message
+    label: 'Log MSG'
+    configuration:
+      channel: atak
+      severity: '6'
+      message: '[entity:field_prsnc_lur]'
     successors: {  }

@@ -86,6 +86,7 @@ modeldata: |
         <bpmn2:incoming>Flow_04kjutp</bpmn2:incoming>
         <bpmn2:incoming>Flow_0cid2c7</bpmn2:incoming>
         <bpmn2:outgoing>Flow_1dsq8yf</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_19dk52s</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_04kjutp" sourceRef="Event_077jy8l" targetRef="Activity_13s29sv" />
       <bpmn2:sequenceFlow id="Flow_0cid2c7" sourceRef="Activity_16a4qkv" targetRef="Activity_13s29sv" />
@@ -101,6 +102,39 @@ modeldata: |
         <bpmn2:incoming>Flow_1dsq8yf</bpmn2:incoming>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_1dsq8yf" sourceRef="Activity_13s29sv" targetRef="Activity_1w02syf" />
+      <bpmn2:task id="Activity_0jvcxny" name="Log MSG" camunda:modelerTemplate="org.drupal.action.eca_write_log_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_write_log_message" />
+          </camunda:properties>
+          <camunda:field name="channel">
+            <camunda:string>atak</camunda:string>
+          </camunda:field>
+          <camunda:field name="severity">
+            <camunda:string>6</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>[entity:field_prsnc_lur]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_19dk52s</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_19dk52s" camunda:modelerTemplate="org.drupal.condition.eca_entity_field_value_empty" sourceRef="Activity_13s29sv" targetRef="Activity_0jvcxny">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_entity_field_value_empty" />
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_prsnc_lur</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity">
+            <camunda:string>entity</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-0d8f0039-010a-450f-8a7b-cace152bf3a9">
       <bpmndi:BPMNPlane id="sid-ae5d0c17-3887-4884-a249-f6f41704940e" bpmnElement="Process_os21SNz">
@@ -128,6 +162,10 @@ modeldata: |
           <dc:Bounds x="680" y="-200" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0jvcxny_di" bpmnElement="Activity_0jvcxny">
+          <dc:Bounds x="680" y="-90" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_1wkfwqh_di" bpmnElement="Flow_1wkfwqh">
           <di:waypoint x="218" y="100" />
           <di:waypoint x="270" y="100" />
@@ -145,6 +183,12 @@ modeldata: |
         <bpmndi:BPMNEdge id="Flow_1dsq8yf_di" bpmnElement="Flow_1dsq8yf">
           <di:waypoint x="550" y="-160" />
           <di:waypoint x="680" y="-160" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_19dk52s_di" bpmnElement="Flow_19dk52s">
+          <di:waypoint x="550" y="-160" />
+          <di:waypoint x="620" y="-160" />
+          <di:waypoint x="620" y="-50" />
+          <di:waypoint x="680" y="-50" />
         </bpmndi:BPMNEdge>
       </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

@@ -256,7 +256,7 @@ display:
         options:
           perm: 'access site reports'
       cache:
-        type: tag
+        type: none
         options: {  }
       empty: {  }
       sorts:
