@@ -3,7 +3,7 @@
 do_it () {
    	echo 'cron run'
    	# Drush script comes here 
-	drush --root=/var/www eca:trigger:custom_event query
+	drush --root=/var/www atak:batch
 }
 
 do_it

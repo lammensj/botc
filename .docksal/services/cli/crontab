@@ -1,2 +1,3 @@
+* * * * * bash -l -c 'drush --root=/var/www atak:reset'
 */5 * * * * bash -l -c 'drush --root=/var/www cron'
 * * * * * bash -l -c '/var/www/.docksal/services/cli/consumer.sh'
