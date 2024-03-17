@@ -1,5 +1,5 @@
 services:
-  logger.channel.botc:
+  logger.channel.atak:
     parent: logger.channel_base
     arguments:
       - 'atak'

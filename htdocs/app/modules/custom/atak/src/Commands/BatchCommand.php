@@ -54,32 +54,32 @@ class BatchCommand extends Command {
         if($record->values['_field'] == 'MIC' ) {
           // test audio threshold
           if($value > 80){
-            $this->markNode($uuid);
+            $this->markNode($uuid, $record->values['_field'], 80);
           }
         }
         if($record->values['_field'] == 'VOC' ) {
           // test audio threshold
           if($value > 80) {
-            $this->markNode($uuid);
+            $this->markNode($uuid, $record->values['_field'], 80);
           }
         }
         if($record->values['_field'] == 'SEISMIC' ) {
           // test audio threshold
           if($value > 80) {
-            $this->markNode($uuid);
+            $this->markNode($uuid, $record->values['_field'], 80);
           }
         }
         if($record->values['_field'] == 'RF_RSSI' ) {
           // test audio threshold
           //
           if($value > 80) {
-            $this->markNode($uuid);
+            $this->markNode($uuid, $record->values['_field'], 80);
           }
         }
         if($record->values['_field'] == 'TEMP' ) {
           // test audio threshold
           if($value > 80) {
-            $this->markNode($uuid);
+            $this->markNode($uuid, $record->values['_field'], 80);
           }
         }
       }
@@ -88,14 +88,20 @@ class BatchCommand extends Command {
     return 0;
   }
 
-  protected function markNode($uuid){
+  protected function markNode($uuid, $field, $threshold){
     $database = \Drupal::database();
     $query = $database->query("SELECT * FROM {node__field_prsnc_sensor_id} where field_prsnc_sensor_id_value = '" . $uuid . "'");
     $result = $query->fetchAll();
     var_dump($result[0]->entity_id);
+
     $node = \Drupal\node\Entity\Node::load($result[0]->entity_id);
+    $message = sprintf('%s: %s reached threshold %s', $node->label(), $field, $threshold);
+
     $node->set('field_prsnc_team', 'Red');
+    $node->set('field_prsnc_lur', $message);
     $node->save();
+
+    \Drupal::logger('atak')->info($message);
   }
 
 }
