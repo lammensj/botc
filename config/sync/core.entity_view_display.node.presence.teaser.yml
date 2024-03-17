@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.presence.field_prsnc_geolocation
     - field.field.node.presence.field_prsnc_how
+    - field.field.node.presence.field_prsnc_lur
     - field.field.node.presence.field_prsnc_role
     - field.field.node.presence.field_prsnc_sensor_id
     - field.field.node.presence.field_prsnc_team
@@ -52,6 +53,7 @@ content:
     region: content
 hidden:
   field_prsnc_geolocation: true
+  field_prsnc_lur: true
   field_remote_uuid: true
   langcode: true
   links: true

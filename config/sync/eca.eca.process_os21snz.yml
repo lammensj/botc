@@ -60,4 +60,13 @@ actions:
     label: 'Send PRSNC'
     configuration:
       entity: '[entity]'
+    successors:
+      -
+        id: Activity_1w02syf
+        condition: ''
+  Activity_1w02syf:
+    plugin: atak_send_message
+    label: 'Send MSG'
+    configuration:
+      entity: '[entity]'
     successors: {  }
