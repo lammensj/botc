@@ -3,3 +3,8 @@ services:
     class: Drupal\atak\Commands\BatchCommand
     tags:
       - { name: console.command }
+
+  atak.commands.reset:
+    class: Drupal\atak\Commands\ResetCommand
+    tags:
+      - { name: console.command }
