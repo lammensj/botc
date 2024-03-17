@@ -28,19 +28,31 @@ class ResetCommand extends Command {
     $minago = strtotime('1 minute ago');
 
     $query = $database->query("SELECT *
-		FROM {node_field_data} as da ,
+		  FROM {node_field_data} as da ,
 			{node__field_prsnc_team} as team
-		WHERE da.nid = team.entity_id
-		AND type = 'presence'
-		AND team.field_prsnc_team_value = 'Red'
-		AND da.changed < " . $minago);
+		  WHERE da.nid = team.entity_id
+		  AND type = 'presence'
+		  AND team.field_prsnc_team_value = 'Red'
+		  AND da.changed < " . $minago);
     $result = $query->fetchAll();
-    foreach($result as $item) {
+    foreach ($result as $item) {
       var_dump($item);
       $node = \Drupal\node\Entity\Node::load($item->nid);
       $node->set('field_prsnc_team', 'Green');
       $node->save();
       var_dump($node->id());
+    }
+
+    $query = $database->query("SELECT *
+      FROM {node_field_data} as da ,
+      {node__field_prsnc_team} as team
+      WHERE da.nid = team.entity_id
+      AND team.field_prsnc_team_value != 'Red'
+      AND type = 'presence'");
+    $result = $query->fetchAll();
+    foreach ($result as $item) {
+      $node = \Drupal\node\Entity\Node::load($item->nid);
+      $node->save();
     }
 
     return 0;
