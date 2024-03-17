@@ -85,10 +85,21 @@ class SendPresence extends ConfigurableActionBase {
     $node = $this->tokenServices->getTokenData($this->configuration['entity']);
 
     try {
-      $this->postPresence($node);
+      if (!$node->get('field_remote_uuid')->isEmpty()) {
+        $this->putPresence($node);
+
+        return;
+      }
+
+      $response = $this->postPresence($node);
+      if ($response->getStatusCode() === 200) {
+        $data = json_decode((string) $response->getBody());
+        $node->set('field_remote_uuid', $data->message);
+      }
     }
     catch (ClientException $e) {
       VarDumper::dump($e);
+      die();
     }
   }
 
@@ -109,9 +120,9 @@ class SendPresence extends ConfigurableActionBase {
 
   protected function putPresence(NodeInterface $node) {
     $payload = $this->createPayload($node);
-    $payload['uid'] = $node->uuid();
+    $payload['uid'] = $node->get('field_remote_uuid')->getString();
 
-    $response = $this->client->request(
+    $this->client->request(
       'PUT',
       'http://35.206.145.140:19023/ManagePresence/putPresence',
       [
@@ -121,7 +132,6 @@ class SendPresence extends ConfigurableActionBase {
         RequestOptions::JSON => $payload,
       ],
     );
-    VarDumper::dump($response->getStatusCode());
   }
 
   protected function createPayload(NodeInterface $node): array {
