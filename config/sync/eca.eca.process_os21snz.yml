@@ -18,7 +18,7 @@ weight: null
 events:
   Event_0wdky4s:
     plugin: 'eca_base:eca_custom'
-    label: Event_0wdky4s
+    label: 'event: atak'
     configuration:
       event_id: atak
     successors:
@@ -32,23 +32,16 @@ events:
       type: 'node presence'
     successors:
       -
-        id: Activity_16a4qkv
+        id: Activity_1jxck8n
         condition: ''
 conditions: {  }
 gateways: {  }
 actions:
-  Activity_13bu9da:
-    plugin: atak_send_presence
-    label: 'Send PRSNC'
-    configuration:
-      entity: presence
-      team: Yellow
-    successors: {  }
   Activity_16a4qkv:
     plugin: eca_token_load_entity
     label: 'Load PRSNC'
     configuration:
-      token_name: presence
+      token_name: entity
       from: properties
       entity_type: node
       entity_id: ''
@@ -60,15 +53,12 @@ actions:
       object: ''
     successors:
       -
-        id: Activity_13bu9da
+        id: Activity_1jxck8n
         condition: ''
-      -
-        id: Activity_182ehqp
-        condition: ''
-  Activity_182ehqp:
-    plugin: action_message_action
-    label: Log
+  Activity_1jxck8n:
+    plugin: atak_send_presence
+    label: 'Send PRSNC'
     configuration:
-      message: '[presence:label]'
-      replace_tokens: true
+      entity: '[entity]'
+      team: Green
     successors: {  }

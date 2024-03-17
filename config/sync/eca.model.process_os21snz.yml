@@ -14,7 +14,7 @@ modeldata: |
   <?xml version="1.0" encoding="UTF-8"?>
   <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
     <bpmn2:process id="Process_os21SNz" name="Atak" isExecutable="true">
-      <bpmn2:startEvent id="Event_0wdky4s" camunda:modelerTemplate="org.drupal.event.eca_base:eca_custom">
+      <bpmn2:startEvent id="Event_0wdky4s" name="event: atak" camunda:modelerTemplate="org.drupal.event.eca_base:eca_custom">
         <bpmn2:extensionElements>
           <camunda:properties>
             <camunda:property name="pluginid" value="eca_base:eca_custom" />
@@ -25,24 +25,13 @@ modeldata: |
         </bpmn2:extensionElements>
         <bpmn2:outgoing>Flow_1wkfwqh</bpmn2:outgoing>
       </bpmn2:startEvent>
-      <bpmn2:task id="Activity_13bu9da" name="Send PRSNC" camunda:modelerTemplate="org.drupal.action.atak_send_presence">
-        <bpmn2:extensionElements>
-          <camunda:properties>
-            <camunda:property name="pluginid" value="atak_send_presence" />
-          </camunda:properties>
-          <camunda:field name="entity">
-            <camunda:string>presence</camunda:string>
-          </camunda:field>
-        </bpmn2:extensionElements>
-        <bpmn2:incoming>Flow_0lp5zt8</bpmn2:incoming>
-      </bpmn2:task>
       <bpmn2:task id="Activity_16a4qkv" name="Load PRSNC" camunda:modelerTemplate="org.drupal.action.eca_token_load_entity">
         <bpmn2:extensionElements>
           <camunda:properties>
             <camunda:property name="pluginid" value="eca_token_load_entity" />
           </camunda:properties>
           <camunda:field name="token_name">
-            <camunda:string>presence</camunda:string>
+            <camunda:string>entity</camunda:string>
           </camunda:field>
           <camunda:field name="from">
             <camunda:string>properties</camunda:string>
@@ -71,12 +60,9 @@ modeldata: |
           </camunda:field>
         </bpmn2:extensionElements>
         <bpmn2:incoming>Flow_1wkfwqh</bpmn2:incoming>
-        <bpmn2:incoming>Flow_0o9u2s9</bpmn2:incoming>
-        <bpmn2:outgoing>Flow_0lp5zt8</bpmn2:outgoing>
-        <bpmn2:outgoing>Flow_0h7w4fd</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0dk2r7d</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:sequenceFlow id="Flow_1wkfwqh" sourceRef="Event_0wdky4s" targetRef="Activity_16a4qkv" />
-      <bpmn2:sequenceFlow id="Flow_0lp5zt8" sourceRef="Activity_16a4qkv" targetRef="Activity_13bu9da" />
       <bpmn2:startEvent id="Event_077jy8l" name="Presave sensor" camunda:modelerTemplate="org.drupal.event.content_entity:presave">
         <bpmn2:extensionElements>
           <camunda:properties>
@@ -86,36 +72,36 @@ modeldata: |
             <camunda:string>node presence</camunda:string>
           </camunda:field>
         </bpmn2:extensionElements>
-        <bpmn2:outgoing>Flow_0o9u2s9</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_028i4r0</bpmn2:outgoing>
       </bpmn2:startEvent>
-      <bpmn2:sequenceFlow id="Flow_0o9u2s9" sourceRef="Event_077jy8l" targetRef="Activity_16a4qkv" />
-      <bpmn2:task id="Activity_182ehqp" name="Log" camunda:modelerTemplate="org.drupal.action.action_message_action">
+      <bpmn2:task id="Activity_1jxck8n" name="Send PRSNC" camunda:modelerTemplate="org.drupal.action.atak_send_presence">
         <bpmn2:extensionElements>
           <camunda:properties>
-            <camunda:property name="pluginid" value="action_message_action" />
+            <camunda:property name="pluginid" value="atak_send_presence" />
           </camunda:properties>
-          <camunda:field name="message">
-            <camunda:string>[presence:label]</camunda:string>
+          <camunda:field name="entity">
+            <camunda:string>[entity]</camunda:string>
           </camunda:field>
-          <camunda:field name="replace_tokens">
-            <camunda:string>yes</camunda:string>
+          <camunda:field name="team">
+            <camunda:string>Green</camunda:string>
           </camunda:field>
         </bpmn2:extensionElements>
-        <bpmn2:incoming>Flow_0h7w4fd</bpmn2:incoming>
+        <bpmn2:incoming>Flow_028i4r0</bpmn2:incoming>
+        <bpmn2:incoming>Flow_0dk2r7d</bpmn2:incoming>
       </bpmn2:task>
-      <bpmn2:sequenceFlow id="Flow_0h7w4fd" sourceRef="Activity_16a4qkv" targetRef="Activity_182ehqp" />
+      <bpmn2:sequenceFlow id="Flow_028i4r0" sourceRef="Event_077jy8l" targetRef="Activity_1jxck8n" />
+      <bpmn2:sequenceFlow id="Flow_0dk2r7d" sourceRef="Activity_16a4qkv" targetRef="Activity_1jxck8n" />
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-0d8f0039-010a-450f-8a7b-cace152bf3a9">
       <bpmndi:BPMNPlane id="sid-ae5d0c17-3887-4884-a249-f6f41704940e" bpmnElement="Process_os21SNz">
         <bpmndi:BPMNShape id="Event_0wdky4s_di" bpmnElement="Event_0wdky4s">
-          <dc:Bounds x="182" y="-28" width="36" height="36" />
-        </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_13bu9da_di" bpmnElement="Activity_13bu9da">
-          <dc:Bounds x="490" y="-50" width="100" height="80" />
-          <bpmndi:BPMNLabel />
+          <dc:Bounds x="182" y="82" width="36" height="36" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="173" y="125" width="54" height="14" />
+          </bpmndi:BPMNLabel>
         </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_16a4qkv_di" bpmnElement="Activity_16a4qkv">
-          <dc:Bounds x="310" y="-50" width="100" height="80" />
+          <dc:Bounds x="270" y="60" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Event_077jy8l_di" bpmnElement="Event_077jy8l">
@@ -124,29 +110,23 @@ modeldata: |
             <dc:Bounds x="163" y="-135" width="77" height="14" />
           </bpmndi:BPMNLabel>
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_182ehqp_di" bpmnElement="Activity_182ehqp">
-          <dc:Bounds x="490" y="60" width="100" height="80" />
+        <bpmndi:BPMNShape id="Activity_1jxck8n_di" bpmnElement="Activity_1jxck8n">
+          <dc:Bounds x="440" y="-200" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_1wkfwqh_di" bpmnElement="Flow_1wkfwqh">
-          <di:waypoint x="218" y="-10" />
-          <di:waypoint x="310" y="-10" />
+          <di:waypoint x="218" y="100" />
+          <di:waypoint x="270" y="100" />
         </bpmndi:BPMNEdge>
-        <bpmndi:BPMNEdge id="Flow_0lp5zt8_di" bpmnElement="Flow_0lp5zt8">
-          <di:waypoint x="410" y="-10" />
-          <di:waypoint x="490" y="-10" />
-        </bpmndi:BPMNEdge>
-        <bpmndi:BPMNEdge id="Flow_0o9u2s9_di" bpmnElement="Flow_0o9u2s9">
+        <bpmndi:BPMNEdge id="Flow_028i4r0_di" bpmnElement="Flow_028i4r0">
           <di:waypoint x="218" y="-160" />
-          <di:waypoint x="279" y="-160" />
-          <di:waypoint x="279" y="-30" />
-          <di:waypoint x="310" y="-30" />
+          <di:waypoint x="440" y="-160" />
         </bpmndi:BPMNEdge>
-        <bpmndi:BPMNEdge id="Flow_0h7w4fd_di" bpmnElement="Flow_0h7w4fd">
-          <di:waypoint x="410" y="-10" />
-          <di:waypoint x="450" y="-10" />
-          <di:waypoint x="450" y="100" />
-          <di:waypoint x="490" y="100" />
+        <bpmndi:BPMNEdge id="Flow_0dk2r7d_di" bpmnElement="Flow_0dk2r7d">
+          <di:waypoint x="370" y="100" />
+          <di:waypoint x="405" y="100" />
+          <di:waypoint x="405" y="-160" />
+          <di:waypoint x="440" y="-160" />
         </bpmndi:BPMNEdge>
       </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

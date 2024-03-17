@@ -84,13 +84,13 @@ content:
     third_party_settings: {  }
   field_prsnc_how:
     type: options_select
-    weight: 26
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_prsnc_role:
     type: string_textfield
-    weight: 27
+    weight: 5
     region: content
     settings:
       size: 60
@@ -98,7 +98,7 @@ content:
     third_party_settings: {  }
   field_prsnc_sensor_id:
     type: string_textfield
-    weight: 28
+    weight: 6
     region: content
     settings:
       size: 60
@@ -107,14 +107,6 @@ content:
   field_prsnc_team:
     type: string_textfield
     weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_remote_uuid:
-    type: string_textfield
-    weight: 29
     region: content
     settings:
       size: 60
@@ -137,6 +129,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_remote_uuid: true
   langcode: true
   promote: true
   sticky: true
